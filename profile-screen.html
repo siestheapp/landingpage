@@ -70,24 +70,76 @@
       border-radius:var(--radius); box-shadow:var(--shadow);
       padding:14px; margin-bottom:24px;
     }
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      mask-image: linear-gradient(to right, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black 20px, black calc(100% - 20px), transparent 100%);
+    }
+    .table-scroll::-webkit-scrollbar {
+      display: none;
+    }
     table {
-      width:100%; border-collapse:collapse; font-size:13px;
+      width: max-content;
+      min-width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
     }
     thead th {
-      text-align:left; font-size:11px; text-transform:uppercase;
-      color:#6a6a73; padding:10px 8px; border-bottom:1px solid var(--track);
-      background:linear-gradient(to bottom, rgba(143,106,174,.04), rgba(255,255,255,0));
+      text-align: center;
+      font-size: 11px;
+      color: #6a6a73;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--track);
+      background: linear-gradient(to bottom, rgba(143,106,174,.04), rgba(255,255,255,0));
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .measurement-label {
+      text-align: left !important;
+      font-weight: 700;
+      color: var(--ink);
+      background: rgba(143,106,174,.06) !important;
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      min-width: 80px !important;
+    }
+    .brand-col {
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.3;
+    }
+    .size-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: none;
     }
     tbody tr {
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      cursor: pointer;
+      transition: background-color 0.2s ease;
     }
     tbody tr:hover {
       background: rgba(143,106,174,.04);
-      transform: translateX(2px);
     }
     tbody td {
-      padding:12px 10px; border-bottom:1px solid rgba(0,0,0,.06); vertical-align:top;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      vertical-align: middle;
+      text-align: center;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    tbody td.measurement-label {
+      text-align: left;
+      font-weight: 700;
+      color: var(--ink);
+      background: rgba(143,106,174,.06);
+      position: sticky;
+      left: 0;
+      z-index: 1;
     }
     .brand {
       font-weight:600;
@@ -253,20 +305,54 @@
         </div>
 
         <div class="card table-card">
-          <table id="fitTable">
-            <thead>
-              <tr><th>Brand</th><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr>
-            </thead>
-            <tbody>
-              <tr data-cat="tops"><td class="brand">COS</td><td>XS</td><td>31.5"</td><td>25.2"</td><td>31.1"</td></tr>
-              <tr data-cat="bottoms"><td class="brand">AYR</td><td>26S</td><td>–</td><td>26.0"</td><td>36.0"</td></tr>
-              <tr data-cat="bottoms"><td class="brand">Zara</td><td>M</td><td>–</td><td>26.8"</td><td>35.4"</td></tr>
-              <tr data-cat="dresses"><td class="brand">Alexis</td><td>S</td><td>30.0"</td><td>24.0"</td><td>34.0"</td></tr>
-              <tr data-cat="dresses"><td class="brand">GH</td><td>UK8</td><td>32.3"</td><td>25.6"</td><td>35.4"</td></tr>
-              <tr data-cat="tops"><td class="brand">Sies Marjan</td><td>0/XS</td><td>32.0"</td><td>25.0"</td><td>35.5"</td></tr>
-              <tr data-cat="tops"><td class="brand">RÓHE</td><td>EU 32</td><td>40.2"</td><td>29.6"</td><td>–</td></tr>
-            </tbody>
-          </table>
+          <div class="table-scroll">
+            <table id="fitTable">
+              <thead>
+                <tr>
+                  <th class="measurement-label"></th>
+                  <th data-cat="tops" class="brand-col">COS<br><span class="size-label">XS</span></th>
+                  <th data-cat="bottoms" class="brand-col">AYR<br><span class="size-label">26S</span></th>
+                  <th data-cat="bottoms" class="brand-col">Zara<br><span class="size-label">M</span></th>
+                  <th data-cat="dresses" class="brand-col">Alexis<br><span class="size-label">S</span></th>
+                  <th data-cat="dresses" class="brand-col">GH<br><span class="size-label">UK8</span></th>
+                  <th data-cat="tops" class="brand-col">Sies Marjan<br><span class="size-label">0/XS</span></th>
+                  <th data-cat="tops" class="brand-col">RÓHE<br><span class="size-label">EU 32</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="measurement-row">
+                  <td class="measurement-label">Bust</td>
+                  <td data-cat="tops">31.5"</td>
+                  <td data-cat="bottoms">–</td>
+                  <td data-cat="bottoms">–</td>
+                  <td data-cat="dresses">30.0"</td>
+                  <td data-cat="dresses">32.3"</td>
+                  <td data-cat="tops">32.0"</td>
+                  <td data-cat="tops">40.2"</td>
+                </tr>
+                <tr class="measurement-row">
+                  <td class="measurement-label">Waist</td>
+                  <td data-cat="tops">25.2"</td>
+                  <td data-cat="bottoms">26.0"</td>
+                  <td data-cat="bottoms">26.8"</td>
+                  <td data-cat="dresses">24.0"</td>
+                  <td data-cat="dresses">25.6"</td>
+                  <td data-cat="tops">25.0"</td>
+                  <td data-cat="tops">29.6"</td>
+                </tr>
+                <tr class="measurement-row">
+                  <td class="measurement-label">Hip</td>
+                  <td data-cat="tops">31.1"</td>
+                  <td data-cat="bottoms">36.0"</td>
+                  <td data-cat="bottoms">35.4"</td>
+                  <td data-cat="dresses">34.0"</td>
+                  <td data-cat="dresses">35.4"</td>
+                  <td data-cat="tops">35.5"</td>
+                  <td data-cat="tops">–</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="summary-scroll" id="summaryScroll">
@@ -293,7 +379,7 @@
           const pills = document.querySelectorAll('#categoryPills .pill');
           const values = document.querySelectorAll('#summaryScroll .summary-value');
           const cards = document.querySelectorAll('#summaryScroll .summary-card');
-          const rows = document.querySelectorAll('#fitTable tbody tr');
+          const cols = document.querySelectorAll('#fitTable th[data-cat], #fitTable td[data-cat]');
           const scrollEl = document.getElementById('summaryScroll');
           const pagerEl = document.getElementById('summaryPager');
 
@@ -333,10 +419,10 @@
               const cats = (card.getAttribute('data-cat')||'').split(/\s+/);
               card.classList.toggle('hidden', !cats.includes(filter));
             });
-            // Filter table rows
-            rows.forEach(row=>{
-              if(filter==='all'){ row.classList.remove('hidden'); return; }
-              row.classList.toggle('hidden', row.dataset.cat!==filter);
+            // Filter table columns
+            cols.forEach(col=>{
+              if(filter==='all'){ col.classList.remove('hidden'); return; }
+              col.classList.toggle('hidden', col.dataset.cat!==filter);
             });
             // Update values based on data attributes
             values.forEach(v=>{
