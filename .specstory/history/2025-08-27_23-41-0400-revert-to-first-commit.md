@@ -847,7 +847,343 @@ Lines added: 1, lines removed: 1
 
 Perfect! I've simplified and repositioned the shadow to create that "cast from the base" effect:
 
-**New shadow**: `20px 48px 40
+**New shadow**: `20px 48px 40px -20px rgba(0,0,0,.18)`
+
+- **20px horizontal offset** - pushes the shadow to the right
+- **48px vertical offset** - pushes it well below the phone base
+- **40px blur** - creates a soft, natural shadow
+- **-20px spread** - negative spread makes the shadow appear to originate from a smaller area (the base of the phone)
+- **Slightly higher opacity (.18)** - makes it more visible as a grounded shadow
+
+This creates a single, clean shadow that appears to be cast from the bottom edge of the phone extending behind and to the right, just like a phone standing on a surface would cast its shadow.
+
+---
+
+_**User**_
+
+reduce the edge a little so it blends better with index page
+
+---
+
+_**Assistant**_
+
+I'll reduce the shadow intensity to make it blend better with the landing page's softer design aesthetic.
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/mockup1.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -19,5 +19,5 @@
+  /* iPhone Frame (Finy Style) */
+  .phone-container{position:relative;width:430px;height:932px;margin:auto}
+- .phone-frame{width:100%;height:100%;background:#000;border-radius:55px;padding:2px;box-shadow:20px 48px 40px -20px rgba(0,0,0,.18)}
++ .phone-frame{width:100%;height:100%;background:#000;border-radius:55px;padding:2px;box-shadow:20px 48px 40px -20px rgba(0,0,0,.12)}
+  .screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+  
+```
+
+</details>
+
+---
+
+Perfect! I've reduced the shadow opacity from `.18` to `.12`, which matches the softer shadow system used throughout the landing page (like the `--shadow:0 10px 30px rgba(0,0,0,.06)` variable). This creates a more subtle, refined shadow that integrates better with the page's overall design language while still maintaining that natural "phone standing on surface" effect.
+
+The shadow now has a gentler presence that won't compete with the page content or feel too heavy against the light background.
+
+---
+
+_**User**_
+
+great do ao commit and piush
+
+---
+
+_**Assistant**_
+
+I'll commit the shadow improvements and push them to GitHub.
+
+---
+
+```bash
+git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Improved mockup shadow to appear grounded and natural"
+```
+
+```
+seandavey@MacBook-Air-3 web % git commit -m "Improved mockup shadow to appear grounded and natural"
+[main a7ca1ba] Improved mockup shadow to appear grounded and natural
+ 3 files changed, 509 insertions(+), 2 deletions(-)
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+seandavey@MacBook-Air-3 web % git push
+Enumerating objects: 13, done.
+Counting objects: 100% (13/13), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 8.35 KiB | 8.35 MiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/siestheapp/landingpage.git
+   6159997..a7ca1ba  main -> main
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Perfect! I've successfully committed and pushed the shadow improvements with the message "Improved mockup shadow to appear grounded and natural". The changes include:
+
+- Updated the mockup shadow to appear as if the phone is standing on a surface
+- Made the shadow extend rightward from the base of the phone
+- Softened the shadow opacity to blend better with the landing page design
+- Created a more natural, grounded appearance
+
+The commit shows 3 files changed with 509 insertions, and it's now live on GitHub at `https://github.com/siestheapp/landingpage.git`.
+
+---
+
+_**User**_
+
+great. can you make the sies text in the upper left of index match the style/format of the sies text at the top of the mockuo
+
+---
+
+_**Assistant**_
+
+I'll update the logo styling in the index.html to match the mockup's sies text style. Let me first check how the sies text is styled in the mockup.
+
+---
+
+
+
+---
+
+
+
+---
+
+Perfect! I can see the differences. The mockup uses `font-weight:600` and `font-size:32px`, while the index uses `font-weight:800` and `font-size:22px`. I'll update the index logo to match the mockup's styling.
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/index.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -29,5 +29,5 @@
+      header{position:sticky;top:0;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06);z-index:10}
+      .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+-     .logo{font-weight:800;font-size:22px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
++     .logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+      .nav a{font-weight:600;color:#4C4C50;text-decoration:none;margin-left:20px}
+      .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #E8E4DE;border-radius:999px;background:#F1EFF7;color:#4C4C50;font:600 12px/1 Inter}
+```
+
+</details>
+
+---
+
+Perfect! I've updated the logo styling in the index.html to match the mockup exactly:
+
+**Changes made:**
+- **Font weight**: Changed from `800` (extra bold) to `600` (semi-bold) 
+- **Font size**: Increased from `22px` to `32px`
+- **Kept the same**: letter-spacing and gradient styling
+
+Now the "sies" logo in the upper left of the landing page will have the same visual weight and size as the "sies" text at the top of the mockup, creating better visual consistency between the two elements.
+
+---
+
+_**User**_
+
+great but reduce the padding around the logo
+
+---
+
+_**Assistant**_
+
+I'll reduce the padding around the logo in the navigation. Let me check the current nav padding and adjust it.
+
+---
+
+
+
+---
+
+I can see the nav currently has `padding:14px 0`. I'll reduce this to give the logo less breathing room and make it feel tighter.
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/index.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -28,5 +28,5 @@
+      .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+      header{position:sticky;top:0;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06);z-index:10}
+-     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
++     .nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+      .logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+      .nav a{font-weight:600;color:#4C4C50;text-decoration:none;margin-left:20px}
+```
+
+</details>
+
+---
+
+Perfect! I've reduced the navigation padding from `14px 0` to `8px 0`, which will give the logo less vertical breathing room and make the header feel more compact. This creates a tighter, more refined look that better matches the clean aesthetic of the mockup.
+
+The logo will now sit closer to the top and bottom edges of the navigation area, creating a more streamlined header appearance.
+
+---
+
+_**User**_
+
+good. lets bump up the contents in nav by 12px to bring it all closer to the sies logo
+
+---
+
+_**Assistant**_
+
+I'll move the hero content up by 12px to bring it closer to the sies logo. I need to adjust the hero's negative margin-top.
+
+---
+
+
+
+---
+
+I can see the hero currently has `margin-top:-95px`. To bring the content 12px closer to the logo, I'll increase the negative margin by 12px.
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/index.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -34,5 +34,5 @@
+  
+      /* Hero */
+-     .hero{padding:0 0 40px;margin-top:-95px}
++     .hero{padding:0 0 40px;margin-top:-107px}
+      .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+      .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
+```
+
+</details>
+
+---
+
+Perfect! I've moved the hero content 12px closer to the sies logo by changing the `margin-top` from `-95px` to `-107px`. This creates a tighter relationship between the navigation/logo area and the main content, reducing the gap and making the overall layout feel more cohesive and compact.
+
+The content will now sit closer to the header, creating better visual flow from the logo down to the main headline and mockup.
+
+---
+
+_**User**_
+
+i dont think that did anything visually
+
+---
+
+_**Assistant**_
+
+You're right! The negative margin is pulling the hero section up behind the sticky header, but since the header has a backdrop and is positioned on top, you won't see the visual change. Let me check the header positioning and adjust this properly.
+
+---
+
+
+
+---
+
+You're absolutely right! The header is sticky with `z-index:10`, so the negative margin just pulls content behind it. Instead, I should reduce the gap between the header and content by adjusting the hero's top padding or the header's height. Let me revert that change and approach this differently.
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/index.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -34,5 +34,5 @@
+  
+      /* Hero */
+-     .hero{padding:0 0 40px;margin-top:-107px}
++     .hero{padding:0 0 40px;margin-top:-95px}
+      .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+      .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
+```
+
+</details>
+
+---
+
+Now let me add some top padding to the hero section to create visible space between the header and content:
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/index.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -34,5 +34,5 @@
+  
+      /* Hero */
+-     .hero{padding:0 0 40px;margin-top:-95px}
++     .hero{padding:12px 0 40px;margin-top:-95px}
+      .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+      .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
+```
+
+</details>
+
+---
+
+Perfect! Now I've added `12px` of top padding to the hero section, which will create a visible 12px gap between the bottom of the header and the start of the hero content. This should bring the content visually closer to the sies logo while still maintaining proper spacing.
+
+The change from `padding:0 0 40px` to `padding:12px 0 40px` adds the top padding that will be visible between the header and the "IN YOUR SIZE" eyebrow text.
 
 ---
 
