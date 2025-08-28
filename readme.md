@@ -1,7 +1,13 @@
 
 # Sies — Waitlist Landing (Static)
 
+**Copyright © 2025 Sean Davey. All rights reserved.**
+
 This is a single-file static site (`index.html`). You can deploy it *as-is* anywhere that serves static files.
+
+## Project Ownership
+
+This project is owned and developed by **Sean Davey**. All code, design, and intellectual property contained within this repository are proprietary and protected by copyright law.
 
 ## Easiest ways to deploy
 

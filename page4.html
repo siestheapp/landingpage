@@ -50,6 +50,7 @@
     .section p.lede{color:#4C4C50;max-width:760px}
     .grid{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
 
+    /* (Legacy) generic steps styles (kept, but unused by the new block) */
     .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:24px}
     .step{background:#fff;border:1px solid #eee6;border-radius:var(--radius);padding:18px}
     .step-num{width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(143,106,174,.12);color:#8F6AAE;font:700 14px/1 Inter;margin-bottom:10px}
@@ -61,6 +62,94 @@
     .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
     .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
     .mock iframe{transform:scale(0.7);transform-origin:center}
+
+    /* === New: Premium Step Cards (scoped) === */
+    .howsteps{
+      --ink:#f5f5f5; --muted:#b9b9b9;
+      --accent:#6ad1d3; --accent2:#7aa7ff;
+      --radius:18px; --shadow:0 8px 24px rgba(0,0,0,.25);
+      color:var(--ink);
+    }
+    .howsteps__grid{
+      list-style:none;margin:0;padding:0;display:grid;gap:16px;
+      grid-template-columns:1fr;
+    }
+    @media (min-width:900px){ .howsteps__grid{ grid-template-columns:1fr; } } /* single column inside the left pane */
+    .howstep{
+      position:relative;border-radius:var(--radius);padding:18px 16px 16px;
+      box-shadow:var(--shadow); border:1px solid transparent;
+      background-image:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+        linear-gradient(135deg, var(--accent), var(--accent2));
+      background-origin:border-box; background-clip:padding-box, border-box;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .howstep:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.32); }
+    .howstep__header{ display:flex;align-items:center;gap:10px;margin-bottom:8px; }
+    .howstep__num{
+      width:30px;height:30px;border-radius:999px;display:grid;place-items:center;
+      font-weight:600;font-size:.95rem;color:#0b0b0b;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.25); flex:0 0 30px;
+    }
+    .howstep__icon{ width:20px;height:20px;opacity:.95 }
+    .howstep h3{ font-size:1.05rem;margin:0 0 6px;line-height:1.25;color:#0b0b0b }
+    .howstep p{ color:#1f1f1f; opacity:.78;margin:0;font-size:.95rem;line-height:1.5 }
+    .howsteps .btn--waitlist{
+      appearance:none;border:0;cursor:pointer;padding:12px 18px;border-radius:999px;
+      font-weight:600;font-size:1rem;color:#0b0b0b;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 6px 18px rgba(0,0,0,.25); text-decoration:none; display:inline-flex
+    }
+
+    .how-grid{
+      display:grid;
+      grid-template-columns: minmax(340px,520px) 1fr;
+      gap:32px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .how-grid{ grid-template-columns: 1fr; gap:22px; }
+    }
+
+    /* ---- Minimal, luxe step cards (overrides) ---- */
+    .howsteps{ color:inherit; }
+    .howsteps__grid{ gap:14px; }
+
+    .howstep{
+      background:#fff;
+      border:1px solid rgba(15,23,42,.08);   /* thin neutral keyline */
+      border-radius:14px;
+      padding:16px 18px;
+      box-shadow:0 8px 18px rgba(15,23,42,.06);
+      background-image:none;                  /* remove blue gradient fill */
+      transform:translateY(0);
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+    .howstep:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 26px rgba(15,23,42,.08);
+    }
+
+    .howstep__header{ gap:10px; margin-bottom:6px; }
+    .howstep__num{
+      width:28px; height:28px; border-radius:999px; display:grid; place-items:center;
+      font-weight:700; font-size:.9rem; color:#0f172a;
+      background:linear-gradient(180deg,#E7F4F3 0%, #E7EDFF 100%); /* very light pill */
+      box-shadow:none;
+    }
+    .howstep__icon{ opacity:.5; width:18px; height:18px; }   /* subtle, smaller */
+    .howstep h3{ margin:0 0 4px; font-weight:800; font-size:1rem; color:#0f172a; }
+    .howstep p{ margin:0; font-size:.95rem; line-height:1.5; color:#475569; }
+
+    .howsteps .btn--waitlist{
+      padding:10px 16px;
+      border-radius:999px;
+      background:#111;
+      color:#fff;
+      box-shadow:none;
+    }
+    .howsteps .btn--waitlist:hover{ opacity:.92; }
   </style>
 </head>
 <body>
@@ -108,39 +197,59 @@
         </div>
 
         <!-- Left-Right Layout -->
-        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center">
-          <!-- LEFT: Expert-formatted steps -->
-          <div style="display:flex;flex-direction:column;gap:32px">
-            <div style="display:flex;gap:18px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:var(--accent)">1</span>
-              </div>
-              <div>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">Add a couple favorites</h3>
-                <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:500px">Start with 1–3 pieces you already own. Snap a tag or paste a link — we'll extract the measurements instantly.</p>
-              </div>
-            </div>
-            <div style="display:flex;gap:18px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:var(--accent)">2</span>
-              </div>
-              <div>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">Your Closet builds your fit</h3>
-                <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:500px">Sies maps those favorites across brands and categories, creating your personal fit profile. Your Feed is curated around your exact measurements and preferences.</p>
-              </div>
-            </div>
-            <div style="display:flex;gap:18px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:var(--accent)">3</span>
-              </div>
-              <div>
-                <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">Shop in your size</h3>
-                <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:500px">On any product page, see your recommended size plus a simple "why it fits" explanation. No more guesswork — just clothes that fit.</p>
-              </div>
+        <div class="how-grid">
+          <!-- LEFT: Premium step cards (scoped) -->
+          <div class="howsteps">
+            <ol class="howsteps__grid">
+              <!-- Step 1 -->
+              <li class="howstep">
+                <div class="howstep__header">
+                  <span class="howstep__num">1</span>
+                  <!-- Hanger icon -->
+                  <svg class="howstep__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 7c0-1.6 1.3-3 3-3s3 1.4 3 3-1.3 3-3 3l7.5 4.5" stroke="currentColor" stroke-opacity=".9" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M3.5 14.5 12 9l8.5 5.5" stroke="currentColor" stroke-opacity=".55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 15h18l-1.5 3H4.5L3 15z" fill="currentColor" fill-opacity=".25"/>
+                  </svg>
+                  <h3>Add a couple favorites</h3>
+                </div>
+                <p>Start with 1–3 pieces you already own. Snap a tag or paste a link — we’ll extract the measurements instantly.</p>
+              </li>
+
+              <!-- Step 2 -->
+              <li class="howstep">
+                <div class="howstep__header">
+                  <span class="howstep__num">2</span>
+                  <!-- Magic wand icon -->
+                  <svg class="howstep__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 20l7-7M13.5 6.5l1-1M17 4l.75-.75M20 7l.75-.75M18 10l1-1" stroke="currentColor" stroke-opacity=".9" stroke-width="1.6" stroke-linecap="round"/>
+                    <rect x="11" y="4" width="3" height="3" rx=".6" fill="currentColor" fill-opacity=".3"/>
+                  </svg>
+                  <h3>Your Closet builds your fit</h3>
+                </div>
+                <p>Sies maps those favorites across brands and categories to create your personal fit profile. Your feed is curated to your exact measurements.</p>
+              </li>
+
+              <!-- Step 3 -->
+              <li class="howstep">
+                <div class="howstep__header">
+                  <span class="howstep__num">3</span>
+                  <!-- Shopping bag icon -->
+                  <svg class="howstep__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9h12l-1.2 10.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 9z" fill="currentColor" fill-opacity=".28"/>
+                    <path d="M9 9V7a3 3 0 1 1 6 0v2" stroke="currentColor" stroke-opacity=".9" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                  <h3>Shop in your size</h3>
+                </div>
+                <p>On any product page, see your recommended size and a simple “why it fits” explanation. No more uncertainty — just clothes that fit.</p>
+              </li>
+            </ol>
+            <div style="margin-top:20px">
+              <a class="btn--waitlist" href="#waitlist">Join the waitlist →</a>
             </div>
           </div>
 
-          <!-- RIGHT: Closet Mockup -->
+          <!-- RIGHT: Closet Mockup (unchanged) -->
           <div class="mock" aria-hidden="true">
             <div class="mock-inner">
               <iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
