@@ -1701,3 +1701,70 @@ The placeholder logo rectangles are now completely gone from the page, creating 
 
 ---
 
+_**User**_
+
+i just added the profile screen can you commit and push
+
+---
+
+_**Assistant**_
+
+I'll commit and push the changes including your new profile screen addition.
+
+---
+
+```bash
+git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Removed placeholder logos and added profile screen"
+```
+
+```
+seandavey@MacBook-Air-3 web % git commit -m "Removed placeholder logos and added profile screen"
+[main 597a765] Removed placeholder logos and added profile screen
+ 3 files changed, 408 insertions(+), 8 deletions(-)
+ create mode 100644 profile-screen.html
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+seandavey@MacBook-Air-3 web % git push
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 7.15 KiB | 7.15 MiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/siestheapp/landingpage.git
+   87207a1..597a765  main -> main
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Perfect! I've successfully committed and pushed the changes. The commit "Removed placeholder logos and added profile screen" includes:
+
+- Removal of the placeholder logo rectangles from the hero section
+- Your new profile screen addition (created as `profile-screen.html`)
+- 3 files changed with 408 insertions
+
+The changes are now live on GitHub at `https://github.com/siestheapp/landingpage.git`.
+
+---
+
