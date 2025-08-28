@@ -309,7 +309,38 @@ commit again, say mockup shrunk to 70% of original size
 
 _**Assistant**_
 
+I'll commit the current changes with a comment about the mockup being shrunk to 70% of the original size.
 
+
+---
+
+```bash
+git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Mockup shrunk to 70% of original size"
+```
+
+```
+seandavey@MacBook-Air-3 web % git commit -m "Mockup shrunk to 70% of original size"
+[main ff183e0] Mockup shrunk to 70% of original size
+ 3 files changed, 94 insertions(+), 1 deletion(-)
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Perfect! I've committed the changes with the message "Mockup shrunk to 70% of original size". The commit shows that 3 files were changed with 94 insertions and 1 deletion.
+
+Would you like me to push this commit to GitHub as well?
 
 ---
 
