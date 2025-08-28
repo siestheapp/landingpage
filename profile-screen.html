@@ -112,11 +112,19 @@
       color: var(--accent);
       line-height: 1.3;
     }
-    .size-label {
-      font-size: 10px;
-      font-weight: 500;
+    .size-row {
+      background: rgba(143,106,174,.04);
+    }
+    .size-cell {
+      font-weight: 600;
+      font-size: 12px;
       color: var(--muted);
-      text-transform: none;
+      padding: 8px 16px !important;
+    }
+    .size-header {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     tbody tr {
       transition: background-color 0.2s ease;
@@ -309,14 +317,24 @@
             <table id="fitTable">
               <thead>
                 <tr>
-                  <th class="measurement-label"></th>
-                  <th data-cat="tops" class="brand-col">COS<br><span class="size-label">XS</span></th>
-                  <th data-cat="bottoms" class="brand-col">AYR<br><span class="size-label">26S</span></th>
-                  <th data-cat="bottoms" class="brand-col">Zara<br><span class="size-label">M</span></th>
-                  <th data-cat="dresses" class="brand-col">Alexis<br><span class="size-label">S</span></th>
-                  <th data-cat="dresses" class="brand-col">GH<br><span class="size-label">UK8</span></th>
-                  <th data-cat="tops" class="brand-col">Sies Marjan<br><span class="size-label">0/XS</span></th>
-                  <th data-cat="tops" class="brand-col">RÓHE<br><span class="size-label">EU 32</span></th>
+                  <th class="measurement-label">Measurement</th>
+                  <th data-cat="tops" class="brand-col">COS</th>
+                  <th data-cat="bottoms" class="brand-col">AYR</th>
+                  <th data-cat="bottoms" class="brand-col">Zara</th>
+                  <th data-cat="dresses" class="brand-col">Alexis</th>
+                  <th data-cat="dresses" class="brand-col">GH</th>
+                  <th data-cat="tops" class="brand-col">Sies Marjan</th>
+                  <th data-cat="tops" class="brand-col">RÓHE</th>
+                </tr>
+                <tr class="size-row">
+                  <td class="measurement-label size-header">Size</td>
+                  <td data-cat="tops" class="size-cell">XS</td>
+                  <td data-cat="bottoms" class="size-cell">26S</td>
+                  <td data-cat="bottoms" class="size-cell">M</td>
+                  <td data-cat="dresses" class="size-cell">S</td>
+                  <td data-cat="dresses" class="size-cell">UK8</td>
+                  <td data-cat="tops" class="size-cell">0/XS</td>
+                  <td data-cat="tops" class="size-cell">EU 32</td>
                 </tr>
               </thead>
               <tbody>
