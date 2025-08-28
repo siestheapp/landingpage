@@ -1604,7 +1604,100 @@ ok do a commit
 
 _**Assistant**_
 
+I'll commit all the hero copy updates.
 
+---
+
+```bash
+git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Updated hero copy with improved messaging and benefits"
+```
+
+```
+seandavey@MacBook-Air-3 web % git commit -m "Updated hero copy with improved messaging and benefits"
+[main 87207a1] Updated hero copy with improved messaging and benefits
+ 2 files changed, 436 insertions(+), 5 deletions(-)
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Perfect! I've committed all the hero copy updates with the message "Updated hero copy with improved messaging and benefits". The commit includes:
+
+- Changed eyebrow from "In your size" to "no more returns"
+- Updated headline to "Find clothes that fit — every time."
+- Improved the description copy with better flow and messaging
+- Added the three benefits with sparkle emojis
+- Updated button text to include arrow
+- Changed note to "No spam, seriously."
+
+The commit shows 2 files changed with 436 insertions. Would you like me to push this to GitHub as well?
+
+---
+
+_**User**_
+
+yes push. then lets remove these rectanagles
+
+---
+
+_**Assistant**_
+
+I'll push the commit first, then remove those placeholder logo rectangles.
+
+---
+
+```bash
+git push
+```
+
+```
+seandavey@MacBook-Air-3 web % git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 3.82 KiB | 3.82 MiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To https://github.com/siestheapp/landingpage.git
+   10a4e88..87207a1  main -> main
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Great! Now let me remove those placeholder logo rectangles. I'll find and remove the logos section.
+
+---
+
+
+
+---
+
+I'll remove both the HTML logos section and the CSS styling for it.
+
+---
+
+
+
+---
+
+Perfect! I've removed both:
+1. **The CSS styling** for the logos section (`.logos` and `.logos img` rules)
+2. **The HTML logos section** with all three placeholder rectangles (PRESS, BRAND, NYC)
+
+The placeholder logo rectangles are now completely gone from the page, creating a cleaner hero section that focuses on the core messaging and call-to-action without the distracting placeholder elements.
 
 ---
 
