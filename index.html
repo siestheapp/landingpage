@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sies — In Your Size • Join the Waitlist</title>
+  <meta name="description" content="Sies predicts your best-fitting size across brands using the clothes you already own. Join the waitlist to get early access."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Brand tokens (from mock8.html) */
+      --bg:#FAF8F6; --ink:#1F1F1F; --muted:#6F6F74; --accent:#8F6AAE;
+      --card:#FFFFFF; --track:#ECECEC; --shadow:0 10px 30px rgba(0,0,0,.06);
+      --g1:#667eea; --g2:#764ba2; /* gradient */
+      --radius:16px; --radius-lg:22px; --radius-xl:28px; --radius-2xl:36px;
+      --space: clamp(12px, 2vw, 20px);
+      --maxw: 1120px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--ink)}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+
+    /* Layout */
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{font-weight:800;font-size:22px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .nav a{font-weight:600;color:#4C4C50;text-decoration:none;margin-left:20px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #E8E4DE;border-radius:999px;background:#F1EFF7;color:#4C4C50;font:600 12px/1 Inter}
+
+    /* Hero */
+    .hero{padding:72px 0 40px}
+    .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+    .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
+    h1{font-size: clamp(32px, 5vw, 54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:14px}
+    .sub{font-size: clamp(16px, 2.2vw, 20px);line-height:1.5;color:#4C4C50;margin-bottom:22px}
+    .cta{display:flex;gap:10px;align-items:center}
+    .input{flex:1;min-width:200px;background:#fff;border:1px solid #E8E4DE;border-radius:var(--radius-lg);padding:14px 16px;font:500 16px/1.2 Inter;box-shadow: var(--shadow)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:var(--radius-lg);font:700 16px/1 Inter;color:#fff;border:none;cursor:pointer;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 24px rgba(118,75,162,.25)}
+    .btn.secondary{background:#fff;color:#1F1F1F;border:1px solid #E8E4DE}
+    .note{margin-top:10px;font-size:12px;color:#6F6F74}
+
+    /* Mockup */
+    .mock{border-radius:var(--radius-2xl);background:#000;box-shadow:0 30px 80px rgba(0,0,0,.25);padding:12px}
+    .mock-inner{background:#fff;border-radius:calc(var(--radius-2xl) - 10px);aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .mock-inner img{object-fit:cover;height:100%;width:auto}
+
+    /* Social proof */
+    .logos{display:flex;gap:28px;flex-wrap:wrap;align-items:center;opacity:.7;margin-top:22px}
+    .logos img{height:22px}
+
+    /* Feature grid */
+    .section{padding:64px 0}
+    .section h2{font-size: clamp(26px, 3.4vw, 36px);letter-spacing:-.01em;margin-bottom:10px}
+    .section p.lede{color:#4C4C50;max-width:760px}
+    .grid{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid #eee6;border-radius:var(--radius);padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .kicker{font:700 12px/1 Inter;letter-spacing:.08em;text-transform:uppercase;color:#8F6AAE;margin-bottom:8px}
+    .card h3{font-size:18px;margin-bottom:6px}
+    .card p{color:#4C4C50;font-size:14px}
+
+    /* Steps */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+    .step{background:#fff;border:1px solid #eee6;border-radius:var(--radius);padding:18px}
+    .step-num{width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:rgba(143,106,174,.12);color:#8F6AAE;font:700 14px/1 Inter;margin-bottom:10px}
+
+    /* Testimonials */
+    .testis{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+    .quote{background:#fff;border:1px solid #eee6;border-radius:var(--radius);padding:18px}
+    .quote p{font-size:14px;color:#4C4C50}
+    .quote .who{margin-top:10px;font-weight:600}
+
+    /* FAQ */
+    details{background:#fff;border:1px solid #eee6;border-radius:var(--radius);padding:14px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:600}
+    summary::-webkit-details-marker{display:none}
+
+    /* Footer */
+    footer{padding:40px 0;border-top:1px solid rgba(0,0,0,.06);margin-top:40px}
+    .foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+    .foot a{color:#4C4C50;text-decoration:none}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-wrap{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .steps,.testis{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 620px){
+      .grid,.steps,.testis{grid-template-columns:1fr}
+      .cta{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="Sies">sies</div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <div class="eyebrow">In your size</div>
+          <h1>Know your best size — before you add to cart.</h1>
+          <p class="sub">Sies compares brand size guides to the clothes you already own to predict your perfect fit across stores. No tape measure required.</p>
+
+          <form id="waitlist" class="cta" autocomplete="on">
+            <input class="input" type="email" name="email" placeholder="Enter your email" required aria-label="Email" />
+            <button class="btn" type="submit">Join the waitlist</button>
+          </form>
+          <p class="note">Early access invites roll out monthly. No spam — ever.</p>
+
+          <div class="logos" aria-label="As seen on">
+            <img alt="Placeholder logo" src="https://dummyimage.com/90x20/ddd/aaa.png&text=PRESS"/>
+            <img alt="Placeholder logo" src="https://dummyimage.com/80x20/ddd/aaa.png&text=BRAND"/>
+            <img alt="Placeholder logo" src="https://dummyimage.com/72x20/ddd/aaa.png&text=NYC"/>
+          </div>
+        </div>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-inner">
+            <!-- Drop a screenshot of your current mockup here -->
+            <img src="https://images.urbndata.com/is/image/Anthropologie/4130652010091_256_b?$redesign-zoom-5x$" alt="App preview"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2>Why Sies works</h2>
+        <p class="lede">Built on real garments from your closet plus brand-specific size guides. The result: predictions that feel human — and fit.</p>
+        <div class="grid">
+          <div class="card">
+            <div class="kicker">Closet-aware</div>
+            <h3>Uses what you already own</h3>
+            <p>Reference items become your personal baseline. Sies translates brand jargon into comparable measurements.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">Brand-specific</div>
+            <h3>Understands each brand’s fit</h3>
+            <p>Size guides are standardized and mapped, so an XS in Brand A can be compared to an S in Brand B.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">Contextual</div>
+            <h3>Tight, perfect, or relaxed</h3>
+            <p>Choose a fit zone and see how each size will actually feel — not just a number range.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section" style="background:rgba(255,255,255,.6);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)">
+      <div class="container">
+        <h2>From closet to checkout, in three steps</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Add a couple favorites</h3>
+            <p>Snap tags or paste links for items that fit you well. We extract measurements automatically.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Pick your fit zone</h3>
+            <p>Tell Sies whether you want a sleek, perfect, or relaxed fit. We adapt by garment type.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Shop in your size</h3>
+            <p>On any product page, see the recommended size and a simple “why it fits” explanation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS / SOCIAL PROOF -->
+    <section class="section">
+      <div class="container">
+        <h2>What early users say</h2>
+        <div class="testis">
+          <div class="quote"><p>“Finally nails my size across brands. Returns are way down.”</p><div class="who">— Beta tester, NYC</div></div>
+          <div class="quote"><p>“I love the ‘See why’ context. It compares to items I actually own.”</p><div class="who">— Private preview user</div></div>
+          <div class="quote"><p>“Super clean UI. The gradient CTAs feel premium.”</p><div class="who">— Product designer</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>When will Sies launch?</summary>
+          <p class="sub" style="font-size:14px;margin-top:8px">We’re inviting waitlisters in waves as we expand brand coverage. Join the list to get notified.</p>
+        </details>
+        <details>
+          <summary>Is my data secure?</summary>
+          <p class="sub" style="font-size:14px;margin-top:8px">We store only what’s needed to predict fit. You can delete your data anytime.</p>
+        </details>
+        <details>
+          <summary>Which brands are supported?</summary>
+          <p class="sub" style="font-size:14px;margin-top:8px">We’re starting with Anthropologie, J.Crew, Banana Republic, Lululemon, Patagonia, Theory, Reiss, and more.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div class="badge">Early access • NYC</div>
+      <div style="display:flex;gap:16px">
+        <a href="#" aria-label="Privacy">Privacy</a>
+        <a href="#" aria-label="Terms">Terms</a>
+        <a href="mailto:hello@sies.app" aria-label="Email">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // --- Waitlist submission ---
+    // Option A (no backend): Replace FORM_ENDPOINT with Formspree/Fillout/ConvertKit endpoint
+    // Option B (Google Sheets): paste an Apps Script web app URL
+    const FORM_ENDPOINT = ""; // e.g., "https://formspree.io/f/abcd1234"
+
+    const form = document.getElementById('waitlist');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = new FormData(form).get('email');
+      if(!/.+@+.\..+/.test(email)){ alert('Please enter a valid email.'); return; }
+
+      if(!FORM_ENDPOINT){
+        // Demo fallback: pretend success
+        form.innerHTML = '<span class="badge" style="background:rgba(143,106,174,.12);border-color:#d8cfe6;color:#8F6AAE">✓ You\'re on the list! We\'ll email you soon.</span>';
+        return;
+      }
+
+      try{
+        const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)});
+        if(res.ok){
+          form.innerHTML = '<span class="badge" style="background:rgba(143,106,174,.12);border-color:#d8cfe6;color:#8F6AAE">✓ You\'re on the list! We\'ll email you soon.</span>';
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }catch(err){
+        alert('Network error. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
