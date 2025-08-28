@@ -28,7 +28,9 @@
     .phone{width:430px;height:932px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.22));border-radius:55px;background:#000;padding:2px}
     .screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
     .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#000;border-radius:19px;z-index:5}
-    .status{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600}
+    .status{height:54px;margin-top:5px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600;color:#000;font-size:17px;letter-spacing:-.02em}
+    .status .right{display:flex;align-items:center;gap:6px}
+    .status .right img{height:13px;width:auto;display:block}
     .header{padding:28px 28px 2px;display:flex;align-items:center;justify-content:center;position:relative}
     .logo{font-weight:400;font-size:32px;letter-spacing:-.02em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
@@ -321,7 +323,7 @@
   <div class="phone">
     <div class="screen">
       <div class="island"></div>
-      <div class="status"><div>9:41</div><div style="opacity:.6">⁠</div></div>
+      <div class="status"><div>9:41</div><div class="right"><img src="../Cellular Connection.svg" alt="cell"/><img src="../Wifi.svg" alt="wifi"/><img src="../Battery.svg" alt="battery"/></div></div>
 
       <div class="header">
         <div class="logo">sies</div>
