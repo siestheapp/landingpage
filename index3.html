@@ -182,11 +182,74 @@
   
     /* --- Preserve exact mockup sizing/format from original hero --- */
     /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
-    .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
-    .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
+    #how .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
+    #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
     .mock iframe {
-      transform: translateY(2%) scale(0.65);
+      transform: translateY(2%) scale(0.68);
       transform-origin: top center;
+    }
+    /* Ensure embedded screens use a true 430x932 viewport, then scale down */
+    #how .mock-inner iframe,
+    #demo .three-mockups .mock-inner iframe {
+      width: 430px;
+      height: 932px;
+    }
+    
+    /* Three mockups layout */
+    .three-mockups {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 40px;
+    }
+    
+    .mockup-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .mockup-label {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--ink);
+      text-align: center;
+    }
+    
+    /* Make demo phones frameless like Section 2 */
+    #demo .three-mockups .mock {
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    
+    #demo .three-mockups .mock-inner {
+      background: transparent;
+      border-radius: 0;
+      aspect-ratio: 430/932;
+      overflow: hidden;
+    }
+    
+    #demo .three-mockups .mock iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: transparent;
+      transform: translateY(2%) scale(0.68);
+      transform-origin: top center;
+    }
+    /* Override Section 3 iframe sizing to match Section 2 phone viewport */
+    #demo .three-mockups .mock-inner iframe {
+      width: 430px;
+      height: 932px;
+    }
+    
+    @media (max-width: 960px) {
+      .three-mockups {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
     
     /* Video styling to match iframe */
@@ -215,9 +278,7 @@
           <p class="sub">Sies learns your measurements from clothes you already own — then tells you the right size, every time you shop.</p>
 
                   <div class="benefits">
-          <div class="benefit">✔ Shop with confidence across every brand.</div>
-          <div class="benefit">✔ Your size, figured out. No measuring required.</div>
-          <div class="benefit">✔ No more returns. No more guesswork.</div>
+          <div class="benefit">No measuring. No guesswork. No surprises.</div>
         </div>
 
           <form id="waitlist" class="cta" autocomplete="on">
@@ -243,7 +304,7 @@
         <!-- Left-Right Layout -->
         <div class="how-grid">
           <!-- LEFT: Header + Steps -->
-          <div class="left-col" style="">
+          <div class="left-col">
             <div>
               <div class="eyebrow">how it works</div>
               <h2>Your sizes → your measurements</h2>
@@ -282,9 +343,19 @@
       <div class="container">
         <h2>See Sies in action</h2>
         <p class="lede">Your closet becomes your fit profile – and every product page tells you what will fit.</p>
-        <div class="grid">
-          <div class="mock"><div class="mock-inner"><iframe src="./profile-screen.html" title="Profile mockup" loading="lazy"></iframe></div></div>
-          <div class="mock"><div class="mock-inner"><iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe></div></div>
+        <div class="three-mockups">
+          <div class="mockup-item">
+            <div class="mockup-label">Your Closet</div>
+            <div class="mock"><div class="mock-inner"><iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe></div></div>
+          </div>
+          <div class="mockup-item">
+            <div class="mockup-label">Fit Profile</div>
+            <div class="mock"><div class="mock-inner"><iframe src="./profile-screen.html" title="Profile mockup" loading="lazy"></iframe></div></div>
+          </div>
+          <div class="mockup-item">
+            <div class="mockup-label">Smart Feed</div>
+            <div class="mock"><div class="mock-inner"><iframe src="./feed-screen.html" title="Feed mockup" loading="lazy"></iframe></div></div>
+          </div>
         </div>
       </div>
     </section>

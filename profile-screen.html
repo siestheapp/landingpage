@@ -7,15 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#FFFFFF;
+      --bg:#FAF8F6;
       --ink:#1F1F1F;
       --muted:#6F6F74;
       --accent:#8F6AAE;
       --card:#FFFFFF;
       --stroke:#E8E4DE;
       --track:#ECECEC;
-      --shadow:0 1px 2px rgba(0,0,0,.04), 0 8px 20px rgba(0,0,0,.06);
-      --shadow-deep:0 2px 6px rgba(0,0,0,.06), 0 16px 34px rgba(0,0,0,.10);
+
       --radius:16px;
     }
     * { box-sizing:border-box; margin:0; padding:0; }
@@ -25,7 +24,7 @@
       min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
     }
     /* Phone shell (match mock8/closet3) */
-    .phone{width:430px;height:932px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.22));border-radius:55px;background:#000;padding:2px}
+    .phone{width:430px;height:932px;border-radius:55px;background:#000;padding:2px}
     .screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
     .island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#000;border-radius:19px;z-index:5}
     .status{height:54px;margin-top:5px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600;color:#000;font-size:17px;letter-spacing:-.02em}
@@ -61,7 +60,7 @@
       font-size:12px; font-weight:600; border-radius:999px;
       padding:8px 14px; border:1px solid var(--stroke);
       background:#fff; color:var(--muted); cursor:pointer;
-      transition:transform .08s ease, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+      transition:transform .08s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
     }
     .pill.active {
       background:rgba(143,106,174,.12);
@@ -70,7 +69,7 @@
     .pill:active { transform:scale(.98); }
     .card {
       background:var(--card); border:1px solid var(--stroke);
-      border-radius:var(--radius); box-shadow:var(--shadow);
+      border-radius:var(--radius);
       padding:14px; margin-bottom:24px;
     }
     .table-card {
@@ -120,7 +119,6 @@
       min-width: 80px !important;
       max-width: 80px !important;
       padding-right: 8px !important;
-      box-shadow: 1px 0 3px rgba(0,0,0,.06);
     }
     .brand-col {
       font-weight: 600;
@@ -134,7 +132,6 @@
     .size-row .measurement-label {
       background: var(--card) !important;
       border-right: 1px solid var(--stroke) !important;
-      box-shadow: 1px 0 3px rgba(0,0,0,.06);
     }
     .size-cell {
       font-weight: 400;
@@ -174,7 +171,6 @@
       left: 0;
       z-index: 9;
       padding-right: 8px;
-      box-shadow: 1px 0 3px rgba(0,0,0,.06);
       width: 80px;
       min-width: 80px;
       max-width: 80px;
@@ -211,14 +207,13 @@
     .summary-card {
       flex:0 0 60%;
       background:var(--card); border:1px solid var(--stroke);
-      border-radius:var(--radius); padding:12px 14px; box-shadow:var(--shadow-deep);
+      border-radius:var(--radius); padding:12px 14px;
       scroll-snap-align:start;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
       cursor: pointer;
     }
     .summary-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(143,106,174,.15);
     }
     .summary-title {
       font-size:13px; text-transform:uppercase;
@@ -244,7 +239,7 @@
     .dot:hover:not(.active) { background:#b8b6b2; transform:scale(1.1); }
 
     /* Hero card */
-    .hero { position:relative; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:var(--shadow-deep); padding:16px; margin-bottom:10px; display:flex; align-items:flex-start; justify-content:space-between; overflow:hidden; }
+    .hero { position:relative; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:16px; margin-bottom:10px; display:flex; align-items:flex-start; justify-content:space-between; overflow:hidden; }
     .hero::before{ content:""; position:absolute; right:-40px; top:-40px; width:160px; height:160px; background:radial-gradient(circle at 50% 50%, rgba(143,106,174,.12), rgba(143,106,174,0) 60%); }
     .title { display:flex; align-items:center; gap:8px; }
     .tape { width:18px; height:18px; color:var(--accent); opacity:.35; }
@@ -261,7 +256,6 @@
       gap:4px; 
       border:1px solid rgba(143,106,174,.15); 
       margin-bottom:16px;
-      box-shadow:0 2px 8px rgba(143,106,174,.08);
     }
     .pills.seg .pill { 
       background:transparent; 
@@ -278,7 +272,6 @@
     .pills.seg .pill.active { 
       background:#fff; 
       color:var(--accent); 
-      box-shadow:0 2px 8px rgba(143,106,174,.15); 
       transform:scale(1.02);
     }
     .pills.seg .pill:hover:not(.active) {
@@ -300,7 +293,6 @@
     .btn-link { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--accent); text-decoration:none; padding:6px 10px; border:1px solid rgba(143,106,174,.22); border-radius:999px; background:#fff; }
     .insight-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(143,106,174,.2);
     }
     
     /* Animations */
@@ -468,9 +460,9 @@
         })();
         </script>
 
-        <div class="card insight-card" style="margin-top:20px; padding: 20px 24px; background: linear-gradient(135deg, #F9F8FF 0%, #FFFFFF 100%); border: 1px solid rgba(143,106,174,.12); transition: transform 0.2s ease, box-shadow 0.2s ease;">
+        <div class="card insight-card" style="margin-top:20px; padding: 20px 24px; background: linear-gradient(135deg, #F9F8FF 0%, #FFFFFF 100%); border: 1px solid rgba(143,106,174,.12); transition: transform 0.2s ease;">
           <a class="insight" href="https://www.anthropologie.com/shop/hutch-corene-strapless-floral-tulle-a-line-midi-dress2?category=clothes-top-rated&color=038&type=STANDARD&quantity=1" target="_blank" rel="noreferrer" style="text-decoration:none; color:inherit; display: flex; gap: 20px; align-items: flex-start;">
-            <div class="thumb" style="border: 2px solid var(--accent); box-shadow: 0 4px 12px rgba(143,106,174,.15);">
+                          <div class="thumb" style="border: 2px solid var(--accent);">
               <img alt="Hutch Corene Strapless Floral Tulle A-Line Midi Dress" src="https://images.urbndata.com/is/image/Anthropologie/98281447_038_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=600"/>
             </div>
             <div class="copy">
