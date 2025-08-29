@@ -1,4 +1,47 @@
 
+# Sies  
+
+Sies is a mobile app that helps users find the perfect clothing size across brands by learning from the garments they already own. Instead of relying on generic size charts, Sies builds a **personalized fit profile** using brand-specific size guides, garment measurements, and user feedback.  
+
+---
+
+## 🚀 Features
+- **TagMatch**: Scan or upload a photo of a clothing tag, and Sies finds the exact product online along with its measurements.  
+- **Closet-Based Fit Profile**: Add a few favorite garments to your digital closet. Sies uses their measurements to predict your size across brands.  
+- **Fit Zones**: Personalized “Tight / Perfect / Relaxed” fit preferences that adapt dynamically based on user feedback.  
+- **Interactive Prototype**: Explore how Sies compares garment fits visually with recommendations powered by brand size guides.  
+- **Landing Page Preview**: A marketing site designed to showcase how Sies works and validate user interest.  
+
+---
+
+## 📱 Vision
+Sies aims to remove the uncertainty from online clothing shopping. By creating a **universal fit layer** across brands, it saves users from returns, improves confidence in purchases, and creates a new way for retailers to engage with customers.  
+
+---
+
+## 🛠 Tech Stack
+- **Frontend:** SwiftUI (iOS)  
+- **Backend:** Supabase / PostgreSQL for size guide data and user fit profiles  
+- **AI & Automation:** Python + OCR for tag recognition and size guide parsing  
+- **Design:** Figma for app mockups and interactive prototypes  
+- **Landing Page:** HTML/CSS with ongoing Figma design migration  
+
+---
+
+## 📂 Repo Structure
+- `/landing` → Landing page mockups and HTML source  
+- `/app` → iOS SwiftUI app code (WIP)  
+- `/db` → SQL schemas for size guide ingestion and fit zone logic  
+- `/design` → Figma exports, design system, and prototypes  
+
+---
+
+## 📖 How to Use
+1. Clone the repo:  
+   ```bash
+   git clone https://github.com/<your-username>/<repo-name>.git
+
+
 # Sies — Waitlist Landing (Static)
 
 **Copyright © 2025 Sean Davey. All rights reserved.**

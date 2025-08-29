@@ -18,7 +18,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 
 /* iPhone Frame (Finy Style) */
 .phone-container{position:relative;width:430px;height:932px;margin:auto}
-.phone-frame{width:100%;height:100%;background:#000;border-radius:55px;padding:2px;box-shadow:20px 48px 40px -20px rgba(0,0,0,.12)}
+.phone-frame{width:100%;height:100%;background:#000;border-radius:55px;padding:2px}
 .screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
 
 /* Dynamic Island */
@@ -74,8 +74,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 .feed{padding:0 24px 130px;overflow-y:auto}
 
 /* Enhanced Card */
-.card{background:#fff;border:1px solid #eee6;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.03);transition:transform 0.2s ease, box-shadow 0.2s ease}
-.card:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,0,0,.12), 0 6px 16px rgba(0,0,0,.04)}
+.card{background:#fff;border:1px solid #eee6;border-radius:18px;overflow:hidden;transition:transform 0.2s ease}
+.card:hover{transform:translateY(-2px)}
 
 .imgbox{position:relative;overflow:hidden;border-radius:18px}
 .img{width:100%;height:440px;object-fit:cover;object-position:center 22%}
@@ -92,7 +92,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 /* Evidence pill */
 .size-pill{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;
   border:1px solid #E8E4DE;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
-  font:600 12px/1 Inter;color:#4C4C50;z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+  font:600 12px/1 Inter;color:#4C4C50;z-index:2}
 .size-pill .dot{width:4px;height:4px;border-radius:50%;background:#C9C5C0;display:inline-block}
 .size-pill .conf{color:#6F6AAE;font-weight:700;font-size:12px}
 
@@ -102,21 +102,15 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   background:
     linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 8%),
     linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.25),
-    0 6px 16px rgba(118,75,162,.22),
-    0 2px 8px rgba(118,75,162,.12);
+
   font:700 15px/1 Inter;cursor:pointer;transform:translateZ(0);transition:all 0.2s ease}
-.size-cta:hover{transform:translateY(-1px);box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.25),
-    0 8px 20px rgba(118,75,162,.28),
-    0 4px 12px rgba(118,75,162,.15)}
+.size-cta:hover{transform:translateY(-1px)}
 .size-cta::before{content:"";position:absolute;inset:1px 1px auto 1px;height:35%;border-radius:27px;
   background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));pointer-events:none}
 .size-cta .label{font:800 17px/1.1 Inter;letter-spacing:-.005em;display:flex;align-items:center;gap:8px}
 .size-cta .match{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
   background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);color:#1F1F1F;font:600 13px/1 Inter;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 3px 8px rgba(0,0,0,.1)}
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .size-cta:active{transform:scale(.985)}
 
 /* Measuring tape icon */
@@ -217,7 +211,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   font-weight:800; letter-spacing:-.01em; font-size:16px; line-height:1.3;
   color:#fff; text-decoration:none;
   background:linear-gradient(135deg,#8E7BFF 0%,#6B5BCE 100%);
-  box-shadow:0 6px 18px rgba(104,86,214,0.28);
+
 }
 .shop-inline:hover{ filter:brightness(1.03) }
 .shop-inline:active{ transform:translateY(1px) }
@@ -242,7 +236,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   display:flex;justify-content:space-around;align-items:flex-start;padding-top:8px;padding-bottom:34px}
 .tab{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:#8e8e93;font-size:11px;font-weight:500;transition:color 0.2s ease}
-.tab.active{color:#8F6AAE}
+.tab.active{color:#6B46C1;font-weight:600}
 .ico{width:28px;height:28px;display:block}
 
 /* Misc */
