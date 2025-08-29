@@ -6096,3 +6096,822 @@ I've changed the transform from `translateY(-4%)` to `translateY(2%)` to move th
 
 ---
 
+_**User**_
+
+do a commit and push
+
+---
+
+_**Assistant**_
+
+I'll commit and push all the current changes.
+
+
+---
+
+```bash
+git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Restructure HOW section with consistent header styling and improved layout"
+```
+
+```
+seandavey@MacBook-Air-3 web % git commit -m "Restructure HOW section with consistent header styling and impr
+oved layout"
+[main f2460cc] Restructure HOW section with consistent header styling and improved layout
+ 2 files changed, 872 insertions(+), 17 deletions(-)
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+seandavey@MacBook-Air-3 web % git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 6.36 KiB | 6.36 MiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote: Bypassed rule violations for refs/heads/main:
+remote: 
+remote: - Changes must be made through a pull request.
+remote: 
+To https://github.com/siestheapp/landingpage.git
+   f1f492a..f2460cc  main -> main
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+Perfect! Successfully committed and pushed all changes. The commit includes:
+
+- **Restructured HOW section**: Moved header inside the left column for better layout
+- **Consistent header styling**: Added proper eyebrow + h2 structure with consistent CSS
+- **Improved phone positioning**: Fine-tuned the mockup alignment with transform adjustments
+- **Removed border-top**: Cleaned up the section styling
+- **Content refinements**: Removed redundant text and improved step descriptions
+
+The changes are now live on the GitHub repository. The HOW IT WORKS section now has a much cleaner, more balanced layout with proper visual hierarchy.
+
+---
+
+_**User**_
+
+1. Hierarchy & Scale
+
+Header (Your sizes → your measurements):
+Right now it’s basically body-size bold. It should feel like the “hero” of this section.
+→ Increase size to ~32–36px (clamp(28px, 3vw, 36px)) and add more line-height spacing so it breathes.
+
+Steps (Add a few favorites, We build your fit, etc.):
+Right now they look like body copy. Make the titles a bit larger (~20px, weight 600–700). Keep the descriptive text ~16–17px for readability.
+
+2. Spacing & Vertical Rhythm
+
+The section header feels too tight to the eyebrow and steps. Give it more air:
+
+Eyebrow → 6–8px gap
+
+Header → 24–32px gap before Step 1
+
+Each step block: Increase gap from 24px → ~40px. This makes each step feel more distinct and scannable.
+
+---
+
+_**Assistant**_
+
+I'll implement the hierarchy and spacing improvements for the HOW section.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
+```diff
+@@ -69,8 +69,8 @@
+  
+      #how h2 {
+-       margin: 6px 0 16px;   /* small gap above steps */
++       margin: 6px 0 32px;   /* more air before steps */
+        font-weight: 700;
+-       font-size: clamp(26px, 3.4vw, 32px);
+-       line-height: 1.2;
++       font-size: clamp(28px, 3vw, 36px);
++       line-height: 1.3;
+      }
+  
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -182,5 +182,5 @@
+  
+              <!-- Steps go here -->
+-             <div style="display:flex;flex-direction:column;gap:28px">
++             <div style="display:flex;flex-direction:column;gap:40px">
+              <!-- Step 1 -->
+              <div style="display:flex;gap:14px;align-items:flex-start">
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -189,5 +189,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">Add a few favorites</h3>
++                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
+                  <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+                    Snap a tag or paste a product link from 1–3 pieces you already own. We'll pull the exact measurements automatically.
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -202,5 +202,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">We build your fit</h3>
++                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">We build your fit</h3>
+                  <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+                    Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -215,5 +215,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">Shop with confidence</h3>
++                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Shop with confidence</h3>
+                  <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+                    On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.
+```
+
+</details>
+
+---
+
+The model provided an ambiguous search string to replace.
+
+---
+
+Let me update each paragraph individually:
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
+```diff
+@@ -190,7 +190,7 @@
+                <div>
+                  <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
+-                 <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+-                   Snap a tag or paste a product link from 1–3 pieces you already own. We'll pull the exact measurements automatically.
+-                 </p>
++                                   <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
++                     Snap a tag or paste a product link from 1–3 pieces you already own. We'll pull the exact measurements automatically.
++                   </p>
+                </div>
+              </div>
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
+```diff
+@@ -203,7 +203,7 @@
+                <div>
+                  <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">We build your fit</h3>
+-                 <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+-                   Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
+-                 </p>
++                                   <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
++                     Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
++                   </p>
+                </div>
+              </div>
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 3, lines removed: 3
+
+```diff
+@@ -216,7 +216,7 @@
+                <div>
+                  <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Shop with confidence</h3>
+-                 <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
+-                   On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.
+-                 </p>
++                                   <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
++                     On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.
++                   </p>
+                </div>
+              </div>
+```
+
+</details>
+
+---
+
+Perfect! I've implemented all the hierarchy and spacing improvements:
+
+**1. Hierarchy & Scale:**
+- **Header**: Increased size to `clamp(28px, 3vw, 36px)` with better line-height (1.3) and more margin below (32px)
+- **Step titles**: Increased to 20px with weight 600 and more margin below (8px)
+- **Step descriptions**: Increased to 16px for better readability
+
+**2. Spacing & Vertical Rhythm:**
+- **Header spacing**: Increased margin below header from 16px to 32px for more breathing room
+- **Step gaps**: Increased from 28px to 40px between steps for better distinction and scannability
+
+The section now has much better visual hierarchy with the header feeling like the "hero" of the section, and each step is more distinct and easier to scan.
+
+---
+
+_**User**_
+
+4. Style Enhancements
+
+Step numbers (1, 2, 3): They’re a little faint. Increase contrast — use a stronger background (accent purple at 20–30% opacity) and maybe white text inside for pop. This makes the steps “actionable” vs decorative.
+
+---
+
+_**Assistant**_
+
+I'll enhance the step numbers to make them more prominent and actionable.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -185,6 +185,6 @@
+              <!-- Step 1 -->
+              <div style="display:flex;gap:14px;align-items:flex-start">
+-               <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+-                 <span style="font:700 15px/1 Inter;color:var(--accent)">1</span>
++               <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
++                 <span style="font:700 15px/1 Inter;color:#fff">1</span>
+                </div>
+                <div>
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -198,6 +198,6 @@
+              <!-- Step 2 -->
+              <div style="display:flex;gap:14px;align-items:flex-start">
+-               <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+-                 <span style="font:700 15px/1 Inter;color:var(--accent)">2</span>
++               <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
++                 <span style="font:700 15px/1 Inter;color:#fff">2</span>
+                </div>
+                <div>
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 2, lines removed: 2
+
+```diff
+@@ -211,6 +211,6 @@
+              <!-- Step 3 -->
+              <div style="display:flex;gap:14px;align-items:flex-start">
+-               <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+-                 <span style="font:700 15px/1 Inter;color:var(--accent)">3</span>
++               <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
++                 <span style="font:700 15px/1 Inter;color:#fff">3</span>
+                </div>
+                <div>
+```
+
+</details>
+
+---
+
+Perfect! I've enhanced the step numbers with better contrast and visual impact:
+
+**Changes made:**
+- **Stronger background**: Changed from gradient `rgba(143,106,174,.12-.22)` to solid `rgba(143,106,174,.25)` (25% opacity)
+- **White text**: Changed from purple text to white text for maximum contrast and pop
+- **Removed gradient**: Simplified to a solid background for cleaner, more actionable appearance
+
+The step numbers now have much better contrast and feel more like actionable elements rather than decorative accents. The white text on the purple background creates a strong visual hierarchy that draws attention to the step progression.
+
+---
+
+_**User**_
+
+What Still Feels Off
+
+Text block sits too high relative to phone
+
+The phone looks grounded while the text is “floating.” This makes the section feel a little top-heavy.
+
+Fix: give the whole left column a margin-top: 40px;. That’ll bring Step 2 closer to aligning with the center of the phone.
+
+---
+
+_**Assistant**_
+
+I'll add margin-top to the left column to better align the text with the phone.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -175,5 +175,5 @@
+          <div class="how-grid">
+            <!-- LEFT: Header + Steps -->
+-           <div style="display:flex;flex-direction:column;gap:28px; margin-top:8px">
++           <div style="display:flex;flex-direction:column;gap:28px; margin-top:40px">
+              <div>
+                <div class="eyebrow">how it works</div>
+```
+
+</details>
+
+---
+
+Perfect! I've increased the margin-top from 8px to 40px on the left column. This will bring the text content down so that Step 2 aligns better with the center of the phone, creating a more balanced and grounded feel for the entire section. The text will no longer appear to be "floating" above the phone.
+
+---
+
+_**User**_
+
+Step spacing
+
+Right now each step flows into the next. Increase the gap between steps from 40px → 48px so each feels like its own block.
+
+Step titles hierarchy
+
+20px size is good, but I’d bump to 22px (semi-bold) so they stand apart more from the body copy.
+
+---
+
+_**Assistant**_
+
+I'll increase the step spacing and bump up the step title size.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -182,5 +182,5 @@
+  
+              <!-- Steps go here -->
+-             <div style="display:flex;flex-direction:column;gap:40px">
++             <div style="display:flex;flex-direction:column;gap:48px">
+              <!-- Step 1 -->
+              <div style="display:flex;gap:14px;align-items:flex-start">
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -189,5 +189,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
++                 <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+                      Snap a tag or paste a product link from 1–3 pieces you already own. We'll pull the exact measurements automatically.
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -202,5 +202,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">We build your fit</h3>
++                 <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">We build your fit</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+                      Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
+```
+
+</details>
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -215,5 +215,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;color:var(--ink)">Shop with confidence</h3>
++                 <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Shop with confidence</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+                      On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.
+```
+
+</details>
+
+---
+
+Perfect! I've made both improvements:
+
+**Step spacing**: Increased the gap between steps from 40px to 48px, making each step feel like its own distinct block rather than flowing into the next.
+
+**Step titles hierarchy**: Bumped the font size from 20px to 22px while keeping the semi-bold weight (600), making the titles stand apart more clearly from the 16px body copy.
+
+These changes create better visual separation and hierarchy, making the steps more scannable and the content easier to digest.
+
+---
+
+_**User**_
+
+Use white-space: nowrap; on the H2.
+
+If it still breaks on smaller screens, scale down font size slightly at a media query (e.g. below 960px).
+
+@media (max-width: 960px) {
+  #how h2 {
+    font-size: 28px;
+    white-space: normal; /* allow wrapping on smaller devices */
+  }
+}
+
+---
+
+_**Assistant**_
+
+I'll add the white-space property to the H2 and include the media query for smaller screens.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 8, lines removed: undefined
+
+```diff
+@@ -73,4 +73,12 @@
+        font-size: clamp(28px, 3vw, 36px);
+        line-height: 1.3;
++       white-space: nowrap;
++     }
++     
++     @media (max-width: 960px) {
++       #how h2 {
++         font-size: 28px;
++         white-space: normal; /* allow wrapping on smaller devices */
++       }
+      }
+  
+```
+
+</details>
+
+---
+
+Perfect! I've added:
+
+1. **`white-space: nowrap`** to the main H2 rule to prevent the text from breaking on larger screens
+2. **Media query for smaller screens** (below 960px) that:
+   - Reduces font size to 28px for better fit
+   - Allows normal text wrapping with `white-space: normal`
+
+This ensures the heading "Your sizes → your measurements" stays on one line on larger screens while gracefully adapting to smaller devices by allowing wrapping and using a slightly smaller font size.
+
+---
+
+_**User**_
+
+can we decerase the your size -> your meas text by a few px
+
+---
+
+_**Assistant**_
+
+I'll decrease the font size of the "Your sizes → your measurements" heading by a few pixels.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -71,5 +71,5 @@
+        margin: 6px 0 32px;   /* more air before steps */
+        font-weight: 700;
+-       font-size: clamp(28px, 3vw, 36px);
++       font-size: clamp(24px, 2.8vw, 32px);
+        line-height: 1.3;
+        white-space: nowrap;
+```
+
+</details>
+
+---
+
+Perfect! I've decreased the font size from `clamp(28px, 3vw, 36px)` to `clamp(24px, 2.8vw, 32px)`. This reduces the heading size by about 4px at both the minimum and maximum breakpoints, making it a bit more proportional while still maintaining its prominence as the section header.
+
+---
+
+_**User**_
+
+is there a way to decrease the video frame size by like 5% proportionally?
+
+---
+
+_**Assistant**_
+
+Yes! I can decrease the video frame size by adjusting the transform scale. Let me find the video styling and reduce it by 5%.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -131,5 +131,5 @@
+      .mock:has(video){background:transparent !important;padding:0 !important;box-shadow:none !important}
+      .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
+-     .mock video{transform:scale(0.7);transform-origin:center;width:100%;height:100%;object-fit:cover}
++     .mock video{transform:scale(0.665);transform-origin:center;width:100%;height:100%;object-fit:cover}
+    </style>
+  </head>
+```
+
+</details>
+
+---
+
+Perfect! I've reduced the video scale from `0.7` to `0.665`, which is a 5% decrease (0.7 × 0.95 = 0.665). This will make the video frame proportionally smaller while maintaining its aspect ratio and positioning.
+
+---
+
+_**User**_
+
+change:
+Snap a tag or paste a product link from 1–3 pieces you already own.
+to:
+Share product links to 1-3 pieces of clothing that fit you well. 
+
+---
+
+_**Assistant**_
+
+I'll change that text in Step 1.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -199,5 +199,5 @@
+                  <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+-                     Snap a tag or paste a product link from 1–3 pieces you already own. We'll pull the exact measurements automatically.
++                     Share product links to 1-3 pieces of clothing that fit you well. We'll pull the exact measurements automatically.
+                    </p>
+                </div>
+```
+
+</details>
+
+---
+
+Perfect! I've updated Step 1 to say "Share product links to 1-3 pieces of clothing that fit you well." This makes the instruction clearer and more direct about what the user needs to do.
+
+---
+
+_**User**_
+
+change We'll pull the exact measurements automatically. to Sies pulls
+
+---
+
+_**Assistant**_
+
+I'll change that text in Step 1.
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -199,5 +199,5 @@
+                  <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+-                     Share product links to 1-3 pieces of clothing that fit you well. We'll pull the exact measurements automatically.
++                     Share product links to 1-3 pieces of clothing that fit you well. Sies pulls the exact measurements automatically.
+                    </p>
+                </div>
+```
+
+</details>
+
+---
+
+Perfect! I've updated the text to "Sies pulls the exact measurements automatically." This makes it clearer that Sies is the one doing the work, rather than using the generic "We'll."
+
+---
+
+_**User**_
+
+change We build your fit
+to Sies learns your measurements
+
+---
+
+_**Assistant**_
+
+I'll change the Step 2 title from "We build your fit" to "Sies learns your measurements".
+
+
+---
+
+<details><summary>Edit file: index3.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -210,5 +210,5 @@
+                </div>
+                <div>
+-                 <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">We build your fit</h3>
++                 <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Sies learns your measurements</h3>
+                                    <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
+                      Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
+```
+
+</details>
+
+---
+
+Perfect! I've updated Step 2's title to "Sies learns your measurements" which is more specific and consistent with the Sies branding throughout the steps.
+
+---
+
