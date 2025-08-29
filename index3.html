@@ -60,6 +60,29 @@
 
     footer{padding:40px 0;border-top:1px solid rgba(0,0,0,.06);margin-top:40px;text-align:center}
   
+    /* Section headings: consistent look with hero */
+    .section-head{
+      text-align:center;
+      padding-top:20px;
+      margin-bottom:10px;            /* light space under header stack */
+    }
+
+    #how h2 {
+      margin: 6px 0 16px;   /* small gap above steps */
+      font-weight: 700;
+      font-size: clamp(26px, 3.4vw, 32px);
+      line-height: 1.2;
+    }
+
+    /* Optional: make eyebrows feel intentional everywhere */
+    .eyebrow{
+      font:700 12px/1 Inter;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:#6F6F74;
+      margin-bottom:14px;
+    }
+  
     /* HOW section: tighten spacing */
     /* Reduce space above HOW section */
     #how.section {
@@ -74,9 +97,15 @@
     #how .how-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      align-items: flex-start;   /* was: center */
-      gap: 40px;
-      margin-top: -20px;         /* removes gap under header */
+      align-items: start;   /* align left column + phone top */
+      gap: 48px;            /* extra breathing room */
+    }
+    
+    #how .mock { margin-top: -28px; }  /* was -12px */
+    
+    #how .mock iframe {
+      transform-origin: top center;
+      transform: translateY(2%) scale(0.7); /* adjust 2% to taste */
     }
     
     #how .eyebrow{ margin-bottom:0px; }
@@ -140,16 +169,19 @@
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="how" class="section" style="background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:20px 0 80px">
+    <section id="how" class="section" style="background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-bottom:1px solid rgba(0,0,0,.06);padding:20px 0 80px">
       <div class="container">
-        <!-- Header -->
-        <div style="text-align:center;padding-top:20px;">
-          <h2 style="max-width:600px;margin:0 auto;text-transform:uppercase">YOUR SIZES → YOUR MEASUREMENTS</h2>
-        </div>
         <!-- Left-Right Layout -->
         <div class="how-grid">
-          <!-- LEFT: Steps -->
-          <div style="display:flex;flex-direction:column;gap:24px">
+          <!-- LEFT: Header + Steps -->
+          <div style="display:flex;flex-direction:column;gap:28px; margin-top:8px">
+            <div>
+              <div class="eyebrow">how it works</div>
+              <h2>Your sizes → your measurements</h2>
+            </div>
+
+            <!-- Steps go here -->
+            <div style="display:flex;flex-direction:column;gap:28px">
             <!-- Step 1 -->
             <div style="display:flex;gap:14px;align-items:flex-start">
               <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(143,106,174,.12),rgba(143,106,174,.22));display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -170,11 +202,8 @@
               </div>
               <div>
                 <h3 style="font-size:18px;font-weight:700;margin-bottom:6px;color:var(--ink)">We build your fit</h3>
-                <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px;margin-bottom:8px">
-                  Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
-                </p>
                 <p style="font-size:15px;line-height:1.55;color:#4C4C50;max-width:520px">
-                  Your feed is tailored to your exact measurements and style preferences.
+                  Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
                 </p>
               </div>
             </div>
@@ -191,10 +220,11 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div>     <!-- closes the STEPS wrapper -->
+        </div>       <!-- closes the LEFT column -->
 
-          <!-- RIGHT: Closet Mockup (unchanged sizing) -->
-          <div class="mock" aria-hidden="true">
+        <!-- RIGHT: Mock -->
+        <div class="mock" aria-hidden="true">
             <div class="mock-inner">
               <iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
             </div>
