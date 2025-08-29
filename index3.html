@@ -81,6 +81,55 @@
         white-space: normal; /* allow wrapping on smaller devices */
       }
     }
+    
+    /* Stronger badge styling */
+    .how-list{
+      counter-reset: howstep;
+      display:flex;
+      flex-direction:column;
+      gap:44px;
+    }
+
+    .step{
+      counter-increment: howstep;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      column-gap: 16px;
+      align-items: start;
+      background: transparent;  /* override old card look if unwanted */
+      border: 0;
+      padding: 0;
+    }
+
+    .step::before{
+      content: counter(howstep);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font: 700 14px/1 Inter;
+      color:#fff;
+      background: var(--accent);         /* your brand purple */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12); /* subtle lift */
+    }
+    
+    .step-title{
+      font-size: 22px;
+      font-weight: 600;
+      margin: 2px 0 8px;
+      color: var(--ink);
+    }
+    .step-text{
+      font-size: 16px;
+      line-height: 1.55;
+      color: #4C4C50;
+      max-width: 520px;
+    }
+    
+    .step-title,
+    .step-text { grid-column: 2; }      /* keep both in the wide column */
 
     /* Optional: make eyebrows feel intentional everywhere */
     .eyebrow{
@@ -188,47 +237,22 @@
               <h2>Your sizes → your measurements</h2>
             </div>
 
-            <!-- Steps go here -->
-            <div style="display:flex;flex-direction:column;gap:48px">
-            <!-- Step 1 -->
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:#fff">1</span>
+                        <div class="how-list">
+              <div class="step">
+                <h3 class="step-title">Add a few favorites</h3>
+                <p class="step-text">Share product links to 1–3 pieces of clothing that fit you well. Sies pulls the exact measurements automatically.</p>
               </div>
-              <div>
-                <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Add a few favorites</h3>
-                                  <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
-                    Share product links to 1-3 pieces of clothing that fit you well. Sies pulls the exact measurements automatically.
-                  </p>
-              </div>
-            </div>
 
-            <!-- Step 2 -->
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:#fff">2</span>
+              <div class="step">
+                <h3 class="step-title">Sies learns your measurements</h3>
+                <p class="step-text">Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.</p>
               </div>
-              <div>
-                <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Sies learns your measurements</h3>
-                                  <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
-                    Sies builds your fit profile from the size guides and spec sheets of your clothes. You'll never have to get out the measuring tape again.
-                  </p>
-              </div>
-            </div>
 
-            <!-- Step 3 -->
-            <div style="display:flex;gap:14px;align-items:flex-start">
-              <div style="width:36px;height:36px;border-radius:50%;background:rgba(143,106,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <span style="font:700 15px/1 Inter;color:#fff">3</span>
+              <div class="step">
+                <h3 class="step-title">Shop with confidence</h3>
+                <p class="step-text">On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.</p>
               </div>
-              <div>
-                <h3 style="font-size:22px;font-weight:600;margin-bottom:8px;color:var(--ink)">Shop with confidence</h3>
-                                  <p style="font-size:16px;line-height:1.55;color:#4C4C50;max-width:520px">
-                    On every product page, see your recommended size plus a short "why it fits" note. No uncertainty — just clothes that feel made for you.
-                  </p>
-              </div>
-            </div>
-          </div>     <!-- closes the STEPS wrapper -->
+            </div>     <!-- closes the STEPS wrapper -->
         </div>       <!-- closes the LEFT column -->
 
         <!-- RIGHT: Mock -->
