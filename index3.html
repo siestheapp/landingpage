@@ -26,19 +26,19 @@
     img{max-width:100%;display:block}
 
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-    header{background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    header{position:sticky;top:0;z-index:100;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
     .logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .nav a{font-weight:600;color:#4C4C50;text-decoration:none;margin-left:20px}
 
-    .hero{padding:12px 0 40px;margin-top:-95px}
+    .hero{margin-top:-20px;padding:0px 0 40px}
     .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
     .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
     h1{font-size: clamp(32px, 5vw, 54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:14px}
     .sub{font-size: clamp(16px, 2.2vw, 20px);line-height:1.5;color:#4C4C50;margin-bottom:22px}
     .cta{display:flex;gap:10px;align-items:center}
     .input{flex:1;min-width:200px;background:#fff;border:1px solid #E8E4DE;border-radius:var(--radius-lg);padding:14px 16px;font:500 16px/1.2 Inter;box-shadow: var(--shadow)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:var(--radius-lg);font:700 16px/1 Inter;color:#fff;border:none;cursor:pointer;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 24px rgba(118,75,162,.25)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border-radius:var(--radius-lg);font:700 18px/1 Inter;color:#fff;border:none;cursor:pointer;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 10px 24px rgba(118,75,162,.25)}
     .note{margin-top:10px;font-size:12px;color:#6F6F74}
     
     /* Benefits */
@@ -68,15 +68,15 @@
 
     /* Tighten header stack */
     #how h2 {
-      margin-bottom: 12px !important; /* instead of 10px or default auto */
+      margin-bottom: 28px !important;  /* was 12px */
     }
 
     #how .how-grid {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      align-items: center;   /* centers both columns vertically */
+      align-items: flex-start;   /* was: center */
       gap: 40px;
-      margin-top: 0;         /* removes gap under header */
+      margin-top: -20px;         /* removes gap under header */
     }
     
     #how .eyebrow{ margin-bottom:0px; }
@@ -113,9 +113,8 @@
     <section class="hero">
       <div class="container hero-wrap">
         <div>
-          <div class="eyebrow">no more guesswork</div>
           <h1>Find clothes that fit — every time.</h1>
-          <p class="sub">Stop guessing your size when shopping online. Sies learns your fit from clothes you already own — then tells you the right size, every time you shop.</p>
+          <p class="sub">Sies learns your measurements from clothes you already own — then tells you the right size, every time you shop.</p>
 
           <div class="benefits">
             <div class="benefit">✨ Shop with confidence across every brand.</div>
@@ -127,7 +126,7 @@
             <input class="input" type="email" name="email" placeholder="Enter your email" required />
             <button class="btn" type="submit">Join the waitlist →</button>
           </form>
-          <p class="note">No spam, seriously.</p>
+          <p class="note">Join 200+ early users. No spam, ever.</p>
         </div>
         <div class="mock" aria-hidden="true">
           <div class="mock-inner">
