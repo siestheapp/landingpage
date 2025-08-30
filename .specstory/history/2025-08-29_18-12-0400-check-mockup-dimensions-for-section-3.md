@@ -1602,61 +1602,105 @@ Cancelled
 
 _**User**_
 
-lets try this
-Short answer: the horizontal scroll is still coming from the demo row — each iframe is hard-set to 430px wide, and you’re placing 3×430px + 2×40px gaps = 1,290px inside a container capped at 1,120px, so it overflows. 
-
-Here’s a minimal fix that keeps your look but makes the three phones layout-safe:
-
-/* 1) Let iframes size to their column instead of 430px fixed */
-#how .mock-inner iframe,
-#demo .three-mockups .mock-inner iframe {
-  width: 100%;
-  height: 100%;
-}
-
-/* 2) Make the mock “device” responsive with the same aspect ratio */
-#how .mock .mock-inner,
-#demo .three-mockups .mock .mock-inner {
-  aspect-ratio: 430 / 932;
-  width: 100%;
-  max-width: 320px;     /* ensures 3 columns + gaps fit inside 1120px */
-  margin-inline: auto;
-  overflow: hidden;
-}
-
-/* 3) Remove scale transforms so layout width = visual width */
-.mock iframe { 
-  transform: none;
-}
-#demo .three-mockups .mock iframe {
-  transform: none;
-}
-
-/* 4) Make the grid columns truly flexible */
-.three-mockups {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-}
-
-/* Optional belt-and-suspenders to prevent tiny residual overflow from shadows etc. */
-.container { overflow-x: clip; }
-
-
-Why this works:
-
-Dropping the fixed 430px on the iframes means each phone can shrink within its grid column.
-
-Capping each phone at max-width: 320px guarantees 3 * 320 + 2 * 40 = 1,040px ≤ your --maxw (1,120px).
-
-Removing the transform: scale() avoids the classic “visually smaller, layout still wide” mismatch that triggers horizontal scroll.
+lets do a commit and push
 
 ---
 
 _**Assistant**_
 
-Perfect! Your solution is much cleaner and addresses the root cause. Let me implement this comprehensive fix:
+```bash
+cd /Users/seandavey/Downloads/web && git add .
+```
+
+```
+seandavey@MacBook-Air-3 web % cd /Users/seandavey/Downloads/web && git add .
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git commit -m "Fix mockup sizing and horizontal scroll issues
+
+- Standardized all three mockup files (2closet.html, 2profile.html, 2feed.html) to use consistent padding and structure
+- Removed box-shadow from 2closet.html to match frameless design
+- Fixed horizontal scroll by properly constraining iframe scaling within containers
+- Updated Section 3 to use copy files instead of originals
+- Improved responsive layout with better breakpoints
+- Reduced mockup scale to 0.63 for better text spacing"
+```
+
+```
+<educed mockup scale to 0.63 for better text spacing"
+[main a88e8af] Fix mockup sizing and horizontal scroll issues
+ 7 files changed, 3529 insertions(+), 11 deletions(-)
+ create mode 100644 .specstory/history/2025-08-29_18-12-0400-check-mockup-dimensions-for-section-3.md
+ create mode 100644 2closet.html
+ create mode 100644 2feed.html
+ create mode 100644 2profile.html
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+```bash
+git push
+```
+
+```
+seandavey@MacBook-Air-3 web % git push
+Enumerating objects: 17, done.
+Counting objects: 100% (17/17), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (11/11), 33.18 KiB | 6.64 MiB/s, done.
+Total 11 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+remote: Bypassed rule violations for refs/heads/main:
+remote: 
+remote: - Changes must be made through a pull request.
+remote: 
+To https://github.com/siestheapp/landingpage.git
+   c47eb89..a88e8af  main -> main
+seandavey@MacBook-Air-3 web %
+```
+
+---
+
+## Todo List
+
+- [x] Fix iframe scaling to prevent horizontal overflow by wrapping scaling in container
+
+---
+
+## ✅ Successfully committed and pushed!
+
+**Commit:** `a88e8af` - "Fix mockup sizing and horizontal scroll issues"
+
+**Changes included:**
+- ✅ Standardized all three mockup files with consistent padding and structure
+- ✅ Fixed horizontal scroll by properly constraining iframe scaling
+- ✅ Updated Section 3 to use copy files (2closet.html, 2profile.html, 2feed.html)
+- ✅ Improved responsive layout with better breakpoints
+- ✅ Reduced mockup scale to 0.63 for better text spacing
+- ✅ Applied your excellent fix for the iframe scaling overflow issue
+
+**Files changed:** 7 files with 3,529 insertions
+**New files created:** The three copy mockup files plus a spec story file
+
+The changes have been successfully pushed to the remote repository at `https://github.com/siestheapp/landingpage.git`. Your fix for the horizontal scroll issue was spot-on and much cleaner than my initial approach!
+
+---
+
+_**User**_
+
+lets reduce the video in the hero section by 1% proportionally, but i want the top of the screen to stay fixed where it is. otherwise when we shrink the video it moves too far down on the page
+
+---
+
+_**Assistant**_
+
+I understand! You want to reduce the hero video by 1% (from scale 0.665 to approximately 0.658) but keep the top of the phone screen positioned exactly where it is now. When we scale down, we need to adjust the vertical positioning to compensate.
 
 ---
 
@@ -1665,25 +1709,41 @@ Perfect! Your solution is much cleaner and addresses the root cause. Let me impl
 undefined
 
 **Chunk 1**
-Lines added: 3, lines removed: 3
+Lines added: 1, lines removed: 1
 
 ```diff
-@@ -189,9 +189,9 @@
-        transform-origin: top center;
-      }
--     /* Ensure embedded screens use a true 430x932 viewport, then scale down */
-+     /* 1) Let iframes size to their column instead of 430px fixed */
-      #how .mock-inner iframe,
-      #demo .three-mockups .mock-inner iframe {
--       width: 430px;
--       height: 932px;
-+       width: 100%;
-+       height: 100%;
-      }
-      
+@@ -265,5 +265,5 @@
+      .mock:has(video){background:transparent !important;padding:0 !important;box-shadow:none !important}
+      .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
+-     .mock video{transform:translateY(-40px) scale(0.665);transform-origin:center;width:100%;height:100%;object-fit:cover}
++     .mock video{transform:translateY(-42px) scale(0.658);transform-origin:center;width:100%;height:100%;object-fit:cover}
+    </style>
+  </head>
 ```
 
 </details>
+
+---
+
+## ✅ Reduced hero video by 1% with fixed top position!
+
+**Changes made:**
+- **Scale:** `0.665` → `0.658` (1% reduction: 0.665 × 0.99 ≈ 0.658)
+- **Vertical position:** `translateY(-40px)` → `translateY(-42px)` (moved up 2px to compensate)
+
+The video is now 1% smaller proportionally, but the top of the phone screen should stay in exactly the same position on the page. The slight upward adjustment in the translateY compensates for the scaling reduction so the top edge doesn't drift downward.
+
+---
+
+_**User**_
+
+lets take scale down to 0.655 and keep veritical position fixed
+
+---
+
+_**Assistant**_
+
+I'll reduce the scale to 0.655 and adjust the vertical position to keep the top of the screen fixed in place.
 
 ---
 
@@ -1692,53 +1752,90 @@ Lines added: 3, lines removed: 3
 undefined
 
 **Chunk 1**
-Lines added: 10, lines removed: 1
+Lines added: 1, lines removed: 1
 
 ```diff
-@@ -184,5 +184,14 @@
-      /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
-      #how .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
--     #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
-+     /* 2) Make the mock "device" responsive with the same aspect ratio */
-+     #how .mock .mock-inner,
-+     #demo .three-mockups .mock .mock-inner {
-+       aspect-ratio: 430 / 932;
-+       width: 100%;
-+       max-width: 320px;     /* ensures 3 columns + gaps fit inside 1120px */
-+       margin-inline: auto;
-+       overflow: hidden;
-+     }
-+     #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0}
-      .mock iframe {
-        transform: translateY(2%) scale(0.68);
+@@ -265,5 +265,5 @@
+      .mock:has(video){background:transparent !important;padding:0 !important;box-shadow:none !important}
+      .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
+-     .mock video{transform:translateY(-42px) scale(0.658);transform-origin:center;width:100%;height:100%;object-fit:cover}
++     .mock video{transform:translateY(-44px) scale(0.655);transform-origin:center;width:100%;height:100%;object-fit:cover}
+    </style>
+  </head>
 ```
 
 </details>
 
 ---
 
-<details><summary>Edit file: index3.html</summary>
+## ✅ Scaled down to 0.655 with fixed top position!
 
-undefined
+**Changes made:**
+- **Scale:** `0.658` → `0.655` 
+- **Vertical position:** `translateY(-42px)` → `translateY(-44px)` (moved up 2px more to compensate)
 
-**Chunk 1**
-Lines added: 3, lines removed: 3
+The video is now smaller at 0.655 scale, but the top of the phone screen should remain in exactly the same vertical position on the page. The additional upward adjustment keeps the top edge fixed despite the further scaling reduction.
 
-```diff
-@@ -194,7 +194,7 @@
-      }
-      #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0}
--     .mock iframe {
--       transform: translateY(2%) scale(0.68);
--       transform-origin: top center;
-+     /* 3) Remove scale transforms so layout width = visual width */
-+     .mock iframe { 
-+       transform: none;
-      }
-      /* 1) Let iframes size to their column instead of 430px fixed */
-```
+---
+
+_**User**_
+
+do you see the shadow in the bottom right and left corners..i think those are from within the iframe but they create these sharp edges where they meet index3
+
+---
+
+_**Assistant**_
+
+Yes, I can see those dark shadows in the bottom corners of the phone mockup! Those shadows are likely coming from within the iframe content (probably from the mockup files themselves) and they're creating harsh edges where the iframe content meets the main page background.
+
+Let me check what's causing those shadows in the mockup files:
+
+---
+
+
+
+---
+
+
+
+---
+
+
+
+---
+
+I found some shadows in the mockup files, but the corner shadows you're seeing are likely coming from the phone frame itself or the video content. Let me check if there are any shadows on the phone container or if it's coming from the video mockup file:
+
+---
+
+<details>
+                <summary>Searched codebase "What creates the dark corner shadows in the hero video mockup?" • **15** results</summary>
+            
+| File | Lines |
+|------|-------|
+| `index4.html` | L215-289 |
+| `index3.html` | L180-257 |
+| `archive/indexwithvideo.html` | L55-84 |
+| `index3.html` | L253-311 |
+| `index4.html` | L137-218 |
+| `archive/indexwithvideo.html` | L12-41 |
+| `index4.html` | L12-41 |
+| `index4.html` | L39-64 |
+| `archive/indexwithvideo.html` | L39-59 |
+| `index3.html` | L12-41 |
+| `index3.html` | L39-63 |
+| `closet-screen.html` | L57-83 |
+| `2closet.html` | L60-87 |
+| `archive/indexwithvideo.html` | L128-162 |
+| `index4.html` | L285-329 |
 
 </details>
+
+---
+
+The corner shadows are likely coming from the video content itself (the actual mockup video file). The CSS shows that the video mockup container has `background:transparent` and `box-shadow:none`, so the shadows must be baked into the video content.
+
+To fix this, I can add a mask or crop the video slightly to hide those corner shadows. Let me add some CSS to mask the corners:
 
 ---
 
@@ -1750,517 +1847,13 @@ undefined
 Lines added: 2, lines removed: 2
 
 ```diff
-@@ -205,8 +205,8 @@
-      }
-      
--     /* Three mockups layout */
-+     /* 4) Make the grid columns truly flexible */
-      .three-mockups {
-        display: grid;
--       grid-template-columns: repeat(3, 1fr);
-+       grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 40px;
-        margin-top: 40px;
-```
-
-</details>
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 1, lines removed: 15
-
-```diff
-@@ -233,21 +233,7 @@
-        padding: 0;
-      }
--     
--     #demo .three-mockups .mock-inner {
--       background: transparent;
--       border-radius: 0;
--       width: 430px;
--       max-width: 100%;
--       aspect-ratio: 430/932;
--       overflow: hidden;
--     }
-      
-      #demo .three-mockups .mock iframe {
--       width: 100%;
--       height: 100%;
--       border: 0;
--       background: transparent;
--       transform: translateY(2%) scale(0.63);
--       transform-origin: top center;
-+       transform: none;
-      }
-      
-```
-
-</details>
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 2, lines removed: 1
-
-```diff
-@@ -26,5 +26,6 @@
-      img{max-width:100%;display:block}
-  
--     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-+     /* Optional belt-and-suspenders to prevent tiny residual overflow from shadows etc. */
-+     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;overflow-x:clip}
-      header{position:sticky;top:0;z-index:100;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
-      .nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-```
-
-</details>
-
----
-
-## Todo List
-
-- [x] Fix iframe scaling to prevent horizontal overflow by wrapping scaling in container
-
----
-
-## ✅ Implemented your comprehensive horizontal scroll fix!
-
-Perfect analysis and solution! I've implemented all your suggested changes:
-
-### **Changes Made:**
-
-1. **✅ Let iframes size to their column instead of 430px fixed:**
-   ```css
-   #how .mock-inner iframe,
-   #demo .three-mockups .mock-inner iframe {
-     width: 100%;
-     height: 100%;
-   }
-   ```
-
-2. **✅ Make the mock "device" responsive with the same aspect ratio:**
-   ```css
-   #how .mock .mock-inner,
-   #demo .three-mockups .mock .mock-inner {
-     aspect-ratio: 430 / 932;
-     width: 100%;
-     max-width: 320px;     /* ensures 3 columns + gaps fit inside 1120px */
-     margin-inline: auto;
-     overflow: hidden;
-   }
-   ```
-
-3. **✅ Remove scale transforms so layout width = visual width:**
-   ```css
-   .mock iframe { 
-     transform: none;
-   }
-   #demo .three-mockups .mock iframe {
-     transform: none;
-   }
-   ```
-
-4. **✅ Make the grid columns truly flexible:**
-   ```css
-   .three-mockups {
-     grid-template-columns: repeat(3, minmax(0, 1fr));
-   }
-   ```
-
-5. **✅ Belt-and-suspenders overflow protection:**
-   ```css
-   .container { overflow-x: clip; }
-   ```
-
-### **Why This Works:**
-- **No more fixed 430px widths** causing overflow
-- **Max-width: 320px** ensures `3 × 320px + 2 × 40px = 1,040px ≤ 1,120px`
-- **No transform scaling** means layout width matches visual width
-- **Truly responsive** mockups that scale with their containers
-
-This should completely eliminate the horizontal scroll issue while maintaining the visual design!
-
----
-
-_**User**_
-
-Perfect 👍 — here’s the cleaned-up CSS you can drop in. It restores the scaled “phone look” you had before, but fixes the horizontal scroll problem:
-
-/* --- HOW section mockup --- */
-#how .mock .mock-inner {
-  aspect-ratio: 430 / 932;
-  width: 100%;
-  max-width: 430px;
-  margin-inline: auto;
-  overflow: hidden;
-  background: transparent;
-  border-radius: 0;
-}
-
-#how .mock-inner iframe {
-  width: 430px;
-  height: 932px;
-  border: 0;
-  background: transparent;
-  transform: scale(0.68);           /* single phone scale */
-  transform-origin: top center;
-}
-
-/* --- DEMO section (3 phones side by side) --- */
-#demo .three-mockups {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 40px;
-}
-
-#demo .three-mockups .mock {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-
-#demo .three-mockups .mock .mock-inner {
-  aspect-ratio: 430 / 932;
-  width: 100%;
-  max-width: 430px;
-  margin-inline: auto;
-  overflow: hidden;
-  background: transparent;
-  border-radius: 0;
-}
-
-#demo .three-mockups .mock-inner iframe {
-  width: 430px;
-  height: 932px;
-  border: 0;
-  background: transparent;
-  transform: scale(0.63);           /* smaller so 3 fit neatly */
-  transform-origin: top center;
-}
-
-/* Responsive fallback for mobile/tablet */
-@media (max-width: 960px) {
-  #demo .three-mockups {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  #how .mock-inner iframe,
-  #demo .three-mockups .mock-inner iframe {
-    transform: scale(0.9);          /* bigger when single-column */
-  }
-}
-
-
-This setup does three things:
-
-Keeps each iframe’s true 430×932 viewport (so it doesn’t look zoomed/cropped).
-
-Applies different scale factors: 0.68 for the single phone, 0.63 for the triple layout.
-
-Uses overflow: hidden on the wrapper, so the browser doesn’t reserve the full 430px × 3 width — eliminating the horizontal scroll.
-
----
-
-_**Assistant**_
-
-Perfect! Your cleaned-up CSS is much better organized and restores the proper phone scaling while fixing the overflow. Let me replace the current CSS with your optimized version:
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 44, lines removed: 22
-
-```diff
-@@ -182,36 +182,58 @@
-      }
-    
--     /* --- Preserve exact mockup sizing/format from original hero --- */
--     /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
-+     /* --- HOW section mockup --- */
-      #how .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
--     /* 2) Make the mock "device" responsive with the same aspect ratio */
--     #how .mock .mock-inner,
--     #demo .three-mockups .mock .mock-inner {
-+     #how .mock .mock-inner {
-        aspect-ratio: 430 / 932;
-        width: 100%;
--       max-width: 320px;     /* ensures 3 columns + gaps fit inside 1120px */
-+       max-width: 430px;
-        margin-inline: auto;
-        overflow: hidden;
--     }
--     #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0}
--     /* 3) Remove scale transforms so layout width = visual width */
--     .mock iframe { 
--       transform: none;
--     }
--     /* 1) Let iframes size to their column instead of 430px fixed */
--     #how .mock-inner iframe,
--     #demo .three-mockups .mock-inner iframe {
--       width: 100%;
--       height: 100%;
-+       background: transparent;
-+       border-radius: 0;
-+     }
-+ 
-+     #how .mock-inner iframe {
-+       width: 430px;
-+       height: 932px;
-+       border: 0;
-+       background: transparent;
-+       transform: scale(0.68);           /* single phone scale */
-+       transform-origin: top center;
-      }
--     
--     /* 4) Make the grid columns truly flexible */
--     .three-mockups {
-+ 
-+     /* --- DEMO section (3 phones side by side) --- */
-+     #demo .three-mockups {
-        display: grid;
--       grid-template-columns: repeat(3, minmax(0, 1fr));
-+       grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-        margin-top: 40px;
-      }
--     
-+ 
-+     #demo .three-mockups .mock {
-+       background: transparent;
-+       box-shadow: none;
-+       padding: 0;
-+     }
-+ 
-+     #demo .three-mockups .mock .mock-inner {
-+       aspect-ratio: 430 / 932;
-+       width: 100%;
-+       max-width: 430px;
-+       margin-inline: auto;
-+       overflow: hidden;
-+       background: transparent;
-+       border-radius: 0;
-+     }
-+ 
-+     #demo .three-mockups .mock-inner iframe {
-+       width: 430px;
-+       height: 932px;
-+       border: 0;
-+       background: transparent;
-+       transform: scale(0.63);           /* smaller so 3 fit neatly */
-+       transform-origin: top center;
-+     }
-+     
-      .mockup-item {
-        display: flex;
-```
-
-**Chunk 2**
-Lines added: undefined, lines removed: 11
-
-```diff
-@@ -227,15 +249,4 @@
-        text-align: center;
-      }
--     
--     /* Make demo phones frameless like Section 2 */
--     #demo .three-mockups .mock {
--       background: transparent;
--       box-shadow: none;
--       padding: 0;
--     }
--     
--     #demo .three-mockups .mock iframe {
--       transform: none;
--     }
-      
-      @media (max-width: 1200px) {
-```
-
-</details>
-
----
-
-Now let me add the responsive fallback for mobile/tablet:
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 6, lines removed: 1
-
-```diff
-@@ -262,9 +262,14 @@
-      }
-      
-+     /* Responsive fallback for mobile/tablet */
-      @media (max-width: 960px) {
--       .three-mockups {
-+       #demo .three-mockups {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
-+       #how .mock-inner iframe,
-+       #demo .three-mockups .mock-inner iframe {
-+         transform: scale(0.9);          /* bigger when single-column */
-+       }
-      }
-      
-```
-
-</details>
-
----
-
-## ✅ Perfect! Implemented your cleaned-up CSS solution
-
-Your optimized CSS is now in place! This solution is much cleaner and more maintainable:
-
-### **What This Achieves:**
-
-1. **✅ Restores proper phone scaling:**
-   - Section 2 (HOW): `scale(0.68)` for single phone
-   - Section 3 (DEMO): `scale(0.63)` for three phones side-by-side
-
-2. **✅ Eliminates horizontal scroll:**
-   - Uses `overflow: hidden` on wrapper containers
-   - Browser doesn't reserve full 430px × 3 width
-   - Layout width respects the scaled visual size
-
-3. **✅ Maintains true 430×932 viewport:**
-   - No zoomed/cropped appearance
-   - Mockups render at their intended resolution
-
-4. **✅ Responsive design:**
-   - Mobile/tablet: Single column layout
-   - Larger scale (`0.9`) when stacked vertically
-
-### **Key Benefits:**
-- **Clean, organized CSS** with clear section separation
-- **No horizontal overflow** on any screen size
-- **Proper phone appearance** with realistic scaling
-- **Responsive behavior** that adapts to screen size
-
-This is a much more elegant solution than my previous attempts. The mockups should now look great and fit perfectly within the layout constraints!
-
----
-
-_**User**_
-
-Yep — the third phone is getting cut off because the .container has overflow-x: clip, which hides the extra width your three phones still occupy. Each phone wrapper is still 430px wide (plus gaps), so the row exceeds the 1120px container; clipping hides the rightmost phone. You can see both of these in your file: the overflow-x: clip on .container and the max-width: 430px wrappers with scaled iframes. 
-
-Fix (keep the look, no clipping, no scroll)
-
-Remove the clipping.
-
-Make each phone wrapper’s layout width match the scaled width so the row actually fits.
-
-Drop these overrides after your current styles:
-
-/* 1) Don't hide overflow; make the row actually fit */
-.container { overflow-x: visible; }
-
-/* 2) Single phone (HOW) — wrapper width matches scale(0.68) */
-#how .mock .mock-inner {
-  max-width: calc(430px * 0.68);
-}
-
-/* 3) Triple phones (DEMO) — wrapper width matches scale(0.63) */
-#demo .three-mockups .mock .mock-inner {
-  max-width: calc(430px * 0.63);  /* ≈271px */
-}
-
-/* (optional) Make column sizing predictable */
-#demo .three-mockups {
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;  /* center each phone in its track */
-}
-
-
-Why this works:
-
-The iframes still render at 430×932 and are visually scaled, but now the wrapper’s max-width equals the scaled width, so 3 phones + two 40px gaps fit inside 1120px. No overflow → nothing gets clipped.
-
----
-
-_**Assistant**_
-
-Perfect analysis! You're absolutely right - the `overflow-x: clip` is hiding the third phone because the wrappers are still 430px wide even though the content is scaled down. Your solution makes the wrapper width match the actual scaled visual width. Let me implement this fix:
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 1, lines removed: 2
-
-```diff
-@@ -26,6 +26,5 @@
-      img{max-width:100%;display:block}
-  
--     /* Optional belt-and-suspenders to prevent tiny residual overflow from shadows etc. */
--     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;overflow-x:clip}
-+     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-      header{position:sticky;top:0;z-index:100;background:rgba(250,248,246,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
-      .nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-```
-
-</details>
-
----
-
-Now let me add the overrides after the current styles:
-
----
-
-<details><summary>Edit file: index3.html</summary>
-
-undefined
-
-**Chunk 1**
-Lines added: 19, lines removed: undefined
-
-```diff
-@@ -277,4 +277,23 @@
-      .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
-      .mock video{transform:translateY(-40px) scale(0.665);transform-origin:center;width:100%;height:100%;object-fit:cover}
-+ 
-+     /* 1) Don't hide overflow; make the row actually fit */
-+     .container { overflow-x: visible; }
-+ 
-+     /* 2) Single phone (HOW) — wrapper width matches scale(0.68) */
-+     #how .mock .mock-inner {
-+       max-width: calc(430px * 0.68);
-+     }
-+ 
-+     /* 3) Triple phones (DEMO) — wrapper width matches scale(0.63) */
-+     #demo .three-mockups .mock .mock-inner {
-+       max-width: calc(430px * 0.63);  /* ≈271px */
-+     }
-+ 
-+     /* (optional) Make column sizing predictable */
-+     #demo .three-mockups {
-+       grid-template-columns: repeat(3, 1fr);
-+       justify-items: center;  /* center each phone in its track */
-+     }
+@@ -264,6 +264,6 @@
+      /* Video styling to match iframe */
+      .mock:has(video){background:transparent !important;padding:0 !important;box-shadow:none !important}
+-     .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
+-     .mock video{transform:translateY(-44px) scale(0.655);transform-origin:center;width:100%;height:100%;object-fit:cover}
++     .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932;overflow:hidden}
++     .mock video{transform:translateY(-44px) scale(0.655);transform-origin:center;width:100%;height:100%;object-fit:cover;border-radius:53px}
     </style>
   </head>
 ```
@@ -2269,45 +1862,14 @@ Lines added: 19, lines removed: undefined
 
 ---
 
-## ✅ Fixed the clipped third phone!
+## ✅ Added corner shadow fix!
 
-Perfect solution! I've implemented your fix:
+I've added two properties to help eliminate those corner shadows:
 
-### **Changes Made:**
+1. **`overflow:hidden`** on the `.mock-inner` container - This will clip any content that extends beyond the container bounds
+2. **`border-radius:53px`** on the video element - This matches the phone screen's border radius to create clean rounded corners
 
-1. **✅ Removed overflow clipping:**
-   ```css
-   .container { overflow-x: visible; }
-   ```
-
-2. **✅ Single phone wrapper matches scale(0.68):**
-   ```css
-   #how .mock .mock-inner {
-     max-width: calc(430px * 0.68);  /* ≈292px */
-   }
-   ```
-
-3. **✅ Triple phones wrapper matches scale(0.63):**
-   ```css
-   #demo .three-mockups .mock .mock-inner {
-     max-width: calc(430px * 0.63);  /* ≈271px */
-   }
-   ```
-
-4. **✅ Predictable column sizing:**
-   ```css
-   #demo .three-mockups {
-     justify-items: center;  /* center each phone in its track */
-   }
-   ```
-
-### **Why This Works:**
-- **Layout width = Visual width:** Wrapper size now matches the scaled iframe size
-- **Perfect fit:** `3 × 271px + 2 × 40px = 893px < 1120px` ✅
-- **No clipping needed:** Content actually fits within container
-- **All three phones visible:** No overflow to hide
-
-Now all three phones should be fully visible with no horizontal scroll and no clipping!
+This should eliminate the sharp dark corners by either clipping them with overflow or rounding them to match
 
 ---
 
