@@ -46,7 +46,7 @@
     .benefit{font-size:16px;color:#4C4C50;line-height:1.4}
 
     .mock{border-radius:var(--radius-2xl);background:#000;box-shadow:0 30px 80px rgba(0,0,0,.25);padding:12px;max-width:100%;min-width:0}
-    .mock-inner{background:#fff;border-radius:calc(var(--radius-2xl) - 10px);aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;overflow:hidden;max-width:100%}
+    .mock-inner{background:#fff;border-radius:calc(var(--radius-2xl) - 10px);aspect-ratio:9/16;overflow:hidden;max-width:100%}
     .mock-inner iframe{width:100%;height:100%;border:0;background:transparent}
 
     .section{padding:64px 0}
@@ -160,15 +160,15 @@
     #how .how-grid{
       display:grid;
       grid-template-columns: 1.35fr 1fr;
-      align-items:start;
+      align-items:center;              /* vertically center items in the row */
       gap:48px;
     }
     
-    #how .mock{ align-self:start; margin-top:-14px; }  /* phone up slightly */
+
     
 
     
-    #how .left-col{ margin-top: 28px; }   /* text block down slightly */
+
     
     #how .eyebrow{ margin-bottom:8px; }        /* was 14px in places  */
     @media (max-width: 960px){
@@ -182,21 +182,11 @@
   
     /* --- Preserve exact mockup sizing/format from original hero --- */
     /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
-    #how .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
-    #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/1100}
-    #how .mock iframe {
-      transform: translateY(-8%) scale(0.68);
-      transform-origin: top center;
-    }
     #demo .three-mockups .mock iframe {
       transform: translateY(-2%) scale(0.63);
       transform-origin: top center;
     }
     /* Ensure embedded screens use a true 430x932 viewport, then scale down */
-    #how .mock-inner iframe {
-      width: 430px;
-      height: 1000px;
-    }
     #demo .three-mockups .mock-inner iframe {
       width: 430px;
       height: 932px;
@@ -278,6 +268,47 @@
     .mock:has(video){background:transparent !important;padding:0 !important;box-shadow:none !important}
     .mock:has(video) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932;overflow:hidden}
     .mock video{transform:translateY(-44px) scale(0.655);transform-origin:center;width:100%;height:100%;object-fit:cover;border-radius:53px}
+
+    /* 1) Tighten the section's own spacing */
+    #how.section { padding-top: 0 !important; }           /* keep your padding-bottom:20px inline */
+
+    /* 2) Remove the extra vertical offsets inside HOW */
+    #how .left-col { margin-top: 0 !important; }          /* was 28px */
+    #how .mock     { margin-top: 0 !important; }          /* was -14px */
+
+    /* === HOW: framed device, consistent scale, no phantom gap === */
+    #how .mock {
+      background:transparent;
+      padding:0;
+      box-shadow:none;
+      border-radius:0;
+      margin: 0 0 0 -5px;               /* nudge left by 5px */
+    }
+
+    #how .mock .mock-inner {
+      background:transparent;
+      border-radius:0;
+      aspect-ratio:430 / 1000;         /* taller to reveal bottom */
+      width:calc(430px * 0.700);       /* +1% scale reflected in layout width */
+      max-width:100%;
+      margin-inline:auto;
+      overflow:hidden;
+      position:relative;
+    }
+
+    #how .mock-inner iframe {
+      width:430px;
+      height:1000px;
+      transform:scale(0.700);          /* matches wrapper width (+1%) */
+      transform-origin:top left;
+      border:0;
+      background:transparent;
+      border-radius:40px;               /* slightly tighter corners for scale */
+    }
+
+    /* Section rhythm to match hero→how */
+    #how.section { padding:40px 0 32px !important; }
+
   </style>
 </head>
 <body>
