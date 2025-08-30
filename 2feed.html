@@ -248,7 +248,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 }
 </style>
 </head>
-<body class="view-feed">
+<body class="view-detail">
   <div class="phone">
       <div class="screen">
         <div class="island"></div>
@@ -388,7 +388,15 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
     }
 
     if(sizeCta){
-      setCollapsed();
+      // Default to expanded view
+      setExpanded();
+      // Scroll feed to the bottom so details are fully in view
+      const feed = document.querySelector('.feed');
+      if(feed){
+        requestAnimationFrame(()=>{
+          feed.scrollTo({ top: feed.scrollHeight, behavior: 'instant' });
+        });
+      }
       sizeCta.addEventListener('click', () => {
         const expanded = body.classList.contains('view-detail');
         expanded ? setCollapsed() : setExpanded();

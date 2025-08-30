@@ -180,26 +180,16 @@
       #how .mock{ margin-top: 0; align-self:center; }
     }
   
-    /* --- Preserve exact mockup sizing/format from original hero --- */
-    /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
-    #demo .three-mockups .mock iframe {
-      transform: translateY(-2%) scale(0.63);
-      transform-origin: top center;
-    }
-    /* Ensure embedded screens use a true 430x932 viewport, then scale down */
-    #demo .three-mockups .mock-inner iframe {
-      width: 430px;
-      height: 932px;
-    }
+    /* (cleaned) demo mockups use absolute centering without transforms */
     
     /* Three mockups layout */
     .three-mockups {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      grid-template-columns: repeat(3, 272px);
+      gap: 45px;
       margin-top: 40px;
-      justify-items: start;
-      margin-left: 25px;
+      justify-content: center;
+      justify-items: center;
     }
     
     .mockup-item {
@@ -226,7 +216,7 @@
     #demo .three-mockups .mock-inner {
       background: transparent;
       border-radius: 0;
-      width: 270px;
+      width: 272px;
       max-width: 100%;
       aspect-ratio: 430/1100;
       overflow: hidden;
@@ -240,9 +230,10 @@
       border: 0;
       background: transparent;
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 50%;
-      margin-left: -215px;
+      transform: translate(-50%, -50%) scale(0.63);
+      transform-origin: center center;
     }
     
     @media (max-width: 1200px) {
@@ -307,7 +298,7 @@
     }
 
     /* Section rhythm to match hero→how */
-    #how.section { padding:40px 0 32px !important; }
+    #how.section { padding:40px 0 190px !important; }
 
   </style>
 </head>
@@ -392,7 +383,7 @@
     </section>
 
     <!-- DEMO MOCKUPS -->
-    <section class="section" id="demo" style="padding:20px 0">
+    <section class="section" id="demo" style="padding:28px 0 20px">
       <div class="container">
         <h2>See Sies in action</h2>
         <p class="lede">Your closet becomes your fit profile – and every product page tells you what will fit.</p>
