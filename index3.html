@@ -183,13 +183,20 @@
     /* --- Preserve exact mockup sizing/format from original hero --- */
     /* These ensure all mockups (mockup1, profile-screen, closet-screen) render identically */
     #how .mock:has(iframe){background:transparent;padding:0;box-shadow:none}
-    #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/932}
-    .mock iframe {
-      transform: translateY(2%) scale(0.68);
+    #how .mock:has(iframe) .mock-inner{background:transparent;border-radius:0;aspect-ratio:430/1100}
+    #how .mock iframe {
+      transform: translateY(-8%) scale(0.68);
+      transform-origin: top center;
+    }
+    #demo .three-mockups .mock iframe {
+      transform: translateY(-2%) scale(0.63);
       transform-origin: top center;
     }
     /* Ensure embedded screens use a true 430x932 viewport, then scale down */
-    #how .mock-inner iframe,
+    #how .mock-inner iframe {
+      width: 430px;
+      height: 1000px;
+    }
     #demo .three-mockups .mock-inner iframe {
       width: 430px;
       height: 932px;
@@ -199,8 +206,9 @@
     .three-mockups {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 20px;
       margin-top: 40px;
+      justify-items: start;
     }
     
     .mockup-item {
@@ -227,19 +235,23 @@
     #demo .three-mockups .mock-inner {
       background: transparent;
       border-radius: 0;
-      width: 430px;
+      width: 270px;
       max-width: 100%;
-      aspect-ratio: 430/932;
+      aspect-ratio: 430/1100;
       overflow: hidden;
+      margin: 0 auto;
+      position: relative;
     }
     
     #demo .three-mockups .mock iframe {
-      width: 100%;
-      height: 100%;
+      width: 430px;
+      height: 1000px;
       border: 0;
       background: transparent;
-      transform: translateY(2%) scale(0.63);
-      transform-origin: top center;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      margin-left: -215px;
     }
     
     @media (max-width: 1200px) {
