@@ -300,6 +300,66 @@
     /* Section rhythm to match hero→how */
     #how.section { padding:40px 0 190px !important; }
 
+    /* PROFILE section — distinct from HOW */
+    #profile.section{
+      background: linear-gradient(180deg, rgba(255,255,255,.65) 0%, rgba(255,255,255,0) 100%);
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      padding: 56px 0;
+    }
+
+    .profile-grid{
+      display:grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    #profile .eyebrow{ margin-bottom:10px; }
+    #profile h2{ margin-bottom:12px; }
+    #profile .lede{ margin-bottom:16px; }
+
+    .profile-pills{
+      display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 18px;
+    }
+    .pill{
+      font:600 12px/1 Inter;
+      color:#2F2F33; background:#fff;
+      border:1px solid #E8E4DE; border-radius:999px;
+      padding:8px 12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.05);
+    }
+
+    .profile-points{
+      display:grid; gap:10px; margin-top:6px;
+    }
+    .profile-point{
+      display:grid; grid-template-columns:22px 1fr; column-gap:10px; align-items:start;
+      color:#4C4C50; font-size:16px; line-height:1.5;
+    }
+    .profile-point svg{ margin-top:3px; flex:0 0 auto; }
+
+    #profile .mock{ background:transparent; box-shadow:none; padding:0; border-radius:0; }
+    #profile .mock-inner{
+      background:transparent; border-radius:0;
+      width:calc(430px * 0.665); aspect-ratio:430/1000; overflow:hidden; margin:0 auto; position:relative;
+    }
+    #profile .mock-inner iframe{
+      width:430px; height:1000px; border:0; background:transparent;
+      transform:scale(0.665); transform-origin:top left;
+    }
+
+    /* Slight stickiness on large screens for polish */
+    @media (min-width: 1100px){
+      #profile .mock{ position: sticky; top: 90px; }
+    }
+
+    /* Stack nicely on mobile */
+    @media (max-width: 960px){
+      .profile-grid{ grid-template-columns: 1fr; gap:28px; }
+      #profile .mock{ position:static; }
+    }
+
   </style>
 </head>
 <body>
@@ -376,6 +436,60 @@
         <div class="mock" aria-hidden="true">
             <div class="mock-inner">
               <iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE (distinct look) -->
+    <section id="profile" class="section">
+      <div class="container">
+        <div class="profile-grid">
+          <!-- LEFT: copy -->
+          <div>
+            <div class="eyebrow">your fit profile</div>
+            <h2>Your sizes become a living profile</h2>
+            <p class="lede">Sies learns your exact garment measurements and translates them into fit zones — sleek, perfect, or relaxed — tailored by garment type.</p>
+
+            <div class="profile-pills">
+              <span class="pill">Fit Zones: Sleek · Perfect · Relaxed</span>
+              <span class="pill">Brand-to-brand translation</span>
+              <span class="pill">“Why it fits” on every item</span>
+            </div>
+
+            <div class="profile-points">
+              <div class="profile-point">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" stroke="url(#g)" stroke-width="2"></circle>
+                  <path d="M7 12.5l3 3 7-7" stroke="url(#g)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+                </svg>
+                <div>See your recommended size plus a short note explaining the fit — not just a guess, but the reason.</div>
+              </div>
+              <div class="profile-point">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" stroke="url(#g2)" stroke-width="2"></circle>
+                  <path d="M7 12.5l3 3 7-7" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs><linearGradient id="g2" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+                </svg>
+                <div>Choose your vibe for each category — keep tees sleek, hoodies relaxed, jackets right in the pocket.</div>
+              </div>
+              <div class="profile-point">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" stroke="url(#g3)" stroke-width="2"></circle>
+                  <path d="M7 12.5l3 3 7-7" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <defs><linearGradient id="g3" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+                </svg>
+                <div>Works across brands by standardizing size guides under the hood — so S in one brand compares cleanly to XS in another.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: frameless profile mockup -->
+          <div class="mock" aria-hidden="true">
+            <div class="mock-inner">
+              <iframe src="./2profile.html" title="Profile mockup" loading="lazy"></iframe>
             </div>
           </div>
         </div>

@@ -6083,3 +6083,176 @@ Want any spacing tweaks between the label and the muted parentheses too?
 
 ---
 
+_**User**_
+
+in @index3.html 
+1) Add this CSS (anywhere inside <style>...</style>)
+/* PROFILE section — distinct from HOW */
+#profile.section{
+  background: linear-gradient(180deg, rgba(255,255,255,.65) 0%, rgba(255,255,255,0) 100%);
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  padding: 56px 0;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+#profile .eyebrow{ margin-bottom:10px; }
+#profile h2{ margin-bottom:12px; }
+#profile .lede{ margin-bottom:16px; }
+
+.profile-pills{
+  display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 18px;
+}
+.pill{
+  font:600 12px/1 Inter;
+  color:#2F2F33; background:#fff;
+  border:1px solid #E8E4DE; border-radius:999px;
+  padding:8px 12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.05);
+}
+
+.profile-points{
+  display:grid; gap:10px; margin-top:6px;
+}
+.profile-point{
+  display:grid; grid-template-columns:22px 1fr; column-gap:10px; align-items:start;
+  color:#4C4C50; font-size:16px; line-height:1.5;
+}
+.profile-point svg{ margin-top:3px; flex:0 0 auto; }
+
+#profile .mock{ background:transparent; box-shadow:none; padding:0; border-radius:0; }
+#profile .mock-inner{
+  background:transparent; border-radius:0;
+  width:272px; aspect-ratio:430/1100; overflow:hidden; margin:0 auto; position:relative;
+}
+#profile .mock-inner iframe{
+  width:430px; height:1000px; border:0; background:transparent;
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(.63);
+  transform-origin:center;
+}
+
+/* Slight stickiness on large screens for polish */
+@media (min-width: 1100px){
+  #profile .mock{ position: sticky; top: 90px; }
+}
+
+/* Stack nicely on mobile */
+@media (max-width: 960px){
+  .profile-grid{ grid-template-columns: 1fr; gap:28px; }
+  #profile .mock{ position:static; }
+}
+
+---
+
+_**Assistant**_
+
+<think><details><summary>Thought Process</summary>**Implementing CSS patch**
+
+I need to add a CSS block to the index3.html file inside the <style> tags. The user specifically mentioned to insert it anywhere within those tags, so I’ll place it before the closing </style>. I’ll use functions.apply_patch for this, and I must include a brief status update since we’re following the spec. I’ll focus on being concise. I aim to make this clean by finding the right spot around line 303. Let's move forward!</details></think>
+
+---
+
+I'll add the provided PROFILE section CSS into index3.html's <style> block just before the closing tag.
+
+---
+
+
+
+---
+
+Added the PROFILE section CSS to `index3.html` inside the `<style>` block, including layout, pills, points, mock iframe sizing/centering, and responsive/sticky behavior.
+
+---
+
+_**User**_
+
+Below is a drop-in you can paste between </section><!-- HOW --> and <!-- DEMO MOCKUPS -->.
+<!-- PROFILE (distinct look) -->
+<section id="profile" class="section">
+  <div class="container">
+    <div class="profile-grid">
+      <!-- LEFT: copy -->
+      <div>
+        <div class="eyebrow">your fit profile</div>
+        <h2>Your sizes become a living profile</h2>
+        <p class="lede">Sies learns your exact garment measurements and translates them into fit zones — sleek, perfect, or relaxed — tailored by garment type.</p>
+
+        <div class="profile-pills">
+          <span class="pill">Fit Zones: Sleek · Perfect · Relaxed</span>
+          <span class="pill">Brand-to-brand translation</span>
+          <span class="pill">“Why it fits” on every item</span>
+        </div>
+
+        <div class="profile-points">
+          <div class="profile-point">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="url(#g)" stroke-width="2"></circle>
+              <path d="M7 12.5l3 3 7-7" stroke="url(#g)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+            </svg>
+            <div>See your recommended size plus a short note explaining the fit — not just a guess, but the reason.</div>
+          </div>
+          <div class="profile-point">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="url(#g2)" stroke-width="2"></circle>
+              <path d="M7 12.5l3 3 7-7" stroke="url(#g2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+            </svg>
+            <div>Choose your vibe for each category — keep tees sleek, hoodies relaxed, jackets right in the pocket.</div>
+          </div>
+          <div class="profile-point">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" stroke="url(#g3)" stroke-width="2"></circle>
+              <path d="M7 12.5l3 3 7-7" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs><linearGradient id="g3" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#667eea"/><stop offset="1" stop-color="#764ba2"/></linearGradient></defs>
+            </svg>
+            <div>Works across brands by standardizing size guides under the hood — so S in one brand compares cleanly to XS in another.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: frameless profile mockup -->
+      <div class="mock" aria-hidden="true">
+        <div class="mock-inner">
+          <iframe src="./2profile.html" title="Profile mockup" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+---
+
+_**Assistant**_
+
+<think><details><summary>Thought Process</summary>**Inserting HTML snippet**
+
+I need to insert the provided HTML snippet between the `</section><!-- HOW -->` and `<!-- DEMO MOCKUPS -->` in the `index3.html` file. First, I'll check the lines around the end of the HOW section and the start of the DEMO section. The HOW section currently ends at line 383 with `</section>`. There isn’t a comment that says `<!-- HOW -->` after closing, but I can definitely add the snippet after the HOW section and before the DEMO section. That should work perfectly!
+**Modifying index3.html**
+
+I need to use the `apply_patch` to modify `index3.html` by inserting a block between the `</section>` (which closes the HOW section) and the `<!-- DEMO MOCKUPS -->` comment that starts at line 385. The insertion point is around lines 383 and 385. 
+
+I’ll patch this area by finding the sequence: `</section>` followed by a blank line and then `<!-- DEMO MOCKUPS -->`. The replacement will include the existing lines at 383 to 385 along with the new PROFILE section snippet, ensuring that the indentation matches the rest of the file. Let's get this done!
+**Building the patch**
+
+I need to make sure to insert the new snippet with a two-space indent so it matches the rest of the section's indentation. I'll build the patch accordingly. 
+
+Also, I have to remember that we previously added CSS definitions for the profile, which will be necessary for the new section. Once I’ve got everything ready, I’ll proceed to apply the patch to ensure everything looks consistent and functions correctly. Let's get this finalized!</details></think>
+
+---
+
+
+
+---
+
+Inserted the PROFILE section markup in `index3.html` between the HOW section and DEMO mockups, exactly as provided.
+
+---
+
