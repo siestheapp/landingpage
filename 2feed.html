@@ -115,18 +115,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 /* Measuring tape icon */
 .measure-icon{width:16px;height:16px;opacity:0.9}
 
-/* Social stat under badge */
-.social-stat{margin:8px 2px 6px;font-size:13px;color:#6F6F74}
-
-/* Why chip (replaces Fit details) */
-.why-chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid rgba(118,75,162,.25);background:rgba(118,75,162,.06);color:#5C3FA8;font:600 13px/1 Inter;cursor:pointer}
-.why-chip:hover{background:rgba(118,75,162,.12)}
-
-/* Why list items */
-.why-list{display:grid;gap:6px;padding:4px 2px 0;color:#1F1F1F}
-.why-item{font-size:14px;line-height:1.5}
-
-.info{position:relative;margin-top:-10px;padding:12px 12px 10px}
+.info{position:relative;margin-top:-10px;padding:14px 18px 12px}
 .info::before{content:"";position:absolute;top:-10px;left:0;right:0;height:10px;
   background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,0));
   border-top-left-radius:12px;border-top-right-radius:12px}
@@ -134,7 +123,6 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 
 /* Enhanced metadata row */
 .row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 10px 0 6px}
-.row.muted{opacity:.8;filter:saturate(.9)}
 .left-meta{display:flex;align-items:center;gap:8px}
 .brand{font-size:12px;letter-spacing:.3px;color:#555;font-weight:600}
 .price{font-weight:700;font-size:17px;color:#2d2d2d}
@@ -157,10 +145,10 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 .trust-item svg{width:16px;height:16px;color:#4ade80;position:relative;top:1px}
 
 /* Details */
-.details{background:#fff;border:1px solid #eee6;border-radius:16px;padding:10px 12px 6px;transition:max-height .35s ease,opacity .25s ease;margin:0 -6px}
+.details{background:#fff;border:1px solid #eee6;border-radius:16px;padding:12px 16px 8px;transition:max-height .35s ease,opacity .25s ease}
 .item{padding:8px 0}
 .item+ .item{border-top:1px solid #e9e9ef}
-.measure{font-size:14px;line-height:1.55;color:#1F1F1F;padding-left:10px}
+.measure{font-size:14px;line-height:1.55;color:#1F1F1F}
 .measure strong{font-size:14px;font-weight:600;color:#1F1F1F}
 .measure .muted{color:#6F6F74;font-weight:400}
 
@@ -201,11 +189,10 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 /* Accent highlight for key references (subtle blue) */
 .accent{color:#2F5DCC;font-weight:600}
 
-/* Inline advisory note (more prominent heading-like line) */
-.details .advice-inline{margin:8px 0 4px;font-size:16.5px;line-height:1.55;color:var(--ink);font-weight:600}
+/* Inline advisory note (less visual weight than a card) */
+.details .advice-inline{margin:6px 0 2px;font-size:15px;line-height:1.55;color:#6F6F74}
 .advice-next{margin-top:14px}
 .details .advice-inline b{color:#2F5DCC}
-.details .advice-inline .muted{color:#6F6F74;font-weight:500}
 
 /* Expanded-state polish: hide feed summary and soften advisory tip */
 .view-detail .tip-summary{display:none}
@@ -259,9 +246,6 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   font-weight:500;
   margin-top:6px;
 }
-
-/* Privacy cue */
-.privacy-cue{margin:10px 8px 0;color:#6F6F74;font-size:12px;text-align:center}
 </style>
 </head>
 <body class="view-feed">
@@ -305,35 +289,40 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
             </div>
 
             <div class="info">
-              <!-- Primary recommendation badge (gradient) -->
-              <div class="size-cta" aria-hidden="false">
+              <!-- Enhanced CTA with icon -->
+              <button class="size-cta" type="button" id="sizeCta" aria-expanded="false">
                 <span class="label">
                   <svg class="measure-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/>
                     <line x1="8" y1="1" x2="8" y2="4"/>
                     <line x1="16" y1="1" x2="16" y2="4"/>
                   </svg>
-                  We recommend <strong>S</strong> · High confidence
+                  Best Fit: <strong>S</strong>
                 </span>
+                <span class="match">Fit details</span>
+              </button>
+
+              <div class="divider"></div>
+
+              <div class="row">
+                <div class="left-meta tappable">
+                  <div class="brand">ANTHROPOLOGIE</div>
+                  <span style="color:#c4c4c4;">|</span>
+                  <div class="price">$168.00</div>
+                </div>
+                <div class="trust-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5"/>
+                  </svg>
+                  Free returns
+                </div>
               </div>
-
-              <!-- Social stat (subtle) -->
-              <div class="social-stat">People like you: 78% said ‘True to size’.</div>
-
-              <!-- Why chip triggers details -->
-              <button class="why-chip" id="whyChip" type="button" aria-expanded="false">Why this size</button>
+              <div class="micro" style="margin-top:4px;">The Jocelyn Sleeveless Slip Midi Dress by Maeve</div>
 
               
 
               <!-- Expanded details -->
               <div class="details hidden" id="fitDetails">
-                <div class="item">
-                  <div class="why-list">
-                    <div class="why-item"><strong>Your closet:</strong> Zara M, Reiss L</div>
-                    <div class="why-item"><strong>People like you:</strong> 78% TTS</div>
-                    <div class="why-item"><strong>Brand data:</strong> sleeves run short</div>
-                  </div>
-                </div>
                 <div class="item">
                   <p class="advice-inline">Compared to your <b class="accent">Alexis S</b> <span class="muted">(perfect fit)</span>:</p>
                 </div>
@@ -355,24 +344,6 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
                 <a href="#" class="shop-inline" aria-label="Shop size S">Shop S →</a>
               </div>
 
-              <!-- Product microcopy stays subtle in feed -->
-              <div class="micro" style="margin-top:4px;">The Jocelyn Sleeveless Slip Midi Dress by Maeve</div>
-
-              <!-- Commerce row, grayed and pushed below explanation -->
-              <div class="row muted">
-                <div class="left-meta tappable">
-                  <div class="brand">ANTHROPOLOGIE</div>
-                  <span style="color:#c4c4c4;">|</span>
-                  <div class="price">$168.00</div>
-                </div>
-                <div class="trust-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5"/>
-                  </svg>
-                  Free returns
-                </div>
-              </div>
-
               <!-- Feed summary -->
               <div class="tip tip-summary" id="fitSummary">
                 <div>Fits like your <strong>Alexis</strong> dress — roomier bust, matching waist & hips.</div>
@@ -382,22 +353,6 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
               </div>
 
               
-            </div>
-          </div>
-          <!-- Privacy cue (once) -->
-          <div class="privacy-cue">Sizes are private by default — share more with Close Friends.</div>
-
-          <!-- Optional twin card: Friends’ Fits -->
-          <div class="card" aria-hidden="false" style="margin-top:12px;">
-            <div class="imgbox">
-              <img class="img" src="https://images.unsplash.com/photo-1520974657289-cfdef730b954?q=80&w=1760&auto=format&fit=crop" alt="Friends' fit photo"/>
-              <span class="size-pill" style="left:14px; bottom:14px;">
-                <span class="dot"></span> Good fit
-              </span>
-            </div>
-            <div class="info">
-              <div class="subhead">Friends’ Fits</div>
-              <div class="social-stat">People like you: 78% said ‘True to size’.</div>
             </div>
           </div>
         </div>
@@ -414,35 +369,27 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 <script>
   (function(){
     const body = document.body;
-    const whyChip = document.getElementById('whyChip');
+    const sizeCta = document.getElementById('sizeCta');
+    const matchLabel = sizeCta ? sizeCta.querySelector('.match') : null;
     const saveBtn = document.getElementById('saveBtn');
 
     function setCollapsed(){
       body.classList.remove('view-detail');
       body.classList.add('view-feed');
-      const details = document.getElementById('fitDetails');
-      if(details) details.classList.add('hidden');
-      if(whyChip){
-        whyChip.setAttribute('aria-expanded','false');
-        whyChip.textContent = 'Why this size';
-      }
+      sizeCta.setAttribute('aria-expanded','false');
+      if(matchLabel) matchLabel.textContent = 'Fit details';
     }
     
     function setExpanded(){
       body.classList.remove('view-feed');
       body.classList.add('view-detail');
-      const details = document.getElementById('fitDetails');
-      if(details) details.classList.remove('hidden');
-      if(whyChip){
-        whyChip.setAttribute('aria-expanded','true');
-        whyChip.textContent = 'Hide why';
-      }
+      sizeCta.setAttribute('aria-expanded','true');
+      if(matchLabel) matchLabel.textContent = 'Hide details';
     }
 
-    if(whyChip){
-      // Default to collapsed view
+    if(sizeCta){
       setCollapsed();
-      whyChip.addEventListener('click', () => {
+      sizeCta.addEventListener('click', () => {
         const expanded = body.classList.contains('view-detail');
         expanded ? setCollapsed() : setExpanded();
       });
