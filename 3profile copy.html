@@ -343,6 +343,18 @@ body{
 }
 .measure-card:hover{ transform: translateY(-2px); }
 
+/* Treemap tile hover effect */
+.treemap-tile {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.treemap-tile:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
 .measure-label{
   font-size:13px;
   text-transform:uppercase;
@@ -404,13 +416,13 @@ body{
 }
 
 .insights-title{
-  font-size:14px;
+  font-size:16px;
   font-weight:600;
   color:var(--ink);
 }
 
 .insights-subtitle{
-  font-size:11px;
+  font-size:13px;
   color:var(--muted);
   margin-left:auto;
   font-style:italic;
@@ -440,13 +452,13 @@ body{
 
 .insight-brand{
   font-weight:600;
-  font-size:14px;
+  font-size:16px;
   color:var(--ink);
   flex:1;
 }
 
 .insight-feedback{
-  font-size:12px;
+  font-size:14px;
   padding:4px 10px;
   border-radius:20px;
   font-weight:500;
@@ -594,7 +606,7 @@ body{
             <div id="labels" class="labels"></div>
           </div>
           <div class="confidence-subtext" style="margin-top:8px">
-            A mosaic of your closet. Brand ↙ size ↘.
+            A mosaic of your closet. Brand ↖ size ↘.
           </div>
         </div>
 
@@ -631,7 +643,7 @@ body{
 
         <div class="insights-card">
           <div class="insights-header">
-            <div class="insights-icon">✨</div>
+            <div class="insights-icon">✅</div>
             <div class="insights-title">Your Personal Insights</div>
             <div class="insights-subtitle">from your try-ons</div>
           </div>
@@ -655,14 +667,7 @@ body{
           </div>
         </div>
 
-        <!-- Smart Recommendations Preview -->
-        <div class="recommendations">
-          <div class="rec-header">
-            <span class="rec-title">Curated for Your Fit</span>
-            <span class="rec-swipe">View all →</span>
-          </div>
-          <!-- Carousel content would go here -->
-        </div>
+
 
       </div>
 
@@ -694,23 +699,48 @@ body{
   // active category filter (null = all)
   let activeCat = null; // null = all
 
-  // ---- Category brand hues (system-friendly pastels) ----
+  // ---- Category brand hues (Coolors palette) ----
   const CATEGORY_HUES = {
-    tops:    '#B9A7D8',  // lilac
-    dresses: '#F2B8C8',  // blush/rose
-    bottoms: '#9ED6D1',  // teal/mint
-    all:     '#CFC7E8'   // fallback when "All" is selected
+    tops:    '#9B7AAD', // African Violet
+    dresses: '#5A9B8A', // Teal green
+    bottoms: '#0D3B66', // Yale Blue (we'll soften it)
+    all:     '#CFC7E8'  // fallback
   };
 
   // helper: hex -> THREE.Color
   function colorHex(hex){ return new THREE.Color(hex); }
 
+  // pastel-ize: gently desaturate and lift lightness
+  function softenColor(hex){
+    const c = colorHex(hex);
+    const hsl = { h:0, s:0, l:0 };
+    c.getHSL(hsl);
+
+    const lift = hsl.l < 0.45 ? 0.22 : 0.12;  // smaller lift
+    hsl.s *= 0.75;                            // leave some saturation
+    hsl.l = Math.min(0.90, Math.max(0.76, hsl.l + lift)); // cap at 0.90, floor 0.76
+
+    // Special handling for green hues - reduce white tint
+    if (hsl.h >= 90 && hsl.h <= 150) { // green range
+      hsl.s *= 1.4; // boost saturation much more
+      hsl.l = Math.max(0.60, hsl.l - 0.20); // keep it much darker
+    }
+    
+    // Special handling for mint green (#D2F1E4) - make it much more visible
+    if (hsl.h >= 140 && hsl.h <= 180) { // mint/teal range
+      hsl.s *= 1.6; // boost saturation significantly
+      hsl.l = Math.max(0.55, hsl.l - 0.25); // keep it much darker
+    }
+
+    c.setHSL(hsl.h, hsl.s, hsl.l);
+    return c;
+  }
+
   // subtle per-tile variation inside the same hue family
   function variantColor(hex, seed){
-    const c = colorHex(hex);           // 0..1 RGB
-    // small, clamped lightness wobble based on seed/value
+    const c = softenColor(hex);          // start pastel
     const wobble = (Math.sin(seed * 12.9898) * 43758.5453) % 1;
-    const amt = (wobble - 0.5) * 0.14; // -7% .. +7%
+    const amt = (wobble - 0.5) * 0.05;   // ±5% only
     c.offsetHSL(0, 0, amt);
     return c;
   }
@@ -787,6 +817,8 @@ uniform vec3  uBase;
 uniform vec2  uSize;   // tile size in pixels
 uniform float uTime;
 uniform float uBoost;  // active category boost
+uniform vec2  uLightCorner;   // 0..1 UV where the "lamp" lives (e.g., top-left)
+uniform float uCornerStrength;
 
 varying vec2 vUv;
 
@@ -807,28 +839,41 @@ void main(){
   float g2 = smoothstep(1.05, 0.0, distance(vUv, vec2(0.72, 0.22) + 0.02*vec2(cos(t*0.8), sin(t*0.6))));
   float g3 = smoothstep(1.1, 0.0,  distance(vUv, vec2(0.58, 0.78) + 0.025*vec2(sin(t*0.7), cos(t*0.9))));
 
-  vec3 col = uBase * 0.92;
+  vec3 col = mix(uBase, vec3(1.0), 0.08); // tiny lift only
 
-  // stronger radial "backlight" from center (white core -> base hue)
-  float r   = distance(vUv, vec2(0.5));
-  float core = smoothstep(0.65, 0.0, r);    // tighter, brighter center
-  col = mix(col, vec3(1.0), 0.22 * core * uBoost);  // white lift
+  // corner hotspot + directional falloff (feels like a real light)
+  vec2 L = uLightCorner;                 // usually vec2(0.06, 0.10) for top-left
+  float r   = distance(vUv, L);          // distance from corner
+  float core = smoothstep(0.48, 0.12, r);        // smaller bright zone
+
+  // give more lift along the light direction (down-right from the corner)
+  vec2 dirVec = normalize(vec2(1.0, 1.15));                // diagonal flow
+  float dir   = clamp(dot(normalize(vUv - L), dirVec), 0.0, 1.0);
+
+  // white lift mixes toward 1.0, scaled by selection boost and a strength knob
+  float lift = (0.10 + 0.08 * dir) * core * uBoost * uCornerStrength;
+  
+  // Reduce white lift for green hues to prevent washout
+  float greenness = smoothstep(0.1, 0.6, col.g) * smoothstep(0.9, 0.2, col.r) * smoothstep(0.9, 0.2, col.b);
+  lift *= (1.0 - 0.95 * greenness); // 95% less white lift for green tiles
+  
+  col = mix(col, vec3(1.0), lift);
   col *= mix(0.97, 1.05, vUv.y);            // glass vertical lift
 
   // keep your glimmer lobes here (g1/g2/g3) but scale a touch with uBoost:
-  col += uBase * vec3(1.05,1.02,1.07) * 0.22 * uBoost * g1;
-  col += uBase * vec3(1.06,1.05,1.00) * 0.26 * uBoost * g2;
-  col += vec3(1.0) * 0.12 * uBoost * g3;
+  col += uBase * vec3(1.02,1.01,1.03) * 0.10 * uBoost * g1;
+  col += uBase * vec3(1.03,1.02,1.00) * 0.12 * uBoost * g2;
+  col += vec3(1.0) * 0.06 * uBoost * g3;
 
   // inner bevel / edge shading (keeps corners sharp but adds depth)
   float e = edgeDist(vUv);                 // ~0 at edges, ~0.5 near center
   float innerShadow = smoothstep(0.06, 0.0, e);   // darken very close to edge
-  col *= (1.0 - 0.08 * innerShadow);
+  col *= (1.0 - 0.06 * innerShadow);  // slightly stronger inner shadow
 
   // rim light—slightly brighter on top/left edges like a glazed tile
   float rim = 0.0;
-  rim += smoothstep(0.018, 0.0, vUv.x) * 0.05;        // left
-  rim += smoothstep(0.018, 0.0, 1.0 - vUv.y) * 0.06;  // top
+  rim += smoothstep(0.018, 0.0, vUv.x) * 0.03;
+  rim += smoothstep(0.018, 0.0, 1.0 - vUv.y) * 0.03;
   col += rim;
 
   // micro sparkle (resolution aware)
@@ -856,7 +901,8 @@ void main(){
   function makeTileMaterial(tile, size, activeCategory){
     const catHue = CATEGORY_HUES[tile.cat] || CATEGORY_HUES.all;
     const base   = variantColor(catHue, (tile.x+tile.y+tile.w+tile.h) * 0.001);
-    const boost  = (!activeCategory || activeCategory === 'all' || activeCategory === tile.cat) ? 1.0 : 0.7;
+    const allView = (!activeCategory || activeCategory === 'all');
+    const boost  = allView ? 1.0 : (activeCategory === tile.cat ? 1.0 : 0.65); // was 0.7
 
     return new THREE.ShaderMaterial({
       transparent: true,
@@ -866,7 +912,9 @@ void main(){
         uBase:  { value: base },
         uSize:  { value: new THREE.Vector2(size.w, size.h) },
         uTime:  { value: 0.0 },
-        uBoost: { value: boost }
+        uBoost: { value: boost },
+        uLightCorner: { value: new THREE.Vector2(0.06, 0.10) },
+        uCornerStrength: { value: 0.20 }
       }
     });
   }
@@ -911,6 +959,27 @@ void main(){
       }
       div.style.fontSize = baseSize + 'px';
       div.innerHTML = `<span class="brand">${t.brand}</span><span class="size">${t.size}</span>`;
+      div.style.cursor = 'pointer';
+      div.style.position = 'absolute';
+      div.style.pointerEvents = 'auto';
+      
+      // Add hover effect
+      div.addEventListener('mouseenter', () => {
+        div.style.transform = 'scale(1.02)';
+        div.style.zIndex = '10';
+        div.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+        div.style.transition = 'all 0.2s ease';
+        div.style.backgroundColor = 'rgba(255,255,255,0.1)';
+        div.style.borderRadius = '8px';
+      });
+      
+      div.addEventListener('mouseleave', () => {
+        div.style.transform = 'scale(1)';
+        div.style.zIndex = '1';
+        div.style.boxShadow = 'none';
+        div.style.backgroundColor = 'transparent';
+      });
+      
       labelsLayer.appendChild(div);
     });
 
