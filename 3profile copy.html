@@ -491,11 +491,13 @@ body{
 .labels{ position:absolute; inset:0; pointer-events:none; }
 .label{
   position:absolute;
-  display:flex; justify-content:space-between; align-items:flex-end;
-  font:600 12.5px/1.2 Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font:600 13.5px/1.2 Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   color:var(--ink); text-shadow:0 1px 0 rgba(255,255,255,.55);
-  white-space:nowrap; opacity:.95;
+  opacity:.98;
 }
+.label span{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.label .brand{ position:absolute; left:8px; top:8px; font-weight:700; }
+.label .size{ position:absolute; right:8px; bottom:8px; font-weight:800; }
 </style>
 </head>
 <body>
@@ -688,11 +690,14 @@ body{
 
   const layoutTreemap = (W,H) => {
     const data = activeCat ? ITEMS.filter(d => d.cat === activeCat) : ITEMS;
+    // Nudge very tall/narrow tiles like Alexis to reserve a minimum width
+    // by inflating their value a bit if the text would squeeze.
     const enriched = data.map(d => {
       const box = computeMinBox(d);
       const area = box.w * box.h;
       // Slight bias so longer brands get a bit more space
-      const bias = 1 + Math.min(0.5, d.brand.length * 0.02);
+      let bias = 1 + Math.min(0.5, d.brand.length * 0.02);
+      if(d.brand === 'Alexis' && d.size === 'S') bias *= 1.6; // prevent over-skinny
       return { ...d, value: area * bias };
     });
 
@@ -719,9 +724,9 @@ body{
       float g2=smoothstep(0.95,0.0,distance(uv,c2+0.02*vec2(cos(t*0.8),sin(t*0.6))));
       float g3=smoothstep(1.0,0.0,distance(uv,c3+0.025*vec2(sin(t*0.7),cos(t*0.9))));
       vec3 base=uBase;
-      vec3 color=base*0.84+base*vec3(1.05,1.02,1.1)*0.35*g1+base*vec3(1.1,1.08,1.0)*0.45*g2+vec3(1.0)*0.25*g3;
-      color*=mix(0.95,1.06,uv.y);
-      float sp=smoothstep(0.995,1.0,hash(uv*uSize+t));color+=sp*0.12;
+      vec3 color=base*0.90+base*vec3(1.03,1.01,1.06)*0.25*g1+base*vec3(1.06,1.05,1.0)*0.32*g2+vec3(1.0)*0.18*g3;
+      color*=mix(0.97,1.04,uv.y);
+      float sp=smoothstep(0.996,1.0,hash(uv*uSize+t));color+=sp*0.08;
       gl_FragColor=vec4(color,1.0);
     }`;
 
@@ -760,39 +765,25 @@ body{
       mesh.scale.set(t.w, t.h, 1);
       scene.add(mesh);
 
-      // Create labels that always fit: inline if space, otherwise stacked
+      // Labels: brand top-left, size bottom-right; larger base font, shrink if needed
       const div=document.createElement('div');
       div.className='label';
-      div.style.left=(t.x+8)+'px';
-      div.style.top=(t.y+t.h-22)+'px';
-      div.style.width=(t.w-16)+'px';
+      div.style.left=(t.x)+'px';
+      div.style.top=(t.y)+'px';
+      div.style.width=(t.w)+'px';
+      div.style.height=(t.h)+'px';
 
-      const brandW = measure.width(t.brand, 600, 12.5);
-      const sizeW  = measure.width(t.size, 800, 12.5);
-      const singleLineNeeded = brandW + 10 + sizeW;
-
-      // Adjust font size down until it fits or hit floor
-      let fontSize = 12.5;
-      const floor = 9.5;
+      let baseSize = 13.5;
+      let brandW = measure.width(t.brand, 700, baseSize);
+      let sizeW  = measure.width(t.size, 800, baseSize);
       const availableW = Math.max(20, t.w - 16);
-      while(fontSize > floor && singleLineNeeded > availableW){
-        fontSize -= 0.5;
+      while(baseSize > 10 && (brandW > availableW || sizeW > availableW)){
+        baseSize -= 0.5;
+        brandW = measure.width(t.brand, 700, baseSize);
+        sizeW  = measure.width(t.size, 800, baseSize);
       }
-      div.style.fontSize = fontSize + 'px';
-
-      const willStack = (brandW + 10 + sizeW) > availableW || t.h < 36;
-      if(willStack){
-        div.style.display = 'flex';
-        div.style.flexDirection = 'column';
-        div.style.alignItems = 'stretch';
-        div.innerHTML = `<span style="display:block">${t.brand}</span><span style="display:block;text-align:right;font-weight:800">${t.size}</span>`;
-      } else {
-        div.style.display = 'flex';
-        div.style.flexDirection = 'row';
-        div.style.justifyContent = 'space-between';
-        div.innerHTML = `<span>${t.brand}</span><span style="font-weight:800">${t.size}</span>`;
-      }
-
+      div.style.fontSize = baseSize + 'px';
+      div.innerHTML = `<span class="brand">${t.brand}</span><span class="size">${t.size}</span>`;
       labelsLayer.appendChild(div);
     });
 
