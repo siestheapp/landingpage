@@ -6256,3 +6256,280 @@ Inserted the PROFILE section markup in `index3.html` between the HOW section and
 
 ---
 
+_**User**_
+
+do we have a design system
+
+---
+
+_**Assistant**_
+
+<think><details><summary>Thought Process</summary>**Evaluating design systems**
+
+The user is asking if there's a design system in place for this project, likely referring to tokens, components, and CSS variables. It seems a concise answer is preferred. I think we can look at the code for relevant CSS variables and components. We've noted some in index3.html, like --radius-2xl and other custom properties. I’ll check the file to confirm if there's a style block that defines these tokens. It looks like there’s a lightweight token set, but no centralized system or reusable package exists.
+**Proposing a design system**
+
+I’m considering extracting tokens to define things like colors, spacing scale, radii, shadows, typography scale, and elevations. I think I could create a simple design system file, maybe styles/tokens.css and components.css. However, the main question is a straightforward yes or no. I want to give a brief status update. I should validate the presence of tokens using read_file on index3.html, even if I can answer without it. 
+
+So, it seems we don’t have a formal design system, just some ad-hoc CSS variables. I could still offer to create a basic one!
+**Clarifying the design system**
+
+I need to address that there isn't a formal design system in place. I only found CSS in index3.html with some utility patterns and variables; there's no component library or token file. If the user is interested, I can offer to extract tokens and set up a simple design system. I should ask if they want me to create tokens.css and normalize component classes. I'll keep the phrasing minimal and provide bullet suggestions as needed.</details></think>
+
+---
+
+Short answer: not a formal one.
+
+We have ad‑hoc CSS in `index3.html` with some reusable patterns (e.g., `.section`, `.container`, `.eyebrow`, `.lede`, `.mock`) and a few custom properties (e.g., `--radius-2xl`, `--ink`), but no centralized tokens, component library, or documentation.
+
+If you want, I can extract tokens (colors, spacing, type scale, radii, shadows) into a `tokens.css` and normalize common components into `components.css` so it functions as a lightweight design system.
+
+---
+
+_**User**_
+
+in @2feed.html , Surgical tweaks to the Sies feed mock
+
+Change the primary badge
+“Best Fit: S” → “We recommend S · High confidence” (single line).
+
+Add the social stat (small, not shouty)
+Under the badge: “People like you: 78% said ‘True to size’.”
+
+Convert “Fit details” to a ‘Why’ chip
+Replace the button with a pill: “Why this size” → on tap it reveals:
+
+Your closet: Zara M, Reiss L
+
+People like you: 78% TTS
+
+Brand data: sleeves run short
+
+Remove e-comm noise
+If the price/returns row is crowding, push it below the explanation or gray it back. The size decision is the star.
+
+Unify tone with the hero
+Same gradient accent, same rounding, same shadow weight. One accent pill per card.
+
+Add the privacy cue once
+Tiny line under the card: “Sizes are private by default — share more with Close Friends.” (No toggles here.)
+
+Optional twin card
+Beside it, show a Friends’ Fits card: photo, Good fit pill, and People like you 78%. No raw sizes. That keeps social visible without overwhelming.
+
+---
+
+_**Assistant**_
+
+<think><details><summary>Thought Process</summary>**Implementing changes to 2feed.html**
+
+I need to make several surgical tweaks to 2feed.html. This isn't a simple task, so I'll break it down into manageable items. First, I'll create to-dos using todo_write to update the primary badge label, add a social stat line, and convert the button to a toggle style. Next, I'll adjust the content to emphasize three specific selling points. I should also streamline the design by greying out unnecessary information and ensuring a cohesive tone throughout the page. Finally, I might consider adding a Friends’ Fits card alongside the main feed.
+**Updating CSS for sizing**
+
+I need to edit the CSS to align with the "accent pill" concept. This means transforming the match button into a pill style while updating the size-cta to reflect the new design. I'll change the primary badge text to "We recommend S · High confidence" and possibly convert the .size-cta into a pill, keeping in mind the guideline of using one accent pill per card. 
+
+To maintain a cohesive look, I’ll ensure it shares the same gradient and rounding as the hero element, while still being subtle enough for the social stat line underneath.
+**Adjusting UI elements**
+
+I’m thinking about how to apply the "one accent pill per card" guideline. The .size-cta will hold the revised text, while "Why this size" could become a smaller outline pill with less emphasis. Right now, the .view-detail default is expanded, hiding the feed summary. I’ll convert "Fit details" into a "Why" chip that displays explanation items on tap. 
+
+I'll change the label to "Hide why" when expanded, and add a small social stat text under the badge, placing it between the .size-cta and the divider. Finally, I’ll move the price/returns row below the explanation to reduce clutter.
+**Reorganizing card layout**
+
+I’m looking at the placement of the price/returns row, which currently appears before the details. It would make sense to move it below the details in the DOM, or hide it when the details are collapsed. The request is to visually soften that row, so lightening the color could help. Since the row should still be visible when collapsed, I’ll gray it out and position it below the explanation.
+
+I also need to add a privacy cue as a tiny line under the card, stating that sizes are private by default. Finally, I can include an optional twin card for showing a Friends’ Fits card next to the primary card.
+**Refining card content and structure**
+
+I’m working on a card that should have minimal content: a photo, a "Good fit" pill, and a "People like you 78%" label. I’ll reuse the .size-pill style for "Good fit" since there should be one accent pill per card. For the twin card, I'll add a .size-cta with the same label and a secondary meta section. 
+
+I need to preserve the existing CSS style when making changes, like adding a small .social-stat style and modifying the .size-cta. The toggle functionality for "Why this size" will be updated to show explanation items. I’ll move the price/returns row below the details, and I’ll add a privacy cue under the card. Finally, I can include a second card within the feed layout, but for clarity and space, I’ll set it up as an optional twin card below the first.
+**Editing CSS and markup for cards**
+
+I need to adjust the styles and structure for the card elements. I’ll use the .count-pill style for the clickable "Why" chip, and set its CSS with a defined border, background, and padding. The design should unify with the hero element by matching the gradient and shadow styles of the .size-cta.
+
+Additionally, I'll ensure there's only one accent pill per card by retaining the size-pill overlay, even if it seems to conflict. I'll reposition the .row block to be beneath the details and lighten its color. For the twin card, I'll duplicate relevant markup while keeping it minimal. 
+
+Finally, I need to update the body class to "view-feed" and produce the necessary code patch using apply_patch.</details></think>
+
+---
+
+I'll implement the requested surgical tweaks in 2feed.html: update the primary badge text, add the social stat, convert "Fit details" to a "Why this size" chip with toggle behavior, move and soften the price/returns row, add a privacy cue under the first card, and add an optional second card for Friends’ Fits. Then I'll ensure the JS toggles target the new chip and default to collapsed.
+
+---
+
+## Todo List
+
+- [-] Revise 2feed.html badge text and add social stat line
+- [ ] Convert Fit details button to Why chip with toggle logic
+- [ ] Reorder and gray price/returns row below explanation
+- [ ] Add privacy cue under first card
+- [ ] Add optional Friends’ Fits twin card
+- [ ] Unify styling tokens for chips/pills to match hero gradient
+
+---
+
+I'll update 2feed.html to implement the requested UI and behavior changes, then check for linter/style issues.
+
+---
+
+Read file: undefined
+
+---
+
+<think><details><summary>Thought Process</summary>**Implementing changes to 2feed.html**
+
+I need to make some updates to 2feed.html based on the developer tool instructions. This involves using todo_write to manage tasks and applying code edits with apply_patch. I'll maintain the indentation style too. 
+
+Basically, I’m changing the badge text from "Best Fit: S" to "We recommend S · High confidence." Additionally, I’ll convert the “Fit details” button to a "Why this size" pill that reveals more information when tapped. I've got to adjust the structure a bit since it's currently set up as a button.
+**Restructuring the button to a pill**
+
+The task says to replace the button with a pill, which likely means I need to convert the current .match span into a separate clickable pill element. It seems like they want the “Fit details” to visually become a "Why" chip, placed below the badge. 
+
+I’ll need to change the .size-cta from a button to a non-button container, possibly a div. The JavaScript for toggling must point to the new "Why" chip. I’m thinking of keeping the main gradient for the badge, while adding a distinct clickable .why-chip styled as a pill beneath it.
+**Defining the design elements**
+
+It looks like there should only be one accent gradient, keeping the ‘Why this size’ chip as a neutral outlined pill rather than gradient. I’ll retain the gradient for the primary ‘size-cta’ badge and design the ‘why-chip’ as an outlined pill.
+
+I need to add a small social stat below the badge stating: "People like you: 78% said ‘True to size’," with a muted color, using a class like .social-stat. 
+
+For the ‘Fit details’, I’ll convert it to a ‘Why’ chip that reveals explanations like closet sizes and brand data when tapped, possibly replacing or augmenting the current "Compared..." line in the details area.
+**Adjusting the feed mock layout**
+
+In the feed mock, it looks like we were previously using an expanded view by default, but now the new instruction suggests a default collapsed view. The "Why" chip will reveal more details when clicked. If the price/returns row is taking up too much space, I should move it below the explanation or mute its visibility since the size decision is the main focus.
+
+I'll relocate the row below the details container and use a muted style to tone it down. Plus, I'll unify the overall design elements with the hero section, ensuring consistent gradients, rounding, and shadows. I need to make sure the 'why-chip' remains without a gradient.
+**Implementing updates to the card design**
+
+For the mockup, I need to ensure the ‘why-chip’ is outlined. I’ll add a privacy cue beneath the card, stating: "Sizes are private by default — share more with Close Friends," as small muted text.
+
+I’m considering adding an optional second card, labeled "Friends' Fits," with simplified info, such as a photo and a "Good fit" pill displaying "People like you 78%." 
+
+Also, I’ll update the JavaScript to toggle the new ‘why-chip’ for viewing details, making sure to set the default to collapsed. The previous setting was expanded; I’ll be adjusting the relevant logic and styles accordingly. Additionally, I’ll ensure the CSS reflects these changes, including styling for the new elements and making visual adjustments for clarity.
+**Finalizing updates to the card layout**
+
+I’m reviewing the micro subtitle, and I think we can hide it in the expanded view to reduce clutter. Currently, the CSS hides the `.micro` class, so we’ll keep that. However, we won't hide the `.row` and `shop-cta`, even if `shop-cta` isn’t currently used. 
+
+Next, I’ll add the new ‘why details’ explanation at the top of the details section, listed with class `.why-list`.
+
+I’ll also implement CSS styles for the new elements, ensuring gradient and rounding unify across components while following the "one accent pill per card" rule. Changes will involve adjusting the `.size-cta` to be a gradient and converting it to a div while changing the associated JavaScript references to attach to the new 'whyChip'. 
+
+Lastly, I’ll set up the second card with minimal elements to ensure consistency in design, like reusing the `size-pill` for the “Good fit” label. I'll also include a privacy cue below the first card. All of this should optimize the layout and meet the requirements we've discussed.
+**Implementing layout and functionality updates**
+
+I plan to include the text "People like you: 78% said True to size" and maybe a friend photo, adhering to the guidelines of adding an image at the top. I want to keep the details minimal, so I’ll ensure we blank them out.
+
+For the JavaScript, I need to remove references to `sizeCta` and `matchLabel`, instead using `whyChip`. I’ll set up functions to handle expanded and collapsed states, updating the button text accordingly. I’ll also add a privacy line and muted row styles while ensuring the two-space indentation is consistent. 
+
+Then I’ll modify the HTML structure, moving elements around as needed, including adding a new "Friends’ Fits" card and updating the relevant CSS. Let’s proceed with these changes!</details></think>
+
+---
+
+I’m going to update 2feed.html: adjust the badge text and structure, add the social stat and new “Why this size” chip with toggle behavior, reposition and mute the price/returns row, add a privacy cue under the first card, include a simplified Friends’ Fits card, and update CSS/JS accordingly.
+
+---
+
+
+
+---
+
+
+
+---
+
+<think><details><summary>Thought Process</summary>**Updating CSS and Code Logic**
+
+I’m thinking about our current setup. Since we've changed the rules, if the body is view-feed, we need to hide certain details with CSS. It might make sense to keep the hidden class toggling only, instead of toggling the body class. When clicking the 'whyChip,' we’ll set it to view-detail if expanded and view-feed when collapsed. Oh, and since we've removed the sizeCta 'matchLabel,' I need to ensure we update the script for the chip text. Plus, we’ll need to add CSS for the new elements and maintain formatting when inserting it.
+**Patching CSS for Updates**
+
+I want to read the file's head region around lines 98-122 to gather context. I've found occurrences of ".measure-icon," so I'll add my CSS patch right after that line. The .size-cta is currently a button but now needs to be a div, which is fine since the CSS already applies. We’ve added .row.muted styling and need to incorporate that along with .privacy-cue possibly near "Misc." We’ve also adjusted the structure, maintaining a divider above the row and ensuring that price/returns are pushed below the explanation, now in a muted tone with opacity .8.
+**Refining Script for CSS Interaction**
+
+We’ve moved the "tip-summary" and adjusted how the CSS handles elements. The .view-detail class will hide certain elements when toggling to view-detail, and the row is positioned muted after micro. When in view-detail, the row will be hidden using CSS. Now for the script updates: I’ll remove the line for const sizeCta and replace it with 'whyChip.' Additionally, we’re deciding on keeping the body classes 'view-feed' and 'view-detail'—which could still be useful. For now, we’ll default to collapsed with the body class set to view-feed.
+**Updating Interaction and Styles**
+
+I need to make sure that #fitDetails has 'hidden' initially. When the user clicks 'whyChip,' the script will toggle: if it's collapsed, I'll remove hidden, change the body class to 'view-detail,' set aria-expanded to true, and update the text to 'Hide why.' When it's expanded, I'll add hidden again, switch back to 'view-feed,' and change the text to 'Why this size.' I also want to maintain the scroll logic and adjust the behavior to be either 'auto' since 'instant' isn’t valid. I’ll implement these script changes and update TODOs accordingly, including marking progress and adjusting CSS tokens for a unified gradient.
+**Implementing CSS and Script Patches**
+
+I need to add alt text for the Unsplash image—good! Now, I'll apply the patch for CSS and the script. I’ll start by inserting new CSS blocks after the line for ".measure-icon." This includes the styles for .social-stat, .why-chip, and updated .row CSS. After that, I need to update the script: I'll replace uses of sizeCta with whyChip and adjust the logic for collapsing and expanding the details, ensuring the body starts in a collapsed state. Finally, I’ll replace the necessary lines within the IIFE and execute the patches.</details></think>
+
+---
+
+I updated the plan to modify 2feed.html styles and script to support the new “Why this size” chip, social stat, muted commerce row, privacy cue, and the optional Friends’ Fits card. Now I’ll add the necessary CSS rules and update the JS toggle logic to work with the new chip, keeping the page default collapsed.
+
+---
+
+
+
+---
+
+<think><details><summary>Thought Process</summary>**Implementing changes to 2feed.html**
+
+I need to implement changes to 2feed.html based on user feedback. We've already made some significant modifications, such as changing the body class and adding new elements. Now, we tried to add new CSS rules, but it didn't work because of a context mismatch. I need to read the file again to find the right place for these CSS additions, particularly around the measure-icon area on lines 110-130, so I can make those changes accurately.
+**Reviewing patch context for measure-icon**
+
+I noticed that the measure-icon is at line 116, and it might even have an empty line afterward. My patch context matched exactly, but it seems I couldn't find it due to whitespace issues. The snippet shows the measure-icon definition, but the apply_patch function fails because it requires precise indentation. This could be due to using tabs instead of spaces. I need to re-read the file to confirm the CSS context from lines 110-140 before proceeding.</details></think>
+
+---
+
+I'll pull the latest content of 2feed.html to place the new CSS rules precisely where they belong. Then I'll insert the styles for .social-stat, .why-chip, .why-list, .row.muted, and .privacy-cue with exact indentation to avoid conflicts.
+
+---
+
+Read file: undefined
+
+---
+
+<think><details><summary>Thought Process</summary>**Updating 2feed.html**
+
+I need to implement changes to 2feed.html based on user feedback for "Surgical tweaks." We've already made several edits like changing the body to view-feed and adding elements like social-stat and privacy cues. However, we failed to apply CSS styles due to context issues. I see that we need to add CSS classes such as .social-stat and .privacy-cue. Additionally, I should update the JavaScript to handle the whyChip toggling, as we've removed the sizeCta button.
+**Updating whyChip functionality**
+
+I need to update the JavaScript to use whyChip instead by referencing `const whyChip = document.getElementById('whyChip');`. It will toggle between view-feed and view-detail, changing the text between 'Why this size' and 'Hide why'. I also realized we want the default view to be collapsed instead of expanded, so I should adjust the logic accordingly. I’ll propose a patch for the script while ensuring we add the necessary CSS for .why-chip and unify the gradient accents for consistency.
+**Updating price/returns visibility**
+
+I need to ensure that the price/returns row uses the 'muted' class, adding CSS styles like `.row.muted { opacity: .8; filter: saturate(.9) }` for visual adjustments. We’ll apply this CSS immediately after line 116, where the measure-icon rule is. Also, I have to address the .view-feed .micro behavior, which is currently set to display:none. The user requested that if this row is crowding the view, we should push it below or gray it back to keep the focus on the size decision.
+**Implementing details toggle and CSS**
+
+We need to ensure that details can be displayed when the 'why chip' is clicked. The CSS currently hides `.details` in view-feed with the rule `.view-feed .details, .view-feed .micro { display: none; }`, which means they won't show until we toggle to view-detail. I’m planning to implement JavaScript to handle that toggle by changing the body class. Also, I've added a `.privacy-cue` outside the card, and I'll need to add corresponding CSS that aligns with existing styles. I’ll keep the selectors properly indented for consistency!
+**Crafting the apply_patch**
+
+I’m preparing to implement a patch that updates several aspects of the script. First, I’ll define `const whyChip = document.getElementById('whyChip');` and create functions for `setCollapsed` and `setExpanded` to handle the toggling of view states. I also need to remove references to the old `sizeCta` and `matchLabel`. 
+
+Additionally, I'll adjust the CSS to include styles for `.row.muted` and ensure that the privacy cue is styled. It’s crucial to maintain proper indentation and structure throughout the modifications to keep everything consistent. After the changes, I’ll remember to run the linter tool on 2feed.html to ensure everything is error-free!</details></think>
+
+---
+
+
+
+---
+
+
+
+---
+
+## Todo List
+
+- [x] Revise 2feed.html badge text and add social stat line
+- [x] Convert Fit details button to Why chip with toggle logic
+- [x] Reorder and gray price/returns row below explanation
+- [x] Add privacy cue under first card
+- [x] Add optional Friends’ Fits twin card
+- [-] Unify styling tokens for chips/pills to match hero gradient
+
+---
+
+I updated 2feed.html per your spec.
+
+- We recommend badge: now reads “We recommend S · High confidence” in the gradient pill.
+- Social stat: subtle line under the pill: “People like you: 78% said ‘True to size’.”
+- Why chip: converted “Fit details” into a pill “Why this size”. Tapping toggles the details and switches text to “Hide why”.
+- Explanation content: added three lines — Your closet (Zara M, Reiss L), People like you (78% TTS), Brand data (sleeves run short).
+- E‑comm row: moved below the explanation and muted via .row.muted.
+- Privacy cue: single line under the first card.
+- Optional twin card: added “Friends’ Fits” card with Good fit pill and the 78% stat.
+
+Status update: All changes are implemented and wired. Let me know if you want the gradient/styling tokens unified further with the hero; I left a follow-up to standardize tokens across pills for perfect visual match.
+
+---
+
