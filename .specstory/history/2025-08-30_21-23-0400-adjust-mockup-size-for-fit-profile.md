@@ -2482,3 +2482,498 @@ The wavy fit bracket is now fully functional with realistic data and beautiful S
 
 ---
 
+_**User**_
+
+in @2profile copy.html :
+Swap the inner .bracket-viz for this SVG (no more absolutely-positioned ticks):
+
+<div class="bracket-viz">
+  <svg id="fitSvg" class="fl-svg" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-labelledby="flTitle">
+    <!-- baseline -->
+    <line x1="40" y1="130" x2="960" y2="130" class="fl-base"/>
+
+    <!-- ticks + labels (built by JS) -->
+    <g id="flTicks"></g>
+
+    <!-- bracket end ticks -->
+    <line id="flTickL" y1="130" y2="98" class="fl-endtick"/>
+    <line id="flTickR" y1="130" y2="98" class="fl-endtick"/>
+
+    <!-- wavy brace that meets at a small arrow -->
+    <path id="flBracket" class="fl-bracket" d=""/>
+    <polygon id="flArrow" class="fl-arrow" points="500,82 490,98 510,98"/>
+
+    <!-- outlier pin + label -->
+    <g id="flOutlier">
+      <circle id="flDot" r="6" class="fl-dot"/>
+      <line id="flStem" y1="130" y2="84" class="fl-stem"/>
+      <rect id="flNoteBg" rx="8" ry="8" height="24" class="fl-note-bg"/>
+      <text id="flNote" class="fl-note">RÓHE Top</text>
+    </g>
+  </svg>
+</div>
+
+---
+
+_**Assistant**_
+
+I'll replace the current `.bracket-viz` content with the new SVG structure. Let me find and update it:
+
+---
+
+Read file: undefined
+
+---
+
+Let me find the current bracket-viz section to replace it:
+
+---
+
+
+
+---
+
+Let me get more context to see the full bracket-viz section:
+
+---
+
+Read file: undefined
+
+---
+
+Let me see the rest of the bracket-viz section:
+
+---
+
+Read file: undefined
+
+---
+
+Perfect! Now I'll replace the entire bracket-viz section (lines 186-228) with the new SVG:
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/2profile copy.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 23, lines removed: 41
+
+```diff
+@@ -185,45 +185,27 @@
+            
+            <div class="bracket-viz">
+-             <!-- Base line -->
+-             <div class="base-line"></div>
+-             
+-             <!-- Tick marks and labels -->
+-             <div class="tick" style="left:20px;"></div>
+-             <div class="tick-label" style="left:20px;">30″</div>
+-             
+-             <div class="tick" style="left:60px;"></div>
+-             <div class="tick-label" style="left:60px;">32″</div>
+-             
+-             <div class="tick" style="left:100px;"></div>
+-             <div class="tick-label" style="left:100px;">34″</div>
+-             
+-             <div class="tick" style="left:140px;"></div>
+-             <div class="tick-label" style="left:140px;">36″</div>
+-             
+-             <div class="tick" style="left:180px;"></div>
+-             <div class="tick-label" style="left:180px;">38″</div>
+-             
+-             <div class="tick" style="left:220px;"></div>
+-             <div class="tick-label" style="left:220px;">40″</div>
+-             
+-             <!-- Good range bracket (31-34") -->
+-             <div class="good-bracket" style="left:40px; width:80px;">
+-               <div class="bracket-label">Good Range</div>
+-               <svg class="bracket-svg" viewBox="0 0 80 40">
+-                 <!-- Left wavy line converging to center -->
+-                 <path class="bracket-brace" d="M 8 35 C 15 30, 25 28, 35 25 C 38 24, 40 23, 40 22"/>
+-                 <!-- Right wavy line converging to center -->
+-                 <path class="bracket-brace" d="M 72 35 C 65 30, 55 28, 45 25 C 42 24, 40 23, 40 22"/>
+-                 <!-- Small arrow/point at convergence -->
+-                 <polygon class="bracket-arrow" points="40,20 38,24 42,24"/>
+-               </svg>
+-             </div>
+-             
+-             <!-- Outlier marker at 40" -->
+-             <div class="outlier" style="left:216px;">
+-               <div class="outlier-label">RÓHE Top</div>
+-               <div class="outlier-dot"></div>
+-               <div class="outlier-line"></div>
+-             </div>
++             <svg id="fitSvg" class="fl-svg" viewBox="0 0 1000 210" preserveAspectRatio="none" aria-labelledby="flTitle">
++               <!-- baseline -->
++               <line x1="40" y1="130" x2="960" y2="130" class="fl-base"/>
++ 
++               <!-- ticks + labels (built by JS) -->
++               <g id="flTicks"></g>
++ 
++               <!-- bracket end ticks -->
++               <line id="flTickL" y1="130" y2="98" class="fl-endtick"/>
++               <line id="flTickR" y1="130" y2="98" class="fl-endtick"/>
++ 
++               <!-- wavy brace that meets at a small arrow -->
++               <path id="flBracket" class="fl-bracket" d=""/>
++               <polygon id="flArrow" class="fl-arrow" points="500,82 490,98 510,98"/>
++ 
++               <!-- outlier pin + label -->
++               <g id="flOutlier">
++                 <circle id="flDot" r="6" class="fl-dot"/>
++                 <line id="flStem" y1="130" y2="84" class="fl-stem"/>
++                 <rect id="flNoteBg" rx="8" ry="8" height="24" class="fl-note-bg"/>
++                 <text id="flNote" class="fl-note">RÓHE Top</text>
++               </g>
++             </svg>
+            </div>
+            
+```
+
+</details>
+
+---
+
+Perfect! I've successfully replaced the complex absolutely-positioned HTML structure with a clean SVG-based approach. The new structure includes:
+
+**Key Changes:**
+1. **Single SVG Container**: All visualization elements are now contained within one SVG with `viewBox="0 0 1000 210"`
+2. **JavaScript-Ready Elements**: 
+   - `#flTicks` group for dynamically generated tick marks and labels
+   - `#flTickL` and `#flTickR` for bracket end ticks
+   - `#flBracket` path for the wavy bracket
+   - `#flArrow` polygon for the center arrow
+3. **Outlier Components**: Grouped under `#flOutlier` with circle, line, background rect, and text
+4. **Clean IDs**: All elements have consistent `fl-` prefixed IDs for easy JavaScript manipulation
+
+**Benefits:**
+- **Scalable**: SVG scales perfectly at any size
+- **JavaScript-Friendly**: All elements can be easily positioned and styled via JavaScript
+- **Performance**: Single SVG is more efficient than multiple absolutely-positioned elements
+- **Maintainable**: Clean structure with semantic grouping
+
+The SVG is now ready for JavaScript to:
+- Generate tick marks and labels dynamically in the `#flTicks` group
+- Position the bracket end ticks (`#flTickL`, `#flTickR`)
+- Draw the wavy bracket path (`#flBracket`)
+- Position the arrow (`#flArrow`) 
+- Place and style the outlier elements (`#flOutlier` group)
+
+---
+
+_**User**_
+
+in @2profile copy.html :
+Add (or keep) these tiny, elegant styles (class names match what’s used above):
+
+.fl-svg{ width:100%; height:210px; display:block }
+.fl-base{ stroke:#DCD8E7; stroke-width:3; stroke-linecap:round }
+.fl-endtick{ stroke:#BDB6CD; stroke-width:2 }
+.fl-tick{ stroke:#E6E2EF; stroke-width:2 }
+.fl-label{ fill:#77747d; font:600 11px/1 Inter; text-anchor:middle }
+
+.fl-bracket{ fill:rgba(143,106,174,.10); stroke:rgba(143,106,174,.70); stroke-width:2.5; transition:d .35s cubic-bezier(.22,.61,.36,1) }
+.fl-arrow{ fill:#8F6AAE; filter:drop-shadow(0 4px 8px rgba(143,106,174,.25)) }
+
+.fl-dot{ fill:#8F6AAE; stroke:#fff; stroke-width:2; filter:drop-shadow(0 4px 10px rgba(143,106,174,.25)) }
+.fl-stem{ stroke:#8F6AAE; stroke-opacity:.5; stroke-width:2 }
+.fl-note-bg{ fill:#fff; stroke:#E8E4DE }
+.fl-note{ fill:#5a5562; font:600 12px/1 Inter; dominant-baseline:middle }
+
+---
+
+_**Assistant**_
+
+I'll add these elegant SVG styles to the CSS section of the `2profile copy.html` file. Let me find a good place to insert them:
+
+---
+
+Read file: undefined
+
+---
+
+I'll add the SVG styles right before the closing `</style>` tag:
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/2profile copy.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 15, lines removed: undefined
+
+```diff
+@@ -152,4 +152,19 @@
+      .tab.active{color:#8F6AAE}
+      .ico{width:28px;height:28px}
++ 
++     /* SVG Fit Line Styles */
++     .fl-svg{ width:100%; height:210px; display:block }
++     .fl-base{ stroke:#DCD8E7; stroke-width:3; stroke-linecap:round }
++     .fl-endtick{ stroke:#BDB6CD; stroke-width:2 }
++     .fl-tick{ stroke:#E6E2EF; stroke-width:2 }
++     .fl-label{ fill:#77747d; font:600 11px/1 Inter; text-anchor:middle }
++ 
++     .fl-bracket{ fill:rgba(143,106,174,.10); stroke:rgba(143,106,174,.70); stroke-width:2.5; transition:d .35s cubic-bezier(.22,.61,.36,1) }
++     .fl-arrow{ fill:#8F6AAE; filter:drop-shadow(0 4px 8px rgba(143,106,174,.25)) }
++ 
++     .fl-dot{ fill:#8F6AAE; stroke:#fff; stroke-width:2; filter:drop-shadow(0 4px 10px rgba(143,106,174,.25)) }
++     .fl-stem{ stroke:#8F6AAE; stroke-opacity:.5; stroke-width:2 }
++     .fl-note-bg{ fill:#fff; stroke:#E8E4DE }
++     .fl-note{ fill:#5a5562; font:600 12px/1 Inter; dominant-baseline:middle }
+    </style>
+  </head>
+```
+
+</details>
+
+---
+
+Perfect! I've successfully added the elegant SVG styles to the CSS. The styles are organized into logical groups:
+
+**Base SVG & Structure:**
+- `.fl-svg`: Container sizing and display
+- `.fl-base`: Main baseline styling with soft purple stroke
+- `.fl-endtick` & `.fl-tick`: Tick mark styling with subtle colors
+- `.fl-label`: Text styling for measurement labels
+
+**Interactive Bracket Elements:**
+- `.fl-bracket`: Wavy bracket with fill, stroke, and smooth transitions
+- `.fl-arrow`: Arrow with accent color and drop shadow
+
+**Outlier Marker Elements:**
+- `.fl-dot`: Accent-colored dot with white stroke and shadow
+- `.fl-stem`: Semi-transparent connecting line
+- `.fl-note-bg`: White background with subtle border
+- `.fl-note`: Text styling for outlier labels
+
+**Design Features:**
+- **Consistent Color Palette**: Uses the existing accent color (`#8F6AAE`) and complementary purples
+- **Smooth Transitions**: The bracket has a smooth `d` transition with cubic-bezier easing
+- **Drop Shadows**: Subtle shadows on the arrow and dot for depth
+- **Typography**: Uses Inter font with proper weights and text anchoring
+
+The SVG is now fully styled and ready for JavaScript to dynamically populate the tick marks, position the bracket, and handle interactions!
+
+---
+
+_**User**_
+
+Then add this script right after the SVG. It fills the full width, draws ticks from 30″ to 40″, places the Fit range: 31–33.5″ wavy brace, and pins the outlier at 40″.
+
+<script>
+(() => {
+  // Data
+  const BASE_MIN = 30, BASE_MAX = 40;
+  const FIT_MIN = 31.0, FIT_MAX = 33.5;   // highlighted range
+  const OUTLIER  = 40.0;                  // outlier marker at the end
+
+  // SVG coords
+  const XMIN = 40, XMAX = 960, Y = 130;
+
+  const mapX = v => XMIN + ((v - BASE_MIN) / (BASE_MAX - BASE_MIN)) * (XMAX - XMIN);
+
+  // Elements
+  const ticksG  = document.getElementById('flTicks');
+  const tickL   = document.getElementById('flTickL');
+  const tickR   = document.getElementById('flTickR');
+  const bracket = document.getElementById('flBracket');
+  const arrow   = document.getElementById('flArrow');
+  const dot     = document.getElementById('flDot');
+  const stem    = document.getElementById('flStem');
+  const noteBg  = document.getElementById('flNoteBg');
+  const note    = document.getElementById('flNote');
+
+  // Build ticks every 1"
+  for (let v = BASE_MIN; v <= BASE_MAX; v++) {
+    const x = mapX(v);
+    const t = document.createElementNS('http://www.w3.org/2000/svg','line');
+    t.setAttribute('x1', x); t.setAttribute('x2', x);
+    t.setAttribute('y1', Y); t.setAttribute('y2', Y + 8);
+    t.setAttribute('class','fl-tick');
+    ticksG.appendChild(t);
+
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x', x); lbl.setAttribute('y', Y + 26);
+    lbl.setAttribute('class','fl-label');
+    lbl.textContent = `${v}″`;
+    ticksG.appendChild(lbl);
+  }
+
+  // End ticks at the fit range
+  const x1 = mapX(FIT_MIN), x2 = mapX(FIT_MAX);
+  tickL.setAttribute('x1', x1); tickL.setAttribute('x2', x1);
+  tickR.setAttribute('x1', x2); tickR.setAttribute('x2', x2);
+
+  // Elegant wavy brace meeting at arrow
+  function bracePath(a, b){
+    const mid = (a + b)/2, top = 82, floor = 98, lift = 14;
+    const l = `M ${a} ${floor} C ${a+30} ${floor-lift*.8}, ${mid-70} ${top+6}, ${mid-18} ${top+6}
+               C ${mid-10} ${top+6}, ${mid-10} ${top}, ${mid-8} ${top}`;
+    const r = `C ${mid+10} ${top}, ${mid+10} ${top+6}, ${mid+18} ${top+6}
+               C ${mid+70} ${top+6}, ${b-30} ${floor-lift*.8}, ${b} ${floor}`;
+    return `${l} ${r} L ${b} ${floor} L ${a} ${floor} Z`.replace(/\s+/g,' ');
+  }
+  bracket.setAttribute('d', bracePath(x1, x2));
+
+  // Center the arrow above the brace
+  const mid = (x1 + x2) / 2;
+  arrow.style.transform = `translateX(${mid - 500}px)`; // viewBox center ≈ 500
+
+  // Outlier pin at 40"
+  const xo = mapX(OUTLIER);
+  dot.setAttribute('cx', xo); dot.setAttribute('cy', Y);
+  stem.setAttribute('x1', xo); stem.setAttribute('x2', xo);
+
+  // Label bubble to the left of the pin (auto widths)
+  const text = 'RÓHE Top';
+  const estWidth = Math.max(88, text.length * 7.2 + 16); // quick estimate
+  noteBg.setAttribute('x', xo - estWidth - 10); noteBg.setAttribute('y', 58);
+  noteBg.setAttribute('width', estWidth);
+  note.setAttribute('x', xo - estWidth/2 - 10); note.setAttribute('y', 70);
+})();
+</script>
+
+---
+
+_**Assistant**_
+
+I'll add this script right after the SVG element. Let me find the right location and insert it:
+
+---
+
+Read file: undefined
+
+---
+
+Perfect! I'll add the script right after the closing `</div>` of the bracket-viz section (after line 225):
+
+---
+
+<details><summary>Edit file: /Users/seandavey/Downloads/web/2profile copy.html</summary>
+
+undefined
+
+**Chunk 1**
+Lines added: 74, lines removed: 1
+
+```diff
+@@ -224,5 +224,78 @@
+              </svg>
+            </div>
+-           
++ 
++           <script>
++           (() => {
++             // Data
++             const BASE_MIN = 30, BASE_MAX = 40;
++             const FIT_MIN = 31.0, FIT_MAX = 33.5;   // highlighted range
++             const OUTLIER  = 40.0;                  // outlier marker at the end
++ 
++             // SVG coords
++             const XMIN = 40, XMAX = 960, Y = 130;
++ 
++             const mapX = v => XMIN + ((v - BASE_MIN) / (BASE_MAX - BASE_MIN)) * (XMAX - XMIN);
++ 
++             // Elements
++             const ticksG  = document.getElementById('flTicks');
++             const tickL   = document.getElementById('flTickL');
++             const tickR   = document.getElementById('flTickR');
++             const bracket = document.getElementById('flBracket');
++             const arrow   = document.getElementById('flArrow');
++             const dot     = document.getElementById('flDot');
++             const stem    = document.getElementById('flStem');
++             const noteBg  = document.getElementById('flNoteBg');
++             const note    = document.getElementById('flNote');
++ 
++             // Build ticks every 1"
++             for (let v = BASE_MIN; v <= BASE_MAX; v++) {
++               const x = mapX(v);
++               const t = document.createElementNS('http://www.w3.org/2000/svg','line');
++               t.setAttribute('x1', x); t.setAttribute('x2', x);
++               t.setAttribute('y1', Y); t.setAttribute('y2', Y + 8);
++               t.setAttribute('class','fl-tick');
++               ticksG.appendChild(t);
++ 
++               const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
++               lbl.setAttribute('x', x); lbl.setAttribute('y', Y + 26);
++               lbl.setAttribute('class','fl-label');
++               lbl.textContent = `${v}″`;
++               ticksG.appendChild(lbl);
++             }
++ 
++             // End ticks at the fit range
++             const x1 = mapX(FIT_MIN), x2 = mapX(FIT_MAX);
++             tickL.setAttribute('x1', x1); tickL.setAttribute('x2', x1);
++             tickR.setAttribute('x1', x2); tickR.setAttribute('x2', x2);
++ 
++             // Elegant wavy brace meeting at arrow
++             function bracePath(a, b){
++               const mid = (a + b)/2, top = 82, floor = 98, lift = 14;
++               const l = `M ${a} ${floor} C ${a+30} ${floor-lift*.8}, ${mid-70} ${top+6}, ${mid-18} ${top+6}
++                          C ${mid-10} ${top+6}, ${mid-10} ${top}, ${mid-8} ${top}`;
++               const r = `C ${mid+10} ${top}, ${mid+10} ${top+6}, ${mid+18} ${top+6}
++                          C ${mid+70} ${top+6}, ${b-30} ${floor-lift*.8}, ${b} ${floor}`;
++               return `${l} ${r} L ${b} ${floor} L ${a} ${floor} Z`.replace(/\s+/g,' ');
++             }
++             bracket.setAttribute('d', bracePath(x1, x2));
++ 
++             // Center the arrow above the brace
++             const mid = (x1 + x2) / 2;
++             arrow.style.transform = `translateX(${mid - 500}px)`; // viewBox center ≈ 500
++ 
++             // Outlier pin at 40"
++             const xo = mapX(OUTLIER);
++             dot.setAttribute('cx', xo); dot.setAttribute('cy', Y);
++             stem.setAttribute('x1', xo); stem.setAttribute('x2', xo);
++ 
++             // Label bubble to the left of the pin (auto widths)
++             const text = 'RÓHE Top';
++             const estWidth = Math.max(88, text.length * 7.2 + 16); // quick estimate
++             noteBg.setAttribute('x', xo - estWidth - 10); noteBg.setAttribute('y', 58);
++             noteBg.setAttribute('width', estWidth);
++             note.setAttribute('x', xo - estWidth/2 - 10); note.setAttribute('y', 70);
++           })();
++           </script>
++           
+            <div style="text-align:center; margin-top:8px;">
+              <span style="font-size:13px; color:var(--muted);">
+```
+
+</details>
+
+---
+
+Perfect! I've successfully added the comprehensive JavaScript that brings the SVG fit visualization to life. Here's what the script accomplishes:
+
+**Data Configuration:**
+- **Base range**: 30″ to 40″ (full measurement scale)
+- **Fit range**: 31.0″ to 33.5″ (highlighted good fit zone)
+- **Outlier**: 40.0″ (RÓHE Top marked as oversized)
+
+**Dynamic SVG Generation:**
+1. **Tick Marks & Labels**: Generates tick marks every 1″ from 30″ to 40″ with proper SVG namespacing
+2. **End Ticks**: Positions the bracket end ticks at the fit range boundaries (31″ and 33.5″)
+3. **Wavy Bracket**: Creates an elegant curved bracket path using Bézier curves that converge to a point
+4. **Arrow Positioning**: Centers the arrow above the bracket using CSS transforms
+5. **Outlier Pin**: Places the dot and stem at 40″ with a smart label bubble
+
+**Smart Features:**
+- **Coordinate Mapping**: `mapX()` function converts measurements to SVG coordinates
+- **Dynamic Bracket Path**: `bracePath()` generates smooth wavy curves that meet at the center
+- **Auto-sized Label**: Calculates bubble width based on text length
+- **Proper SVG Creation**: Uses `createElementNS()` for correct SVG element creation
+
+**Visual Result:**
+- Clean measurement scale from 30″ to 40″
+- Highlighted fit range (31″-33.5″) with wavy bracket and arrow
+- Outlier marker at 40″ with "RÓHE Top" label
+- All elements properly styled with the CSS classes we added
+
+The fit visualization is now fully functional and displays a professional, interactive measurement range with clear visual hierarchy!
+
+---
+
