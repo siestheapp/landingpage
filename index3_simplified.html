@@ -31,7 +31,7 @@
     .logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     .nav a{font-weight:600;color:#4C4C50;text-decoration:none;margin-left:20px}
 
-    .hero{margin-top:-95px;padding:12px 0 15px}  /* tighter top and bottom for a crisp fold */
+    .hero{margin-top:-95px;padding:12px 0 32px}  /* tighter top and bottom for a crisp fold */
     .hero-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;min-width:0}
     .eyebrow{font:700 12px/1 Inter;letter-spacing:.1em;text-transform:uppercase;color:#6F6F74;margin-bottom:14px}
     h1{font-size: clamp(32px, 5vw, 54px);line-height:1.04;letter-spacing:-.02em;margin-bottom:10px}
@@ -187,7 +187,7 @@
       display: grid;
       grid-template-columns: repeat(3, 272px);
       gap: 45px;
-      margin-top: 45px;
+      margin-top: 40px;
       justify-content: center;
       justify-items: center;
     }
@@ -196,7 +196,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0px;
+      gap: 16px;
     }
     
     .mockup-label {
@@ -211,7 +211,6 @@
       background: transparent;
       box-shadow: none;
       padding: 0;
-      margin-top: 0;
     }
     
     #demo .three-mockups .mock-inner {
@@ -219,14 +218,11 @@
       border-radius: 0;
       width: 272px;
       max-width: 100%;
-      aspect-ratio: 430/1000;
+      aspect-ratio: 430/1100;
       overflow: hidden;
       margin: 0 auto;
       position: relative;
     }
-
-    /* Click tracking overlay (covers iframe/videos without changing layout) */
-    .click-overlay{ position:absolute; inset:0; background:transparent; cursor:pointer }
     
     #demo .three-mockups .mock iframe {
       width: 430px;
@@ -302,14 +298,14 @@
     }
 
     /* Section rhythm to match hero→how */
-    #how.section { padding:16px 0 190px !important; }
+    #how.section { padding:40px 0 190px !important; }
 
     /* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
     #profile.section{
       background: radial-gradient(1200px 420px at 50% -120px, rgba(255,255,255,.9), rgba(255,255,255,0));
       border-top: 1px solid rgba(0,0,0,.06);
       border-bottom: 1px solid rgba(0,0,0,.06);
-      padding: 64px 0 168px;
+      padding: 64px 0;
     }
 
     .profile-grid{
@@ -319,16 +315,13 @@
       display: grid;
       grid-template-rows: auto auto;
       justify-items: center;
-      gap: 12px;
+      gap: 22px;
     }
 
     #profile .spot-head{ text-align:center; }
     #profile .spot-head .eyebrow{ margin-bottom:8px }
     #profile .spot-head h2{ margin-bottom:8px }
-    #profile .spot-head .lede{ margin:10px auto 0; max-width:1000px; white-space:nowrap }
-    @media (max-width: 960px){
-      #profile .spot-head .lede{ white-space: normal }
-    }
+    #profile .spot-head .lede{ margin:0 auto; max-width:680px }
 
     #profile .mock{ background:transparent; box-shadow:none; padding:0; border-radius:0; }
     #profile .mock-inner{
@@ -342,9 +335,114 @@
       transform-origin:center;
     }
 
+    /* A fixed overlay aligned to the phone */
+    #profile .pin-grid{
+      position:absolute;
+      top:50%; left:50%;
+      width:300px; aspect-ratio:430/1000;           /* same as .mock-inner */
+      transform:translate(-50%,-50%);               /* no scale: use % coords */
+      pointer-events:none;
+    }
 
+    /* (debug helpers removed after calibration) */
 
-  </style>
+    /* Utility to place a pin at % of the phone box */
+    .pin {
+      position:absolute; width:0; height:0;         /* invisible anchor */
+    }
+
+    /* Hardcoded pin anchors aligned to the mockup */
+    .pin--confidence { left: 26%; top: 9%; }
+    .pin--ranges     { left: 26%; top: 63%; }
+    .pin--why        { left: 70%; top: 84%; }
+
+    /* Callouts wrapper draws on top of the phone */
+    .callouts{
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    /* Individual callout cards */
+    .callout{
+      position:absolute;
+      max-width: 280px;
+      background:#fff;
+      border:1px solid #E8E4DE;
+      border-radius:14px;
+      padding:12px 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.10);
+      font-size:15px; line-height:1.45; color:#4C4C50;
+    }
+    .callout b{ color:var(--ink) }
+
+    /* Pin dots on anchors */
+    .pin::before{
+      content:""; position:absolute; pointer-events:none;
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      box-shadow: 0 8px 20px rgba(118,75,162,.35);
+      left:-5px; top:-5px; /* center the dot on the anchor */
+    }
+
+    /* Leader lines: fixed angles/lengths tuned to current mockup */
+    .pin--confidence::after,
+    .pin--ranges::after,
+    .pin--why::after{
+      content:""; position:absolute; left:0; top:0; width:2px;
+      background: linear-gradient(180deg,var(--g1),var(--g2));
+      transform-origin: top left; border-radius:2px;
+      filter: drop-shadow(0 6px 16px rgba(118,75,162,.25));
+    }
+    .pin--confidence::after{ height:142px; transform:rotate(27deg); }
+    .pin--ranges::after{     height:130px; transform:rotate(-16deg); }
+    .pin--why::after{        height:118px; transform:rotate(14deg); }
+
+    /* Card positions around the phone (feel free to fine-tune) */
+    .callout.tl{ top:-6px;  left:4%;  }
+    .callout.bl{ bottom:-14px; left:2%; }
+    .callout.br{ bottom:-26px; right:2%; }
+
+    /* Hide old card-based pins since we use anchor pins now */
+    .callout::before, .callout::after{ display: none; }
+
+    /* Mobile: stack cards under phone (no lines) */
+    @media (max-width: 960px){
+      .callouts{ display:grid; gap:10px; margin-top:6px }
+      .callout{ position:static }
+      .callout::before, .callout::after{ display:none }
+    }
+
+  
+/* === Simple leader-line system (self-contained) === */
+.simple-spot{
+  position:relative; max-width:1040px; margin:0 auto;
+  display:grid; grid-template-rows:auto auto; justify-items:center; gap:18px;
+}
+.simple-phone{ width:300px; }
+.simple-phone .mock-inner{ width:300px; aspect-ratio:430/1000; position:relative; overflow:hidden; }
+.simple-phone iframe{
+  width:430px; height:1000px; position:absolute; inset:50% auto auto 50%;
+  transform:translate(-50%,-50%) scale(.70); border:0; background:transparent;
+}
+.simple-pin{ position:absolute; width:0; height:0; }
+.simple-pin::before{
+  content:""; position:absolute; left:-5px; top:-5px; width:10px; height:10px; border-radius:999px;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  box-shadow:0 8px 20px rgba(118,75,162,.35);
+}
+.simple-callout{
+  position:absolute; max-width:280px; background:#fff; border:1px solid #E8E4DE;
+  border-radius:14px; padding:12px 14px; box-shadow:0 12px 28px rgba(0,0,0,.10);
+  font-size:15px; line-height:1.45; color:#4C4C50;
+}
+.simple-callout b{ color:#1F1F1F }
+.simple-leaders{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+@media (max-width:960px){
+  .simple-callout{ position:static; margin:8px 0 }
+  .simple-leaders{ display:none }
+}
+</style>
 </head>
 <body>
   <header>
@@ -363,7 +461,7 @@
       <div class="container hero-wrap">
         <div>
           <h1>Find clothes that fit — every time.</h1>
-          <p class="sub">Sies learns from the clothes you already own — and adds fit signals from people like you — then tells you the right size.</p>
+          <p class="sub">Sies learns your measurements from clothes you already own — then tells you the right size, every time you shop.</p>
 
                   <div class="benefits">
           <div class="benefit">No measuring. No guesswork. No surprises.</div>
@@ -375,20 +473,19 @@
           </form>
           <p class="note">Join 200+ early users. No spam, ever.</p>
         </div>
-        <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" class="mock" aria-hidden="true" data-track="hero-mock">
+        <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" class="mock" aria-hidden="true">
           <div class="mock-inner">
             <video autoplay muted loop playsinline>
               <source src="./mockup-video3.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <div class="click-overlay" data-track="hero-mock"></div>
           </div>
         </a>
       </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section id="how" class="section" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06); padding:48px 0 20px">
+    <section id="how" class="section" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-bottom:1px solid rgba(0,0,0,.06); padding:48px 0 20px">
       <div class="container">
         <!-- Left-Right Layout -->
         <div class="how-grid">
@@ -406,7 +503,7 @@
               </div>
 
               <div class="step">
-                <h3 class="step-title">Sit back while Sies does the math</h3>
+                <h3 class="step-title">Sies learns your measurements</h3>
                 <p class="step-text">Sies builds your fit profile from size guides and spec sheets — no measuring tape needed.</p>
               </div>
 
@@ -419,9 +516,8 @@
 
         <!-- RIGHT: Mock -->
         <div class="mock" aria-hidden="true">
-            <div class="mock-inner" data-track="how-closet-mock">
+            <div class="mock-inner">
               <iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
-              <div class="click-overlay" data-track="how-closet-mock"></div>
             </div>
           </div>
         </div>
@@ -437,41 +533,69 @@
             <div class="eyebrow">Your fit profile</div>
             <h2>Your closet, brought to life</h2>
             <p class="lede">
-              Every piece you add makes your profile smarter and your estimated measurements more precise.
+              Every piece you add makes your profile smarter. Sies translates brand size guides into your actual measurements — so every product page shows the size that fits, and why.
             </p>
           </div>
 
-          <!-- Center phone -->
-          <div class="mock" aria-hidden="true">
-            <div class="mock-inner" data-track="profile-mock">
-              <iframe src="./3profile copy.html" title="Profile mockup" loading="lazy"></iframe>
-              <div class="click-overlay" data-track="profile-mock"></div>
+          
+          <!-- SIMPLE PROFILE SPOTLIGHT -->
+          <div class="simple-spot">
+            <!-- phone mock -->
+            <div class="simple-phone">
+              <div class="mock-inner">
+                <iframe src="./3profile copy.html" title="Profile mockup" loading="lazy"></iframe>
+              </div>
             </div>
+
+            <!-- pins on phone (percent positions inside the phone box) -->
+            <div id="pin-confidence" class="simple-pin" style="left:26%; top:9%"></div>
+            <div id="pin-ranges"     class="simple-pin" style="left:26%; top:63%"></div>
+            <div id="pin-why"        class="simple-pin" style="left:70%; top:84%"></div>
+
+            <!-- callout cards -->
+            <div id="card-confidence" class="simple-callout" style="top:-8px; left:4%">
+              <b>Confidence meter</b> — add a couple more items to boost Profile Strength and unlock higher-certainty picks.
+            </div>
+
+            <div id="card-ranges" class="simple-callout" style="bottom:-14px; left:2%">
+              <b>Your size ranges</b> — Bust and Waist are shown as real measurements, not guesses.
+            </div>
+
+            <div id="card-why" class="simple-callout" style="bottom:-26px; right:2%">
+              <b>"Why it fits"</b> — a short note tied to your measurements so the recommendation makes sense.
+            </div>
+
+            <!-- svg overlay for leader lines -->
+            <svg class="simple-leaders" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="leaderGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0"  stop-color="#667eea"/>
+                  <stop offset="1"  stop-color="#764ba2"/>
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
-
-
-
-        </div>
+</div>
       </div>
     </section>
 
     <!-- DEMO MOCKUPS -->
     <section class="section" id="demo" style="padding:28px 0 20px">
       <div class="container">
-        <h2>Everything in one place.</h2>
-        <p class="lede">A stress-free online shopping experience is just a few taps away.</p>
+        <h2>See Sies in action</h2>
+        <p class="lede">Your closet becomes your fit profile – and every product page tells you what will fit.</p>
         <div class="three-mockups">
           <div class="mockup-item">
             <div class="mockup-label">Your Closet</div>
-            <div class="mock"><div class="mock-inner" data-track="gallery-closet"><iframe src="./2closet.html" title="Closet mockup" loading="lazy"></iframe><div class="click-overlay" data-track="gallery-closet"></div></div></div>
+            <div class="mock"><div class="mock-inner"><iframe src="./2closet.html" title="Closet mockup" loading="lazy"></iframe></div></div>
           </div>
           <div class="mockup-item">
-            <div class="mockup-label">Your Profile</div>
-            <div class="mock"><div class="mock-inner" data-track="gallery-profile"><iframe src="./profilebottom.html" title="Profile mockup" loading="lazy"></iframe><div class="click-overlay" data-track="gallery-profile"></div></div></div>
+            <div class="mockup-label">Fit Profile</div>
+            <div class="mock"><div class="mock-inner"><iframe src="./profilebottom.html" title="Profile mockup" loading="lazy"></iframe></div></div>
           </div>
           <div class="mockup-item">
-            <div class="mockup-label">Your Feed</div>
-            <div class="mock"><div class="mock-inner" data-track="gallery-feed"><iframe src="./2feed.html" title="Feed mockup" loading="lazy"></iframe><div class="click-overlay" data-track="gallery-feed"></div></div></div>
+            <div class="mockup-label">Smart Feed</div>
+            <div class="mock"><div class="mock-inner"><iframe src="./2feed.html" title="Feed mockup" loading="lazy"></iframe></div></div>
           </div>
         </div>
       </div>
@@ -518,37 +642,112 @@
     </div>
   </footer>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // (interactive calibration removed for hardcoded layout)
 
-  <script>
-  // Simple analytics tracker for mockup clicks
-  (function(){
-    const endpoint = 'https://httpbin.org/post'; // replace with your endpoint
-    function track(eventName, detail){
-      try{
-        navigator.sendBeacon && navigator.sendBeacon(endpoint, new Blob([JSON.stringify({event:eventName, detail, ts:Date.now(), path:location.pathname})], {type:'application/json'}));
-      }catch(e){
-        // no-op
-      }
+  // Map each pin to its target callout and which card corner to hit
+  const wiring = [
+    { pin: '.pin--confidence', card: '.callout.tl', corner: 'tr' },
+    { pin: '.pin--ranges',     card: '.callout.bl', corner: 'tr' },
+    { pin: '.pin--why',        card: '.callout.br', corner: 'tl' },
+  ];
+
+  function cornerPoint(rect, corner){
+    switch(corner){
+      case 'tl': return { x: rect.left,        y: rect.top + 24 };   // slight inset
+      case 'tr': return { x: rect.right,       y: rect.top + 24 };
+      case 'bl': return { x: rect.left,        y: rect.bottom - 24 };
+      case 'br': return { x: rect.right,       y: rect.bottom - 24 };
+      default:   return { x: rect.left,        y: rect.top };
     }
+  }
 
-    function handleClick(e){
-      const key = e.currentTarget.getAttribute('data-track');
-      track('mock_click', {key});
+  function connect(pinSel, cardSel, corner){
+    const pin  = document.querySelector(pinSel);
+    const card = document.querySelector(cardSel);
+    if(!pin || !card) return;
+
+    const pr = pin.getBoundingClientRect();
+    const cr = card.getBoundingClientRect();
+
+    // start at pin origin (top-left of ::after)
+    const ax = pr.left;
+    const ay = pr.top;
+
+    // end: chosen corner on the card
+    const {x: bx, y: by} = cornerPoint(cr, corner);
+
+    const dx = bx - ax;
+    const dy = by - ay;
+    const len   = Math.hypot(dx, dy);
+    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+    // write CSS variables on the pin element
+    pin.style.setProperty('--len',   `${len}px`);
+    pin.style.setProperty('--angle', `${angle}deg`);
+  }
+
+  function renderAll(){
+    wiring.forEach(w => connect(w.pin, w.card, w.corner));
+  }
+
+  renderAll();
+  // Recompute on resize or font load shifts
+  window.addEventListener('resize', renderAll);
+  document.fonts && document.fonts.ready && document.fonts.ready.then(renderAll);
+});
+</script>
+
+<script>
+(function(){
+  const spot = document.querySelector('#profile .simple-spot');
+  if(!spot) return;
+  const svg  = spot.querySelector('svg.simple-leaders');
+  const wires = [
+    {a:'#pin-confidence', b:'#card-confidence', corner:'tr'},
+    {a:'#pin-ranges',     b:'#card-ranges',     corner:'tr'},
+    {a:'#pin-why',        b:'#card-why',        corner:'tl'},
+  ];
+  function corner(rect, which){
+    const pad = 24;
+    switch(which){
+      case 'tl': return {x: rect.left,  y: rect.top + pad};
+      case 'tr': return {x: rect.right, y: rect.top + pad};
+      case 'bl': return {x: rect.left,  y: rect.bottom - pad};
+      case 'br': return {x: rect.right, y: rect.bottom - pad};
     }
-
-    // Attach to all click overlays and any .mock with data-track
-    document.querySelectorAll('.click-overlay, .mock[data-track]').forEach(el=>{
-      el.addEventListener('click', handleClick, {passive:true});
+  }
+  function draw(){
+    const r = spot.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${r.width} ${r.height}`);
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    const grad = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+    grad.setAttribute('id','leaderGrad');
+    grad.setAttribute('x1','0'); grad.setAttribute('y1','0'); grad.setAttribute('x2','0'); grad.setAttribute('y2','1');
+    const s1 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s1.setAttribute('offset','0'); s1.setAttribute('stop-color','#667eea');
+    const s2 = document.createElementNS('http://www.w3.org/2000/svg','stop'); s2.setAttribute('offset','1'); s2.setAttribute('stop-color','#764ba2');
+    const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+    defs.appendChild(grad); grad.appendChild(s1); grad.appendChild(s2); svg.appendChild(defs);
+    wires.forEach(({a,b,corner: c})=>{
+      const ar = spot.querySelector(a).getBoundingClientRect();
+      const br = spot.querySelector(b).getBoundingClientRect();
+      const A = { x: ar.left - r.left, y: ar.top - r.top };
+      const ptB = corner(br, c);
+      const B = { x: ptB.x - r.left, y: ptB.y - r.top };
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', A.x); line.setAttribute('y1', A.y);
+      line.setAttribute('x2', B.x); line.setAttribute('y2', B.y);
+      line.setAttribute('stroke', 'url(#leaderGrad)');
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(line);
     });
-
-    // Listen for button-level events coming from iframes (mock internals)
-    window.addEventListener('message', (e)=>{
-      const data = e.data || {};
-      if(data && data.type === 'mock_button_click'){
-        track('mock_button_click', { key: data.key, meta: data.meta || {} });
-      }
-    }, {passive:true});
-  })();
-  </script>
+  }
+  window.addEventListener('load', draw);
+  window.addEventListener('resize', draw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
 </body>
 </html>

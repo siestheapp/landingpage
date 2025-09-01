@@ -206,6 +206,7 @@
         const match = filter==='all' || card.dataset.category===filter;
         card.style.display = match ? '' : 'none';
       });
+      try{ parent.postMessage({ type:'mock_button_click', key:`closet-chip-${filter}` }, '*'); }catch(err){}
     });
 
     // Modal preview
