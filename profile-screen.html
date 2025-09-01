@@ -350,8 +350,10 @@ body{
 }
 
 .treemap-tile:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   z-index: 10;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  filter: brightness(1.1);
 }
 
 .measure-label{
@@ -545,6 +547,8 @@ body{
   background: rgba(255,255,255,0.55);
 }
 .label .brand{ position:absolute; left:8px; top:8px; font-weight:700; }
+.label .brand-alexis{ left:4px; }
+
 .label .size{ position:absolute; right:8px; bottom:8px; font-weight:800; }
 </style>
 </head>
@@ -552,7 +556,7 @@ body{
   <div class="phone">
     <div class="screen">
       <div class="island"></div>
-      <div class="status"><div>9:41</div><div class="right"><img src="../Cellular Connection.svg" alt="cell"/><img src="../Wifi.svg" alt="wifi"/><img src="../Battery.svg" alt="battery"/></div></div>
+      <div class="status"><div>9:41</div><div class="right"><img src="Cellular Connection.svg" alt="cell"/><img src="Wifi.svg" alt="wifi"/><img src="Battery.svg" alt="battery"/></div></div>
       <div class="appbar">
         <div class="left"><div class="brand-dot"><span class="brand-letter">S</span></div></div>
         <div class="title">Fit Profile</div>
@@ -950,24 +954,32 @@ void main(){
         sizeW  = measure.width(t.size, 800, baseSize);
       }
       div.style.fontSize = baseSize + 'px';
-      div.innerHTML = `<span class="brand">${t.brand}</span><span class="size">${t.size}</span>`;
+      // Special handling for Alexis in all state to prevent truncation
+      const isAllState = !window.ACTIVE_CATEGORY || window.ACTIVE_CATEGORY === 'all';
+      const isAlexis = t.brand === 'Alexis';
+      const brandClass = (isAllState && isAlexis) ? 'brand brand-alexis' : 'brand';
+      div.innerHTML = `<span class="${brandClass}">${t.brand}</span><span class="size">${t.size}</span>`;
       div.style.cursor = 'pointer';
       div.style.position = 'absolute';
       div.style.pointerEvents = 'auto';
       
       // Add hover effect
       div.addEventListener('mouseenter', () => {
-        div.style.transform = 'scale(1.02)';
+        div.style.transform = 'scale(1.05)';
         div.style.zIndex = '10';
         div.style.transition = 'all 0.2s ease';
-        div.style.backgroundColor = 'rgba(255,255,255,0.1)';
+        div.style.backgroundColor = 'rgba(255,255,255,0.15)';
         div.style.borderRadius = '8px';
+        div.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+        div.style.filter = 'brightness(1.1)';
       });
       
       div.addEventListener('mouseleave', () => {
         div.style.transform = 'scale(1)';
         div.style.zIndex = '1';
         div.style.backgroundColor = 'transparent';
+        div.style.boxShadow = 'none';
+        div.style.filter = 'brightness(1)';
       });
       
       labelsLayer.appendChild(div);
