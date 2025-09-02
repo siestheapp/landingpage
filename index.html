@@ -368,7 +368,30 @@
       text-transform: none;   /* natural casing */
     }
 
+    /* Phone optimizations */
+    @media (max-width: 480px){
+      .container{ padding: 0 16px; }
 
+      /* Stack email form + bigger targets */
+      .cta{ flex-direction: column; align-items: stretch; gap: 12px; }
+      .input, .btn{ width: 100%; padding: 16px; min-height: 48px; }
+
+      /* Prevent iOS zoom when focusing inputs */
+      input, select, textarea{ font-size: 16px; }
+
+      /* Tighter hero + clearer copy wrapping */
+      .hero{ padding: 16px 0 28px; }
+      .sub{ line-height: 1.45; }
+
+      /* Phone mock: keep it inside the viewport comfortably */
+      .mock-inner{ width: 260px !important; }
+
+      /* Section rhythm */
+      .section{ padding: 40px 0; }
+    }
+
+    /* Nicer tap feel */
+    *{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
   </style>
 </head>
