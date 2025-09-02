@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <meta name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <title>Sies — In Your Size • Join the Waitlist</title>
   <meta name="description" content="Sies predicts your best-fitting size across brands using the clothes you already own. Join the waitlist to get early access."/>
   <meta name="author" content="Sean Davey" />
@@ -280,8 +281,7 @@
     #faq details[open] summary::after{ transform:rotate(45deg) }
     #faq details > div{ padding:8px 16px 14px; color:#4C4C50; border-top:1px solid rgba(0,0,0,.06); font-size:15px; line-height:1.55 }
 
-    /* 1) Tighten the section's own spacing */
-    #how.section { padding-top: 0 !important; }           /* keep your padding-bottom:20px inline */
+
 
     /* 2) Remove the extra vertical offsets inside HOW */
     #how .left-col { margin-top: 0 !important; }          /* was 28px */
@@ -368,30 +368,44 @@
       text-transform: none;   /* natural casing */
     }
 
-    /* Phone optimizations */
-    @media (max-width: 480px){
-      .container{ padding: 0 16px; }
+    /* iPhone polish */
+    :root{
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+    header{ padding-top: max(8px, var(--safe-top)); }
+    footer{ padding-bottom: max(16px, var(--safe-bottom)); }
 
-      /* Stack email form + bigger targets */
-      .cta{ flex-direction: column; align-items: stretch; gap: 12px; }
+    @media (max-width: 430px){ /* iPhone 15 width */
+      html, body{ overflow-x:hidden; -webkit-text-size-adjust:100%; }
+      .container{ padding: 0 16px; }                              /* narrower gutters */
+      .hero{ margin-top: 0 !important; padding: 12px 0 24px; }     /* undo desktop -95px */
+      h1{ font-size: clamp(30px, 7.6vw, 36px); line-height:1.08; max-width: 16ch; }
+      .sub{ font-size: 15.5px; line-height: 1.45; }
+
+      /* Form: stack + big tap targets, prevent iOS zoom */
+      .cta{ flex-direction: column; align-items: stretch; gap: 12px; }        /* was row */
       .input, .btn{ width: 100%; padding: 16px; min-height: 48px; }
-
-      /* Prevent iOS zoom when focusing inputs */
       input, select, textarea{ font-size: 16px; }
 
-      /* Tighter hero + clearer copy wrapping */
-      .hero{ padding: 16px 0 28px; }
-      .sub{ line-height: 1.45; }
+      /* Phone mock: keep comfortably inside viewport */
+      .mock-inner{ width: clamp(230px, 72vw, 280px) !important; }
 
-      /* Phone mock: keep it inside the viewport comfortably */
-      .mock-inner{ width: 260px !important; }
-
-      /* Section rhythm */
+      /* Section rhythm (a bit tighter on phones) */
       .section{ padding: 40px 0; }
     }
 
-    /* Nicer tap feel */
+    /* Smooth anchor landings under sticky header */
+    html{ scroll-padding-top: 64px; }                                          /* was 53px */
+
+    /* Nicer taps */
     *{ -webkit-tap-highlight-color: rgba(0,0,0,0); }
+
+    /* Motion preference support */
+    @media (prefers-reduced-motion: reduce){
+      .mock video { display:none; }
+      .mock-inner { background:#fff url('./mock-cover.jpg') center/cover no-repeat; }
+    }
 
   </style>
 </head>
@@ -427,15 +441,16 @@
     <label>Don't fill this out: <input name="bot-field" /></label>
   </p>
 
-  <input class="input" type="email" name="email" placeholder="Enter your email" required />
+  <input class="input" type="email" name="email" placeholder="Enter your email" required
+         inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" />
   <button class="btn" type="submit">Join the waitlist →</button>
 </form>
           <p class="note">Join 1000+ early users. No spam, ever.</p>
         </div>
         <div class="mock" aria-hidden="true">
           <div class="mock-inner">
-            <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" data-track="hero-mock" style="display: inline-block; position: relative; z-index: 10;">
-              <video autoplay muted loop playsinline>
+            <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock" style="display: inline-block; position: relative; z-index: 10;">
+              <video preload="metadata" autoplay muted loop playsinline poster="./mock-cover.jpg">
                 <source src="./mockup-video3.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -588,7 +603,8 @@
     <label>Don't fill this out: <input name="bot-field" /></label>
   </p>
 
-  <input class="input" type="email" name="email" placeholder="Enter your email" required />
+  <input class="input" type="email" name="email" placeholder="Enter your email" required
+         inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" />
   <button class="btn" type="submit">Join the waitlist →</button>
 </form>
         <p class="note">No spam – opt out anytime.</p>
