@@ -416,10 +416,12 @@
         justify-self: center;
       }
 
-      .hero .mock-inner {
+      /* Override earlier .mock:has(video) .mock-inner width collapse */
+      .hero .mock-inner,
+      .hero .mock:has(video) .mock-inner {
         background: transparent;
         border-radius: 40px;
-        width: clamp(230px, 72vw, 300px);
+        width: clamp(230px, 72vw, 300px) !important;
         aspect-ratio: 430 / 932;
         margin: 0 auto;
         overflow: hidden;
