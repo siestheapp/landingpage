@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sies — Social (Peer Size Matches)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F6; --ink:#1F1F1F; --muted:#6F6F74; --accent:#8F6AAE;
+  --card:#FFFFFF; --track:#ECECEC; --shadow:0 10px 30px rgba(0,0,0,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:var(--bg);color:var(--ink);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0}
+
+/* iPhone Frame */
+.phone{width:430px;height:932px;border-radius:55px;background:#000;padding:2px}
+.screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+
+/* Dynamic Island + Status */
+.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#000;border-radius:19px;z-index:2}
+.status{height:54px;margin-top:5px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600;color:#000;font-size:17px;letter-spacing:-.02em}
+.status .right{display:flex;align-items:center;gap:6px}
+.status .right img{height:13px;width:auto;display:block}
+
+/* Header + Sections */
+.header{padding:4px 24px 2px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.section{padding:calc(12px + env(safe-area-inset-top)) 24px 8px; position:relative; z-index:100}
+.heading-inline{display:flex;align-items:baseline;gap:10px;margin:0 0 6px;flex-wrap:wrap}
+.heading-inline .heading-main{font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.1}
+.heading-sub-inline{font-size:16px;font-weight:600;color:#6A5B4A;letter-spacing:-.005em;line-height:1.2}
+
+/* Chips */
+.chips{display:flex;gap:8px;padding-top:10px;overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-top:6px;position:relative;z-index:1000; pointer-events:auto}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid #E8E4DE;background:#fff;color:var(--ink);border-radius:9999px;padding:10px 16px;font-size:13px;font-weight:500;white-space:nowrap;transition:all 0.2s ease; position:relative; z-index:100; pointer-events:auto; cursor:pointer}
+.chip.is-active{border-color:var(--accent);background:rgba(143,106,174,.15);color:#8F6AAE;font-weight:600;box-shadow:0 2px 8px rgba(143,106,174,.12)}
+/* Social: match hero-mock pill (petrol light fill + dot) */
+#sameSizeChip{
+  display:inline-flex; align-items:center; gap:8px;
+  background:#E9F8F0;                    /* soft petrol */
+  border-color: rgba(0,163,163,.35);     /* teal border */
+  color:var(--ink);
+  font-weight:700; font-size:14px;
+  box-shadow:0 6px 18px rgba(0,163,163,.16);
+}
+#sameSizeChip::before{
+  content:""; width:6px; height:6px; border-radius:999px;
+  background:#00A3A3; box-shadow:0 0 0 3px rgba(0,163,163,.16);
+}
+#sameSizeChip.is-active{
+  background:#E9F8F0; color:var(--ink); border-color: rgba(0,163,163,.35);
+  box-shadow:0 6px 18px rgba(0,163,163,.16);
+}
+/* Chip dropdown */
+.chip-dropdown{position:relative;display:inline-block}
+.chip-menu{position:absolute;top:42px;left:0;min-width:180px;background:#fff;border:1px solid #E8E4DE;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.12);padding:6px;display:none;z-index:50}
+.chip-menu.open{display:block}
+.chip-option{display:block;width:100%;text-align:left;border:none;background:#fff;color:#1F1F1F;border-radius:10px;padding:10px 12px;font:600 13px/1.2 Inter;cursor:pointer}
+.chip-option:hover{background:#f8f8f8}
+
+/* Feed area */
+.feed{padding:0 24px 96px;overflow-y:auto}
+
+/* Card */
+.card{background:#fff;border:1px solid #eee6;border-radius:18px;overflow:hidden;transition:transform 0.2s ease}
+.card:hover{transform:translateY(-2px)}
+.imgbox{position:relative;overflow:hidden;border-radius:18px}
+.img{width:100%;height:440px;object-fit:cover;object-position:center 22%}
+.imgbox::after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(250,248,246,.56) 48%,#fff 100%)}
+.overlay{position:absolute;left:14px;right:14px;bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+
+/* Save */
+.save-btn{position:absolute;top:16px;right:16px;width:36px;height:36px;border:none;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;z-index:2}
+.save-btn:hover{background:rgba(255,255,255,1);transform:scale(1.05)}
+.save-btn.saved{background:rgba(255,92,92,.1);color:#ff5c5c}
+.save-btn svg{width:18px;height:18px;color:inherit}
+
+/* CTA */
+.size-cta{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+  margin:12px 0 10px;padding:14px 20px;border:none;border-radius:24px;color:#fff;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 8%),
+    linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font:700 15px/1 Inter;cursor:pointer;transition:all 0.2s ease}
+.size-cta:hover{transform:translateY(-1px)}
+.size-cta .label{font:800 17px/1.1 Inter;letter-spacing:-.005em;display:flex;align-items:center;gap:8px}
+.size-cta .match{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;
+  background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.95);color:#1F1F1F;font:600 13px/1 Inter}
+
+/* Info + meta */
+.info{position:relative;margin-top:-10px;padding:14px 18px 12px}
+.divider{height:1px;background:rgba(0,0,0,.08);margin:8px 0 8px;border-radius:1px}
+.row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 10px 0 6px}
+.left-meta{display:flex;align-items:center;gap:8px}
+.brand{font-size:12px;letter-spacing:.3px;color:#555;font-weight:600}
+.price{font-weight:700;font-size:17px;color:#2d2d2d}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:14px;color:#4C4C50;font-weight:500}
+.micro{color:#4C4C50;font-size:14px;font-weight:500;margin-top:6px}
+
+/* Details (expanded) */
+.details{background:#fff;border:1px solid #eee6;border-radius:16px;padding:12px 16px 10px}
+.item{padding:8px 0}
+.spec{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:68px;font-size:14px;line-height:1;padding:8px 10px;border-radius:999px;background:#EEF2FF;color:#4338CA;font-weight:700;border:1px solid rgba(67,56,202,.15)}
+
+/* Tab bar */
+.tabs{position:absolute;left:0;right:0;bottom:0;height:83px;background:rgba(255,255,255,.75);border-top:1px solid rgba(0,0,0,.08);
+  backdrop-filter:blur(16px);display:flex;justify-content:space-around;align-items:flex-start;padding-top:8px;padding-bottom:34px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:#8e8e93;font-size:11px;font-weight:500}
+.tab.active{color:#6B46C1;font-weight:600}
+.ico{width:28px;height:28px}
+
+/* View state */
+.hidden{display:none}
+.view-feed .details{display:none}
+.view-detail .details{display:block}
+.view-detail .divider,.view-detail .row,.view-detail .micro{display:none}
+/* Size pill */
+.size-pill{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #E8E4DE;border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);font:700 12px/1 Inter;color:#4C4C50;z-index:2}
+</style>
+</head>
+<body class="view-feed">
+  <div class="phone">
+    <div class="screen">
+      <div class="island"></div>
+      <div class="status"><div>9:41</div><div class="right"><img src="Cellular Connection.svg" alt="cell"/><img src="Wifi.svg" alt="wifi"/><img src="Battery.svg" alt="battery"/></div></div>
+
+      
+
+      <div class="section">
+        <div class="heading-inline">
+          <h1 class="heading-main">Social</h1>
+          <span class="heading-sub-inline">From people who share your size.</span>
+        </div>
+        <div class="chips">
+          <button class="chip is-active" id="sameSizeChip">Same Size · Alexis S</button>
+          <button class="chip">Friends</button>
+          <button class="chip">All</button>
+        </div>
+      </div>
+
+      <div class="feed">
+        <!-- Social feed: Single card for Lya Silk Dress -->
+        <div class="card">
+          <div class="imgbox">
+            <img class="img" src="https://media.thereformation.com/image/upload/f_auto,q_auto:eco,dpr_2.0/w_500/PRD-SFCC/1318722/DRIED_ROSE/1318722.6.DRIED_ROSE?_s=RAABAB0" alt="Lya Silk Dress in Dried Rose by Reformation"/>
+            <button class="save-btn" title="Save to favorites">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <div class="overlay"></div>
+          </div>
+
+          <div class="info">
+            <div class="divider"></div>
+            <div class="row">
+              <div class="left-meta">
+                <div class="brand">REFORMATION</div>
+                <span style="color:#c4c4c4;">|</span>
+                <div class="price">$328</div>
+              </div>
+              <div class="trust-item">Peer‑verified</div>
+            </div>
+            <div class="micro">Lya Silk Dress</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tabs">
+        <a class="tab" href="#"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M241,150.65s0,0,0-.05a51.33,51.33,0,0,0-2.53-5.9L196.93,50.18a12,12,0,0,0-2.5-3.65,36,36,0,0,0-50.92,0A12,12,0,0,0,140,55V76H116V55a12,12,0,0,0-3.51-8.48,36,36,0,0,0-50.92,0,12,12,0,0,0-2.5,3.65L17.53,144.7A51.33,51.33,0,0,0,15,150.6s0,0,0,.05A52,52,0,1,0,116,168V100h24v68a52,52,0,1,0,101-17.35ZM80,62.28a12,12,0,0,1,12-1.22v63.15a51.9,51.9,0,0,0-35.9-7.62ZM64,196a28,28,0,1,1,28-28A28,28,0,0,1,64,196ZM164,61.06a12.06,12.06,0,0,1,12,1.22l23.87,54.31a51.9,51.9,0,0,0-35.9,7.62ZM192,196a28,28,0,1,1,28-28A28,28,0,0,1,192,196Z"/></svg><span>Find</span></a>
+        <a class="tab" href="#"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M225.24,174.74a12,12,0,0,1-1.58,16.89C205.49,206.71,189.06,212,174.15,212c-19.76,0-36.86-9.29-51.88-17.44-25.06-13.62-44.86-24.37-74.61.3a12,12,0,1,1-15.32-18.48c42.25-35,75-17.23,101.39-2.92,25.06,13.61,44.86,24.37,74.61-.3A12,12,0,0,1,225.24,174.74Zm-16.9-57.59c-29.75,24.67-49.55,13.91-74.61.3-26.35-14.3-59.14-32.11-101.39,2.92a12,12,0,0,0,15.32,18.48c29.75-24.67,49.55-13.92,74.61-.3,15,8.15,32.12,17.44,51.88,17.44,14.91,0,31.34-5.29,49.51-20.36a12,12,0,0,0-15.32-18.48ZM47.66,82.84c29.75-24.67,49.55-13.92,74.61-.3,15,8.15,32.12,17.44,51.88,17.44,14.91,0,31.34-5.29,49.51-20.36a12,12,0,0,0-15.32-18.48c-29.75,24.67-49.55,13.92-74.61.3-26.35-14.3-59.14-32.11-101.39,2.93A12,12,0,1,0,47.66,82.84Z"/></svg><span>Feed</span></a>
+        <a class="tab active" href="#"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M225.24,174.74a12,12,0,0,1-1.58,16.89C205.49,206.71,189.06,212,174.15,212c-19.76,0-36.86-9.29-51.88-17.44-25.06-13.62-44.86-24.37-74.61.3a12,12,0,1,1-15.32-18.48c42.25-35,75-17.23,101.39-2.92,25.06,13.61,44.86,24.37,74.61-.3A12,12,0,0,1,225.24,174.74Zm-16.9-57.59c-29.75,24.67-49.55,13.91-74.61.3-26.35-14.3-59.14-32.11-101.39,2.92a12,12,0,0,0,15.32,18.48c29.75-24.67,49.55-13.92,74.61-.3,15,8.15,32.12,17.44,51.88,17.44,14.91,0,31.34-5.29,49.51-20.36a12,12,0,0,0-15.32-18.48Z"/></svg><span>Social</span></a>
+        <a class="tab" href="#"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M244,168,148,96l19.2-14.4A12,12,0,0,0,172,72a44,44,0,0,0-87.66-5.48,12,12,0,1,0,23.82,3,20,20,0,0,1,39.09-2.92L121,86.24c-.15.1-.29.21-.43.32L12,168a20,20,0,0,0,12,36H232a20,20,0,0,0,12-36ZM36,180l92-69,92,69Z"/></svg><span>Closet</span></a>
+        <a class="tab" href="#"><svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M234.38,210a123.36,123.36,0,0,0-60.78-53.23,76,76,0,1,0-91.2,0A123.36,123.36,0,0,0,21.62,210a12,12,0,1,0,20.77,12c18.12-31.32,50.12-50,85.61-50s67.49,18.69,85.61,50a12,12,0,0,0,20.77-12ZM76,96a52,52,0,1,1,52,52A52.06,52.06,0,0,1,76,96Z"/></svg><span>Profile</span></a>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const body = document.body;
+  const chips = document.querySelector('.chips');
+  const sameSizeChip = document.getElementById('sameSizeChip');
+  const sameSizeMenu = null;
+  document.querySelectorAll('.size-cta').forEach((cta)=>{
+    cta.addEventListener('click', ()=>{
+      const id = cta.getAttribute('data-cta');
+      const details = document.querySelector('.details[data-details="' + id + '"]');
+      const expanded = cta.getAttribute('aria-expanded') === 'true';
+      cta.setAttribute('aria-expanded', String(!expanded));
+      cta.querySelector('.match').textContent = expanded ? 'Show details' : 'Hide details';
+      details.classList.toggle('hidden', expanded);
+      body.classList.toggle('view-detail', !expanded);
+      if(expanded) body.classList.add('view-feed'); else body.classList.remove('view-feed');
+      try{ parent.postMessage({ type:'mock_button_click', key:'social-fit-cta' }, '*'); }catch(e){}
+    });
+  });
+
+  // Save buttons
+  document.querySelectorAll('.save-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      btn.classList.toggle('saved');
+      const saved = btn.classList.contains('saved');
+      btn.title = saved ? 'Remove from favorites' : 'Save to favorites';
+      const svg = btn.querySelector('svg');
+      svg.innerHTML = saved
+        ? '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>'
+        : '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="none" stroke="currentColor" stroke-width="2"/>';
+      try{ parent.postMessage({ type:'mock_button_click', key: saved ? 'social-save-on' : 'social-save-off' }, '*'); }catch(e){}
+    });
+  });
+
+  // Chip tracking
+  if (chips) {
+    chips.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.chip');
+      if(!btn) return;
+      // same size chip now behaves like a normal chip
+      // visual active state
+      chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      try{ parent.postMessage({ type:'mock_button_click', key:'social-chip-' + (btn.textContent||'').trim().toLowerCase().replace(/\s+/g,'-') }, '*'); }catch(err){}
+    }, {passive:false});
+  }
+
+  // Dropdown interactions: toggle and select
+  // No dropdown; keep label and normal chip behavior
+})();
+</script>
+</body>
+</html>
