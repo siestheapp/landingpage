@@ -21,8 +21,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 .screen{height:100%;background:#fff;border-radius:53px;overflow:hidden;position:relative;display:flex;flex-direction:column}
 
 /* Dynamic Island + Status */
-.island{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#000;border-radius:19px;z-index:2}
-.status{height:54px;margin-top:5px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600;color:#000;font-size:17px;letter-spacing:-.02em}
+.island{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:126px;height:37px;background:#000;border-radius:19px;z-index:2}
+.status{height:54px;margin-top:14px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;font-weight:600;color:#000;font-size:17px;letter-spacing:-.02em}
 .status .right{display:flex;align-items:center;gap:6px}
 .status .right img{height:13px;width:auto;display:block}
 
@@ -30,7 +30,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 .header{padding:4px 24px 2px;display:flex;justify-content:space-between;align-items:center}
 .logo{font-weight:600;font-size:32px;letter-spacing:-.01em;background:linear-gradient(180deg,#F1DCE3 0%,#8B7F83 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.section{padding:calc(12px + env(safe-area-inset-top)) 24px 8px; position:relative; z-index:100}
+.section{padding:calc(56px + env(safe-area-inset-top)) 24px 18px; position:relative; z-index:100}
 .heading-inline{display:flex;align-items:baseline;gap:10px;margin:0 0 6px;flex-wrap:wrap}
 .heading-inline .heading-main{font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-0.01em;line-height:1.1}
 .heading-sub-inline{font-size:16px;font-weight:600;color:#6A5B4A;letter-spacing:-.005em;line-height:1.2}
@@ -65,7 +65,9 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 .chip-option:hover{background:#f8f8f8}
 
 /* Feed area */
-.feed{padding:0 24px 96px;overflow-y:auto}
+.feed{padding:0 24px calc(120px + env(safe-area-inset-bottom));overflow-y:auto}
+/* Context note above the card */
+.context-note{margin:4px 0 6px;color:#6F6F74;font:600 13px/1.3 Inter;padding-left:6px}
 
 /* Card */
 .card{background:#fff;border:1px solid #eee6;border-radius:18px;overflow:hidden;transition:transform 0.2s ease}
@@ -81,7 +83,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 
 /* Image overlay: product strip on the photo */
 .imgbox{position:relative; overflow:hidden; border-radius:18px}
-.img{width:100%; height:500px; object-fit:cover; object-position:center 22%}
+.img{width:100%; height:560px; object-fit:cover; object-position:center 22%}
 
 /* Size pill in upper right corner */
 .size-pill{
@@ -104,51 +106,81 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 }
 .product-strip:hover{transform:translateY(-2px); box-shadow:0 12px 35px rgba(0,0,0,.3)}
 .product-strip .left{display:flex; align-items:center; gap:10px; overflow:hidden}
-.product-strip .brand-name{font:700 13px/1.2 Inter; color:#1F1F1F; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:220px}
+.product-strip .brand-name{font:700 14px/1.2 Inter; color:#1F1F1F; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:280px; text-align:center; width:100%}
 .product-strip .right{display:flex; align-items:center; gap:10px}
 .product-strip .price{font:800 18px/1 Inter; color:#1F1F1F}
 
-/* Attribution (tight + subtle timestamp) */
-.attribution{margin:12px 12px 4px; display:flex; align-items:baseline; justify-content:space-between; gap:8px; transition:all 0.3s ease}
-.attribution .who{font:700 14px/1.25 Inter; color:#1F1F1F}
-.attribution .meta{font:600 12.5px/1.25 Inter; color:#5A5F64}
+/* Product info */
+.product-info{margin:24px 12px 8px; transition:all 0.3s ease}
+.product-meta{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.product-info .brand-name{font:800 18px/1.25 Inter; letter-spacing:-.01em; color:#1F1F1F}
+.product-info .price{font:800 18px/1 Inter; color:#1F1F1F}
 
 
-/* Lily note as a "quote card" */
-.note-card{
-  margin:8px 12px 12px; padding:12px 14px; border-radius:14px;
+/* Lily fit info */
+.lily-fit{
+  margin:8px 12px 8px; padding:12px 14px; border-radius:14px;
   background:#EAF7F3; border:1px solid rgba(0,163,163,.28);
-  display:flex; gap:10px; align-items:flex-start;
   transition:all 0.3s ease;
 }
-.note-card .icon{flex:0 0 18px; height:18px}
-.note-card .text{font:600 13px/1.45 Inter; color:#134E4A}
-.note-card .accent{font-weight:800}
-.note-card .subtle{opacity:.85; font-style:italic}
+.fit-item{display:flex; align-items:center; gap:10px}
+.fit-item .icon{flex:0 0 18px; height:18px}
+.fit-text{font:600 13px/1.45 Inter; color:#134E4A}
 
-/* Actions row */
-.actions{display:flex; align-items:center; justify-content:space-between; margin:6px 12px 12px; transition:all 0.3s ease}
-.btn.ask{
-  background:#00A3A3; color:#fff; border:none; border-radius:14px; padding:10px 16px;
-  font:700 14px/1 Inter; cursor:pointer;
-  box-shadow:0 6px 16px rgba(0,163,163,.22);
+/* Lily note */
+.lily-note{
+  margin:8px 12px 8px; padding:12px 14px; border-radius:14px;
+  background:#EAF7F3; border:1px solid rgba(0,163,163,.28);
+  transition:all 0.3s ease;
 }
-.btn.ask:hover{filter:brightness(1.05)}
-.iconbar{display:flex; gap:10px}
-.icon-btn{
-  border:1px solid #E8E4DE; background:#fff; border-radius:12px; padding:8px 10px;
-  font:700 14px/1 Inter; color:#6F6F74; cursor:pointer;
-}
-.icon-btn:hover{background:#F8F7F5}
+.note-item{display:flex; align-items:center; gap:10px}
+.note-item .icon{flex:0 0 18px; height:18px}
+.note-text{font:600 13px/1.45 Inter; color:#134E4A}
 
-/* View states - like feed-gallery.html */
+/* Shared sizes */
+.shared-sizes{
+  margin:8px 12px 12px; padding:12px 14px; border-radius:14px;
+  background:#EAF7F3; border:1px solid rgba(0,163,163,.28);
+  transition:all 0.3s ease;
+}
+.shared-item{display:flex; align-items:center; gap:10px}
+.shared-item .icon{flex:0 0 18px; height:18px}
+.shared-text{font:600 13px/1.45 Inter; color:#134E4A}
+
+/* Expander card wrapper to keep content inside card */
+.expander-card{display:none; margin:10px 0 0; padding:12px 12px 16px; border-radius:16px; background:#fff; border:1px solid #EEE8E0}
+.card.expanded .expander-card{display:block}
+.expander-card .product-info{margin:0 0 6px}
+.expander-card .lily-fit{margin-top:4px}
+.expander-card .lily-fit,
+.expander-card .lily-note,
+.expander-card .shared-sizes,
+.expander-card .shop-section{margin-left:0;margin-right:0}
+/* Hide expander in rest state */
+/* per-card expansion now controls visibility; no global hide needed */
+
+/* Shop section */
+.shop-section{margin:6px 12px 12px; transition:all 0.3s ease}
+.shop-btn{
+  width:100%; background:#00A3A3; color:#fff; border:none; border-radius:14px; 
+  padding:12px 16px; font:700 15px/1 Inter; cursor:pointer;
+  box-shadow:0 6px 16px rgba(0,163,163,.22); transition:all 0.2s ease;
+}
+.shop-btn:hover{filter:brightness(1.05); transform:translateY(-1px)}
+/* (bookmark styles removed) */
+
+/* Per-card view states */
 .hidden{display:none}
-.view-feed .attribution,
-.view-feed .note-card,
-.view-feed .actions{display:none}
-.view-detail .attribution,
-.view-detail .note-card,
-.view-detail .actions{display:block}
+.product-info,
+.lily-fit,
+.lily-note,
+.shared-sizes,
+.shop-section{display:none}
+.card.expanded .product-info,
+.card.expanded .lily-fit,
+.card.expanded .lily-note,
+.card.expanded .shared-sizes,
+.card.expanded .shop-section{display:block}
 
 /* Save */
 .save-btn{position:absolute;top:16px;right:16px;width:36px;height:36px;border:none;border-radius:50%;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s ease;z-index:2}
@@ -209,7 +241,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
 
       <div class="section">
         <div class="heading-inline">
-          <h1 class="heading-main">Social</h1>
+          <h1 class="heading-main">Ours</h1>
           <span class="heading-sub-inline">From people who share your size.</span>
         </div>
         <div class="chips">
@@ -220,16 +252,21 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
       </div>
 
       <div class="feed">
+        <div class="context-note">Shared size: Bryson Dress (4)</div>
         <!-- Social feed: Single card for Lya Silk Dress -->
         <article class="card">
           <div class="imgbox">
             <img class="img"
                  src="https://media.thereformation.com/image/upload/f_auto,q_auto:eco,dpr_2.0/w_800/PRD-SFCC/1318722/DRIED_ROSE/1318722.6.DRIED_ROSE?_s=RAABAB0"
                  alt="Reformation Lya Silk Dress" />
-            <div class="size-pill">S | Perfect Fit</div>
-            <button class="product-strip" type="button" id="productStrip" aria-expanded="false">
+            <div class="size-pill">Slim</div>
+            <button class="product-strip" type="button" id="productStrip1" aria-expanded="false">
               <div class="left">
-                <div class="brand-name">REFORMATION | Lya Silk Dress</div>
+                <div class="brandline">
+                  <span class="brand">REFORMATION</span>
+                  <span class="sep">|</span>
+                  <span class="size">S</span>
+                </div>
               </div>
               <div class="right">
                 <div class="price">$328</div>
@@ -237,32 +274,153 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
             </button>
           </div>
 
-          <!-- Attribution: compact, trust-first -->
-          <div class="attribution">
-            <div class="who">Lily (5'5 · 127 lbs) · Bryson Size 4</div>
-            <div class="meta">2h ago</div>
-          </div>
+          <div class="expander-card">
+            <!-- Product info -->
+            <div class="product-info">
+              <div class="product-meta">
+                <div class="brand-name">Lya Silk Dress</div>
+              </div>
+            </div>
 
-          <!-- Lily's feedback as the hero insight -->
-          <div class="note-card">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 11h6M9 7h6M7 17h10" stroke="#00A3A3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            </svg>
-            <div class="text">
-              <span class="accent">Size S → Tight Bust.</span>
-              <span class="subtle">Would size up to M for comfort in chest.</span>
+            <!-- Lily's fit info -->
+            <div class="lily-fit">
+              <div class="fit-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#00A3A3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="fit-text">Logged by Lily (5'5 · 135 lbs)</div>
+              </div>
+            </div>
+
+            
+
+            <!-- Lily's note -->
+            <div class="lily-note">
+              <div class="note-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 11h6M9 7h6M7 17h10" stroke="#00A3A3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <div class="note-text">"Drapes nicely, color true to photo"</div>
+              </div>
+            </div>
+
+            <!-- Shop button -->
+            <div class="shop-section">
+              <button class="shop-btn">Shop</button>
             </div>
           </div>
 
-          <!-- Actions -->
-          <div class="actions">
-            <button class="btn ask">Ask Lily</button>
-            <div class="iconbar">
-              <button class="icon-btn" aria-label="Save">♥</button>
-              <button class="icon-btn" aria-label="Share">⤴</button>
-            </div>
+        </article>
+
+        <div class="context-note">Shared size: Alden Knit Dress (S)</div>
+        <!-- Third card: Kristen Two Piece -->
+        <article class="card">
+          <div class="imgbox">
+            <img class="img"
+                 src="https://media.thereformation.com/image/upload/f_auto,q_auto:eco,dpr_2.0/w_500/PRD-SFCC/1318727/BEIGE_AND_BLACK_CHECK/1318727.1.BEIGE_AND_BLACK_CHECK?_s=RAABAB0"
+                 alt="Reformation Kristen Two Piece" />
+            <div class="size-pill">Relaxed</div>
+            <button class="product-strip" type="button" aria-expanded="false">
+              <div class="left">
+                <div class="brandline">
+                  <span class="brand">REFORMATION</span>
+                  <span class="sep">|</span>
+                  <span class="size">M</span>
+                </div>
+              </div>
+            </button>
           </div>
 
+          <div class="expander-card">
+            <!-- Product info -->
+            <div class="product-info">
+              <div class="product-meta">
+                <div class="brand-name">Kristen Two Piece</div>
+              </div>
+            </div>
+
+            <!-- Fit info -->
+            <div class="lily-fit">
+              <div class="fit-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#00A3A3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="fit-text">Logged by Jade (5'6 · 141 lbs)</div>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <div class="lily-note">
+              <div class="note-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 11h6M9 7h6M7 17h10" stroke="#00A3A3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <div class="note-text">"Sized up for roomy drape"</div>
+              </div>
+            </div>
+
+            <!-- Shop button -->
+            <div class="shop-section">
+              <button class="shop-btn">Shop</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="context-note">Shared size: Bryson Dress (4)</div>
+        <!-- Social feed: Second card for Irisa Dress -->
+        <article class="card">
+          <div class="imgbox">
+            <img class="img"
+                 src="https://media.thereformation.com/image/upload/f_auto,q_auto:eco,dpr_2.0/w_500/PRD-SFCC/1313942/LARKSPUR/1313942.2.LARKSPUR?_s=RAABAB0"
+                 alt="Reformation Irisa Dress" />
+            <div class="size-pill">Slim</div>
+            <button class="product-strip" type="button" id="productStrip2" aria-expanded="false">
+              <div class="left">
+                <div class="brandline">
+                  <span class="brand">REFORMATION</span>
+                  <span class="sep">|</span>
+                  <span class="size">6</span>
+                </div>
+              </div>
+              <div class="right">
+                <div class="price">$278</div>
+              </div>
+            </button>
+          </div>
+
+          <div class="expander-card">
+            <!-- Product info -->
+            <div class="product-info">
+              <div class="product-meta">
+                <div class="brand-name">Irisa Dress</div>
+              </div>
+            </div>
+
+            <!-- Fit info -->
+            <div class="lily-fit">
+              <div class="fit-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="#00A3A3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="fit-text">Logged by Chelley (5'6 · 140 lbs)</div>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <div class="lily-note">
+              <div class="note-item">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 11h6M9 7h6M7 17h10" stroke="#00A3A3" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <div class="note-text">"Runs small, size 6 feels tailored"</div>
+              </div>
+            </div>
+
+            <!-- Shop button -->
+            <div class="shop-section">
+              <button class="shop-btn">Shop</button>
+            </div>
+          </div>
         </article>
 
       </div>
@@ -326,32 +484,27 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   }
 
   // Product strip button toggle - like feed-gallery.html
-  const productStrip = document.getElementById('productStrip');
-  
-  function setCollapsed(){
-    body.classList.remove('view-detail');
-    body.classList.add('view-feed');
-    productStrip.setAttribute('aria-expanded','false');
-    try{ parent.postMessage({ type:'mock_button_click', key:'social-product-strip-close' }, '*'); }catch(e){}
-  }
-  
-  function setExpanded(){
-    body.classList.remove('view-feed');
-    body.classList.add('view-detail');
-    productStrip.setAttribute('aria-expanded','true');
-    try{ parent.postMessage({ type:'mock_button_click', key:'social-product-strip-open' }, '*'); }catch(e){}
-  }
-
-  if(productStrip){
-    setCollapsed();
-    productStrip.addEventListener('click', (e) => {
+  // Per-card expander toggles
+  document.querySelectorAll('.product-strip').forEach(strip => {
+    const card = strip.closest('.card');
+    strip.addEventListener('click', (e)=>{
       e.preventDefault();
       e.stopPropagation();
-      const expanded = body.classList.contains('view-detail');
-      expanded ? setCollapsed() : setExpanded();
-      try{ parent.postMessage({ type:'mock_button_click', key:'social-product-strip' }, '*'); }catch(e){}
+      const isExpanded = card.classList.contains('expanded');
+      // collapse others
+      document.querySelectorAll('.card.expanded').forEach(c=>{
+        if(c!==card){
+          c.classList.remove('expanded');
+          const s = c.querySelector('.product-strip');
+          if(s) s.setAttribute('aria-expanded','false');
+        }
+      });
+      card.classList.toggle('expanded', !isExpanded);
+      strip.setAttribute('aria-expanded', String(!isExpanded));
     });
-  }
+  });
+
+  // (bookmark js removed)
 
   // Dropdown interactions: toggle and select
   // No dropdown; keep label and normal chip behavior
