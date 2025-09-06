@@ -2,6 +2,9 @@
 @use '../base/breakpoints' as *;
 
 /* ===== FAQ ===== */
+#faq {
+  display: none !important;
+}
 #faq .container {
   max-width: 760px
 }

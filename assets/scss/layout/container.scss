@@ -3,7 +3,7 @@
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: var(--maxw);
+  max-width: var(--max-width);
   padding: 0 16px;
   margin: 0 auto;
   @include media-breakpoint-up(md) {

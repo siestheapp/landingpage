@@ -3,6 +3,7 @@
 
 /* ===== HERO ===== */
 .hero {
+  display: none !important;
   margin-top: -95px;
   padding: 12px 0 15px;
   @media (max-width: 1200px) {

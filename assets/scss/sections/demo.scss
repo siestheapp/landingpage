@@ -2,6 +2,9 @@
 @use '../base/breakpoints' as *;
 
 /* ===== DEMO ===== */
+#demo {
+  display: none !important;
+}
 #demo .three-mockups .mock {
   background: transparent;
   box-shadow: none;
@@ -30,4 +33,10 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(0.63);
   transform-origin: center center;
+}
+#join {
+  display: none !important;
+}
+#love {
+  display: none !important;
 }

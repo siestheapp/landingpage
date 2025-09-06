@@ -1,11 +1,10 @@
 // ===== VARIABLES =====
 $min-width: 320px;
-$max-width: 1920px;
+$max-width: 1120px;
 
 // Media Breakpoints
 $grid-breakpoints: (
-  xs: 320px,
-  xss: 375px, // iPhone SE
+  xs: 375px, // iPhone SE
   xsm: 390px, // iPhone 14
   xsl: 436px, // iPhone Plus/Max
   sm: 576px,
@@ -25,10 +24,10 @@ $font-movie: 'Movie Poster Condensed', sans-serif;
 
 // Colors
 $color-dark: #4c4c50;
+$color-gray: #666;
 
 $color-red: #c0031e;
 $color-lavender: #b4c0e7;
-$color-gray: #8690b1;
 
 // Transition Settings
 $bezier: cubic-bezier(.250, .460, .450, .940);

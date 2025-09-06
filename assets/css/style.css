@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* ===== DEFAULT ===== */
 :root {
+  --max-width: 1120px;
   --bg: #faf8f6;
   --ink: #1f1f1f;
   --muted: #6f6f74;
@@ -15,7 +16,6 @@
   --radius-xl: 28px;
   --radius-2xl: 36px;
   --space: clamp(12px, 2vw, 20px);
-  --maxw: 1120px;
   --safe-top: env(safe-area-inset-top);
   --safe-bottom: env(safe-area-inset-bottom);
 }
@@ -45,7 +45,13 @@ body {
   min-width: 320px;
   min-height: 100%;
   position: relative;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
   color: var(--ink);
   background: var(--bg);
@@ -113,7 +119,7 @@ img {
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: var(--maxw);
+  max-width: var(--max-width);
   padding: 0 16px;
   margin: 0 auto;
 }
@@ -150,8 +156,8 @@ header .logo {
   margin: 0;
   display: block;
   font-weight: 600;
-  font-size: 1.5em;
-  line-height: 1;
+  font-size: 24px;
+  line-height: 26px;
   letter-spacing: -0.01em;
   color: inherit;
   text-decoration: none;
@@ -164,20 +170,23 @@ header .logo {
 @media (min-width: 375px) {
   header .logo {
     font-size: 1.75em;
+    line-height: 1;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 1280px) {
   header .logo {
     font-size: 2em;
   }
 }
 header .nav {
-  font-size: 0.875em;
+  font-size: 14px;
+  line-height: 18px;
   font-weight: 600;
 }
 @media (min-width: 375px) {
   header .nav {
     font-size: 1em;
+    line-height: 1.25em;
   }
 }
 header .nav ul {
@@ -201,13 +210,62 @@ header .nav a {
   text-decoration: none;
 }
 
+/* ===== PAGE ===== */
+.page {
+  padding: 30px 0;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+@media (min-width: 768px) {
+  .page {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
 /* ===== FOOTER ===== */
-footer {
-  padding: 40px 0;
-  padding-bottom: max(16px, var(--safe-bottom));
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  margin-top: 40px;
+.footer {
+  padding: 12px 0;
+  margin-top: auto;
   text-align: center;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+@media (min-width: 375px) {
+  .footer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+@media (min-width: 576px) {
+  .footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+@media (min-width: 768px) {
+  .footer {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+}
+.footer .copyright {
+  margin: 0;
+  font-size: 11px;
+  line-height: 13px;
+  color: #666;
+}
+@media (min-width: 375px) {
+  .footer .copyright {
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+}
+@media (min-width: 576px) {
+  .footer .copyright br {
+    display: none;
+  }
 }
 
 /* ===== SECTION ===== */
@@ -394,6 +452,7 @@ footer {
 
 /* ===== HERO ===== */
 .hero {
+  display: none !important;
   margin-top: -95px;
   padding: 12px 0 15px;
 }
@@ -560,6 +619,10 @@ footer {
 }
 
 /* ===== HOW ===== */
+#how {
+  display: none !important;
+}
+
 /* desktop / large */
 #how h2 {
   font-size: clamp(28px, 3vw, 36px);
@@ -764,6 +827,7 @@ footer {
 /* ===== PROFILE ===== */
 /* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
 #profile.section {
+  display: none !important;
   background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -835,6 +899,10 @@ footer {
 }
 
 /* ===== FAQ ===== */
+#faq {
+  display: none !important;
+}
+
 #faq .container {
   max-width: 760px;
 }
@@ -916,6 +984,10 @@ footer {
 }
 
 /* ===== DEMO ===== */
+#demo {
+  display: none !important;
+}
+
 #demo .three-mockups .mock {
   background: transparent;
   -webkit-box-shadow: none;
@@ -947,5 +1019,13 @@ footer {
           transform: translate(-50%, -50%) scale(0.63);
   -webkit-transform-origin: center center;
           transform-origin: center center;
+}
+
+#join {
+  display: none !important;
+}
+
+#love {
+  display: none !important;
 }
 /*# sourceMappingURL=style.css.map */

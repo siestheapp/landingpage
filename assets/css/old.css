@@ -13,7 +13,7 @@
   --radius-xl: 28px;
   --radius-2xl: 36px;
   --space: clamp(12px, 2vw, 20px);
-  --maxw: 1120px;
+  --max-width: 1120px;
 }
 
 * {
@@ -38,7 +38,7 @@ img {
 }
 
 .container {
-  max-width: var(--maxw);
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px
 }

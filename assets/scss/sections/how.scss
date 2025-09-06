@@ -2,7 +2,8 @@
 @use '../base/breakpoints' as *;
 
 /* ===== HOW ===== */
-.how {
+#how {
+  display: none !important;
 }
 
 /* desktop / large */

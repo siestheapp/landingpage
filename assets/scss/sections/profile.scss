@@ -4,6 +4,7 @@
 /* ===== PROFILE ===== */
 /* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
 #profile.section {
+  display: none !important;
   background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
   border-top: 1px solid rgba(0, 0, 0, .06);
   border-bottom: 1px solid rgba(0, 0, 0, .06);
