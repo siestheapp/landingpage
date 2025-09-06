@@ -35,7 +35,7 @@
 html {
   width: 100%;
   height: 100%;
-  background: $color-black;
+  background: var(--bg);
   scroll-behavior: smooth;
   scroll-padding-top: 53px; /* tweak to 60–72 if needed */
   scroll-padding-top: 64px;

@@ -34,7 +34,7 @@
 html {
   width: 100%;
   height: 100%;
-  background: #020202;
+  background: var(--bg);
   scroll-behavior: smooth;
   scroll-padding-top: 53px; /* tweak to 60–72 if needed */
   scroll-padding-top: 64px;
@@ -114,38 +114,76 @@ img {
 /* ===== CONTAINER ===== */
 .container {
   max-width: var(--maxw);
-  padding: 0 20px;
+  padding: 0 16px;
   margin: 0 auto;
 }
-@media (max-width: 430px) {
+@media (min-width: 768px) {
   .container {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 }
 
 /* ===== HEADER ===== */
 header {
+  width: 100%;
+  padding: 0.75em 0;
   position: sticky;
   top: 0;
   z-index: 100;
   background: rgba(250, 248, 246, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding-top: max(8px, var(--safe-top));
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(0.5em);
+}
+header .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 header .logo {
+  margin: 0;
+  display: block;
   font-weight: 600;
-  font-size: 32px;
+  font-size: 1.5em;
+  line-height: 1;
   letter-spacing: -0.01em;
   color: inherit;
   text-decoration: none;
   background: -webkit-gradient(linear, left top, left bottom, from(#f1dce3), to(#8b7f83));
   background: linear-gradient(180deg, #f1dce3 0%, #8b7f83 100%);
-  -webkit-background-clip: text;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+@media (min-width: 375px) {
+  header .logo {
+    font-size: 1.75em;
+  }
+}
+@media (min-width: 768px) {
+  header .logo {
+    font-size: 2em;
+  }
+}
 header .nav {
+  font-size: 0.875em;
+  font-weight: 600;
+}
+@media (min-width: 375px) {
+  header .nav {
+    font-size: 1em;
+  }
+}
+header .nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,13 +193,12 @@ header .nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 8px 0;
+  gap: 1em;
 }
 header .nav a {
-  font-weight: 600;
+  display: block;
   color: #4c4c50;
   text-decoration: none;
-  margin-left: 20px;
 }
 
 /* ===== FOOTER ===== */
