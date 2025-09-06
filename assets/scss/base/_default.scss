@@ -1,0 +1,109 @@
+@use 'var' as *;
+@use 'breakpoints' as *;
+
+/* ===== DEFAULT ===== */
+:root {
+  --bg: #faf8f6;
+  --ink: #1f1f1f;
+  --muted: #6f6f74;
+  --accent: #8f6aae;
+  --card: #fff;
+  --track: #ececec;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .06);
+  --g1: #667eea;
+  --g2: #764ba2;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --space: clamp(12px, 2vw, 20px);
+  --maxw: 1120px;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(black, 0);
+}
+
+* {
+  margin: 0;
+  padding: 0
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: $color-black;
+  scroll-behavior: smooth;
+  scroll-padding-top: 53px; /* tweak to 60–72 if needed */
+  scroll-padding-top: 64px;
+}
+
+body {
+  width: 100%;
+  min-width: $min-width;
+  min-height: 100%;
+  position: relative;
+  display: block;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  color: var(--ink);
+  background: var(--bg);
+  font-optical-sizing: auto;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  @media (max-width: 430px) {
+    overflow-x: hidden;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  @media (hover: hover) {
+    &:hover, &:focus {
+      text-decoration: underline;
+      text-decoration-thickness: .0625em;
+      text-underline-offset: .167em;
+    }
+  }
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  @media (max-width: 430px) {
+    font-size: clamp(30px, 7.6vw, 36px);
+    line-height: 1.08;
+    max-width: 16ch;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block
+}
+
+.eyebrow {
+  font: 700 12px/1 Inter;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6f6f74;
+  margin-bottom: 14px
+}
+
+/* Optional: make eyebrows feel intentional everywhere */
+.eyebrow {
+  font: 700 12px/1 Inter;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6f6f74;
+  margin-bottom: 14px;
+}

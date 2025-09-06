@@ -1,0 +1,138 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== HERO ===== */
+.hero {
+  margin-top: -95px;
+  padding: 12px 0 15px;
+  @media (max-width: 1200px) {
+    margin-top: 0;
+    padding: 20px 0 40px;
+  }
+  @media (max-width: 430px) {
+    margin-top: 0 !important;
+    padding: 12px 0 24px;
+  }
+
+  &-wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: center;
+    min-width: 0;
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      text-align: center;
+    }
+  }
+
+  .note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #6f6f74
+  }
+
+  /* Benefits */
+  .benefits {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+  }
+
+  .benefit {
+    font-size: 16px;
+    color: #4c4c50;
+    line-height: 1.4
+  }
+
+  /* --- HERO mock fix: apply only below 960px (tablet + phones) --- */
+  @media (max-width: 960px) {
+    .mock {
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      justify-self: center;
+    }
+
+    /* Override earlier .mock:has(video) .mock-inner width collapse */
+    .mock-inner,
+    .mock:has(video) .mock-inner {
+      background: transparent;
+      border-radius: 40px;
+      width: clamp(230px, 72vw, 300px) !important;
+      aspect-ratio: 430 / 932;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mock-inner video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: none !important;
+      border-radius: 40px;
+    }
+  }
+}
+
+/* Click tracking overlay (covers iframe/videos without changing layout) */
+.click-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  cursor: pointer
+}
+
+.cta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  .input {
+    flex: 1;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #e8e4de;
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    font: 500 16px/1.2 Inter;
+    box-shadow: 0 10px 24px rgba(118, 75, 162, .25)
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: var(--radius-lg);
+    font: 700 18px/1 Inter;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--g1), var(--g2));
+    box-shadow: 0 10px 24px rgba(118, 75, 162, .25)
+  }
+
+  @media (max-width: 430px) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    /* was row */
+    .input, .btn {
+      width: 100%;
+      padding: 16px;
+      min-height: 48px;
+    }
+
+    input, select, textarea {
+      font-size: 16px;
+    }
+  }
+}

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/old.css">
 </head>
 <body>
 
@@ -30,18 +30,21 @@
   </div>
 </header>
 
-<main class="page">
-
+<main>
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-wrap">
       <div>
         <h1>Find clothes that fit — every time.</h1>
+
+
         <div class="benefits">
           <div class="benefit">No measuring. No guesswork. No surprises.</div>
         </div>
 
-        <form id="waitlist" class="cta" name="waitlist" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
+        <form id="waitlist" class="cta"
+              name="waitlist" method="POST" action="/thanks"
+              data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
           <!-- Required hidden fields for Netlify -->
           <input type="hidden" name="form-name" value="waitlist" />
           <p class="hidden" style="display:none;">

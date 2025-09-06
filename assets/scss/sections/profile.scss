@@ -1,0 +1,73 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== PROFILE ===== */
+/* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
+#profile.section {
+  background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  padding: 40px 0 60px;
+}
+
+.profile-grid {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: 6px;
+}
+
+#profile .spot-head {
+  text-align: center;
+}
+
+#profile .spot-head .eyebrow {
+  margin-bottom: 8px
+}
+
+#profile .spot-head h2 {
+  margin-bottom: 8px
+}
+
+#profile .spot-head .lede {
+  margin: 10px auto 0;
+  max-width: 1000px;
+  white-space: nowrap
+}
+
+@media (max-width: 960px) {
+  #profile .spot-head .lede {
+    white-space: normal
+  }
+}
+
+#profile .mock {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+#profile .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  width: 300px;
+  aspect-ratio: 430/1000;
+  position: relative;
+  overflow: hidden;
+}
+
+#profile .mock-inner iframe {
+  width: 430px;
+  height: 940px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.70);
+  transform-origin: center;
+}

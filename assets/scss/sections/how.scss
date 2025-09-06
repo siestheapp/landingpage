@@ -1,0 +1,185 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== HOW ===== */
+.how {
+}
+
+/* desktop / large */
+#how h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.18;
+  font-weight: 700;
+  margin-bottom: 24px;
+  white-space: nowrap; /* one line on desktop */
+}
+
+/* tablet & down */
+@media (max-width: 900px) {
+  #how h2 {
+    white-space: normal; /* wrap gracefully when tight */
+    max-width: 16ch; /* controlled wrap, looks intentional */
+  }
+}
+
+.steps {
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 24px
+}
+
+.step {
+  background: #fff;
+  border: 1px solid #eee6;
+  border-radius: var(--radius);
+  padding: 18px
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(143, 106, 174, .12);
+  color: #8f6aae;
+  font: 700 14px/1 Inter;
+  margin-bottom: 10px
+}
+
+/* Stronger badge styling */
+.how-list {
+  counter-reset: howstep;
+  display: flex;
+  flex-direction: column;
+  gap: 44px; /* generous rhythm */
+  padding-top: 30px; /* small increase above step 1 */
+}
+
+.step {
+  counter-increment: howstep;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 16px;
+  align-items: start;
+  background: transparent; /* override old card look if unwanted */
+  border: 0;
+  padding: 0;
+  margin-bottom: 2px; /* small increase between steps */
+}
+
+.step::before {
+  content: counter(howstep);
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 13px/1 Inter;
+  color: #fff;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  box-shadow: 0 10px 24px rgba(118, 75, 162, .25);
+}
+
+.step-title {
+  font-weight: 650;
+  font-size: 22px;
+  margin: 2px 0 12px;
+  color: var(--ink);
+}
+
+.step-text {
+  font-size: 16.5px;
+  line-height: 1.5;
+  max-width: 520px;
+  color: #4c4c50;
+}
+
+.step-title,
+.step-text {
+  grid-column: 2;
+}
+
+/* HOW section spacing: no top padding so the top line sits right under header */
+#how.section {
+  padding: 0 0 50px !important;
+}
+
+/* Tighten header stack */
+#how h2 {
+  margin-bottom: 28px !important; /* was 12px */
+}
+
+#how .how-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center; /* vertically center items in the row */
+  gap: 48px;
+}
+
+
+#how .eyebrow {
+  margin-bottom: 8px;
+}
+
+/* was 14px in places  */
+@media (max-width: 960px) {
+  #how .how-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  #how .left-col {
+    margin-top: 0;
+  }
+
+  #how .mock {
+    margin-top: 0;
+    align-self: center;
+  }
+}
+
+/* 2) Remove the extra vertical offsets inside HOW */
+#how .left-col {
+  margin-top: 0 !important;
+}
+
+/* was 28px */
+#how .mock {
+  margin-top: 0 !important;
+}
+
+/* was -14px */
+
+/* === HOW: framed device, consistent scale, no phantom gap === */
+#how .mock {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0 0 0 -5px; /* nudge left by 5px */
+}
+
+#how .mock .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  aspect-ratio: 430 / 1000; /* taller to reveal bottom */
+  width: calc(430px * 0.700); /* +1% scale reflected in layout width */
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#how .mock-inner iframe {
+  width: 430px;
+  height: 1000px;
+  transform: scale(0.700); /* matches wrapper width (+1%) */
+  transform-origin: top left;
+  border: 0;
+  background: transparent;
+  border-radius: 40px; /* slightly tighter corners for scale */
+}

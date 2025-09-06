@@ -1,0 +1,33 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== DEMO ===== */
+#demo .three-mockups .mock {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+#demo .three-mockups .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  width: 272px;
+  max-width: 100%;
+  aspect-ratio: 430/1000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+#demo .three-mockups .mock iframe {
+  width: 430px;
+  height: 945px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.63);
+  transform-origin: center center;
+}

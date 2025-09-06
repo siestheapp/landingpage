@@ -1,0 +1,819 @@
+:root {
+  --bg: #faf8f6;
+  --ink: #1f1f1f;
+  --muted: #6f6f74;
+  --accent: #8f6aae;
+  --card: #fff;
+  --track: #ececec;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .06);
+  --g1: #667eea;
+  --g2: #764ba2;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+  --space: clamp(12px, 2vw, 20px);
+  --maxw: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--ink)
+}
+
+a {
+  color: inherit
+}
+
+img {
+  max-width: 100%;
+  display: block
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 20px
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 248, 246, .8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, .06)
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -.01em;
+  background: linear-gradient(180deg, #f1dce3 0%, #8b7f83 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent
+}
+
+.nav a {
+  font-weight: 600;
+  color: #4c4c50;
+  text-decoration: none;
+  margin-left: 20px
+}
+
+.hero {
+  margin-top: -95px;
+  padding: 12px 0 15px
+}
+
+/* tighter top and bottom for a crisp fold */
+.hero-wrap {
+  display: grid;
+  grid-template-columns:1.2fr 1fr;
+  gap: 32px;
+  align-items: center;
+  min-width: 0
+}
+
+.eyebrow {
+  font: 700 12px/1 Inter;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6f6f74;
+  margin-bottom: 14px
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.04;
+  letter-spacing: -.02em;
+  margin-bottom: 10px
+}
+
+.sub {
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height: 1.5;
+  color: #4c4c50;
+  margin-bottom: 18px
+}
+
+.cta {
+  display: flex;
+  gap: 10px;
+  align-items: center
+}
+
+.input {
+  flex: 1;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #e8e4de;
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  font: 500 16px/1.2 Inter;
+  box-shadow: 0 10px 24px rgba(118, 75, 162, .25)
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--radius-lg);
+  font: 700 18px/1 Inter;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  box-shadow: 0 10px 24px rgba(118, 75, 162, .25)
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #6f6f74
+}
+
+/* Benefits */
+.benefits {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.benefit {
+  font-size: 16px;
+  color: #4c4c50;
+  line-height: 1.4
+}
+
+.mock {
+  border-radius: var(--radius-2xl);
+  background: #000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+  padding: 12px;
+  max-width: 100%;
+  min-width: 0
+}
+
+.mock-inner {
+  background: #fff;
+  border-radius: calc(var(--radius-2xl) - 10px);
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  max-width: 100%
+}
+
+.mock-inner iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent
+}
+
+.section {
+  padding: 64px 0
+}
+
+.section h2 {
+  font-size: clamp(26px, 3.4vw, 36px);
+  letter-spacing: -.01em;
+  margin-bottom: 10px
+}
+
+.section p.lede {
+  color: #4c4c50;
+  max-width: 760px
+}
+
+.grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px
+}
+
+.steps {
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 24px
+}
+
+.step {
+  background: #fff;
+  border: 1px solid #eee6;
+  border-radius: var(--radius);
+  padding: 18px
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(143, 106, 174, .12);
+  color: #8f6aae;
+  font: 700 14px/1 Inter;
+  margin-bottom: 10px
+}
+
+footer {
+  padding: 40px 0;
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  margin-top: 40px;
+  text-align: center
+}
+
+/* Section headings: consistent look with hero */
+.section-head {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 10px; /* light space under header stack */
+}
+
+/* desktop / large */
+#how h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.18;
+  font-weight: 700;
+  margin-bottom: 24px;
+  white-space: nowrap; /* one line on desktop */
+}
+
+/* tablet & down */
+@media (max-width: 900px) {
+  #how h2 {
+    white-space: normal; /* wrap gracefully when tight */
+    max-width: 16ch; /* controlled wrap, looks intentional */
+  }
+}
+
+/* Global anchor offset for sticky header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 53px; /* tweak to 60–72 if needed */
+}
+
+/* Stronger badge styling */
+.how-list {
+  counter-reset: howstep;
+  display: flex;
+  flex-direction: column;
+  gap: 44px; /* generous rhythm */
+  padding-top: 30px; /* small increase above step 1 */
+}
+
+.step {
+  counter-increment: howstep;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 16px;
+  align-items: start;
+  background: transparent; /* override old card look if unwanted */
+  border: 0;
+  padding: 0;
+  margin-bottom: 2px; /* small increase between steps */
+}
+
+.step::before {
+  content: counter(howstep);
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 13px/1 Inter;
+  color: #fff;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  box-shadow: 0 10px 24px rgba(118, 75, 162, .25);
+}
+
+.step-title {
+  font-weight: 650;
+  font-size: 22px;
+  margin: 2px 0 12px;
+  color: var(--ink);
+}
+
+.step-text {
+  font-size: 16.5px;
+  line-height: 1.5;
+  max-width: 520px;
+  color: #4c4c50;
+}
+
+.step-title,
+.step-text {
+  grid-column: 2;
+}
+
+/* keep both in the wide column */
+
+/* Optional: make eyebrows feel intentional everywhere */
+.eyebrow {
+  font: 700 12px/1 Inter;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6f6f74;
+  margin-bottom: 14px;
+}
+
+/* HOW section spacing: no top padding so the top line sits right under header */
+#how.section {
+  padding: 0 0 50px !important;
+}
+
+/* Tighten header stack */
+#how h2 {
+  margin-bottom: 28px !important; /* was 12px */
+}
+
+#how .how-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center; /* vertically center items in the row */
+  gap: 48px;
+}
+
+
+#how .eyebrow {
+  margin-bottom: 8px;
+}
+
+/* was 14px in places  */
+@media (max-width: 960px) {
+  #how .how-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  #how .left-col {
+    margin-top: 0;
+  }
+
+  #how .mock {
+    margin-top: 0;
+    align-self: center;
+  }
+}
+
+/* (cleaned) demo mockups use absolute centering without transforms */
+
+/* Three mockups layout */
+.three-mockups {
+  display: grid;
+  grid-template-columns: repeat(3, 272px);
+  gap: 45px;
+  margin-top: 45px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.mockup-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+
+.mockup-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6f6f74;
+  margin-top: 16px;
+  margin-bottom: -8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Make demo phones frameless like Section 2 */
+#demo .three-mockups .mock {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+#demo .three-mockups .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  width: 272px;
+  max-width: 100%;
+  aspect-ratio: 430/1000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Click tracking overlay (covers iframe/videos without changing layout) */
+.click-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  cursor: pointer
+}
+
+#demo .three-mockups .mock iframe {
+  width: 430px;
+  height: 945px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.63);
+  transform-origin: center center;
+}
+
+@media (max-width: 1200px) {
+  .hero-wrap {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .hero {
+    margin-top: 0;
+    padding: 20px 0 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  .three-mockups {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Video styling to match iframe */
+.mock:has(video) {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  pointer-events: none !important
+}
+
+.mock:has(video) .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  aspect-ratio: 430/932;
+  overflow: hidden;
+  width: fit-content;
+  pointer-events: none
+}
+
+.mock video {
+  transform: translateY(-44px) scale(0.655);
+  transform-origin: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 53px
+}
+
+.mock a {
+  pointer-events: auto !important;
+  cursor: pointer
+}
+
+/* FAQ — refined accordion styling */
+#faq .container {
+  max-width: 760px
+}
+
+#faq .faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px
+}
+
+#faq details {
+  background: #fff;
+  border: 1px solid #e8e4de;
+  border-radius: 14px;
+  overflow: hidden
+}
+
+#faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font: 600 16px/1.3 Inter;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+#faq summary::-webkit-details-marker {
+  display: none
+}
+
+#faq summary::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+  box-shadow: 0 4px 12px rgba(118, 75, 162, .25)
+}
+
+#faq summary::after {
+  content: "";
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #8f6aae;
+  border-bottom: 2px solid #8f6aae;
+  transform: rotate(-45deg);
+  transition: transform .2s ease
+}
+
+#faq details[open] summary::after {
+  transform: rotate(45deg)
+}
+
+#faq details > div {
+  padding: 8px 16px 14px;
+  color: #4c4c50;
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  font-size: 15px;
+  line-height: 1.55
+}
+
+
+/* 2) Remove the extra vertical offsets inside HOW */
+#how .left-col {
+  margin-top: 0 !important;
+}
+
+/* was 28px */
+#how .mock {
+  margin-top: 0 !important;
+}
+
+/* was -14px */
+
+/* === HOW: framed device, consistent scale, no phantom gap === */
+#how .mock {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0 0 0 -5px; /* nudge left by 5px */
+}
+
+#how .mock .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  aspect-ratio: 430 / 1000; /* taller to reveal bottom */
+  width: calc(430px * 0.700); /* +1% scale reflected in layout width */
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#how .mock-inner iframe {
+  width: 430px;
+  height: 1000px;
+  transform: scale(0.700); /* matches wrapper width (+1%) */
+  transform-origin: top left;
+  border: 0;
+  background: transparent;
+  border-radius: 40px; /* slightly tighter corners for scale */
+}
+
+
+/* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
+#profile.section {
+  background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  padding: 40px 0 60px;
+}
+
+.profile-grid {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: 6px;
+}
+
+#profile .spot-head {
+  text-align: center;
+}
+
+#profile .spot-head .eyebrow {
+  margin-bottom: 8px
+}
+
+#profile .spot-head h2 {
+  margin-bottom: 8px
+}
+
+#profile .spot-head .lede {
+  margin: 10px auto 0;
+  max-width: 1000px;
+  white-space: nowrap
+}
+
+@media (max-width: 960px) {
+  #profile .spot-head .lede {
+    white-space: normal
+  }
+}
+
+#profile .mock {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+#profile .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  width: 300px;
+  aspect-ratio: 430/1000;
+  position: relative;
+  overflow: hidden;
+}
+
+#profile .mock-inner iframe {
+  width: 430px;
+  height: 940px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.70);
+  transform-origin: center;
+}
+
+.mockup-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink); /* darker for clarity */
+  margin-top: 16px;
+  margin-bottom: 2px; /* cleaner spacing */
+  text-align: center;
+  letter-spacing: 0.01em; /* subtle, less wide */
+  text-transform: none; /* natural casing */
+}
+
+/* iPhone polish */
+:root {
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+header {
+  padding-top: max(8px, var(--safe-top));
+}
+
+footer {
+  padding-bottom: max(16px, var(--safe-bottom));
+}
+
+@media (max-width: 430px) {
+  /* iPhone 15 width */
+  html, body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* narrower gutters */
+  .hero {
+    margin-top: 0 !important;
+    padding: 12px 0 24px;
+  }
+
+  /* undo desktop -95px */
+  h1 {
+    font-size: clamp(30px, 7.6vw, 36px);
+    line-height: 1.08;
+    max-width: 16ch;
+  }
+
+  .sub {
+    font-size: 15.5px;
+    line-height: 1.45;
+  }
+
+  /* Form: stack + big tap targets, prevent iOS zoom */
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  /* was row */
+  .input, .btn {
+    width: 100%;
+    padding: 16px;
+    min-height: 48px;
+  }
+
+  input, select, textarea {
+    font-size: 16px;
+  }
+
+  /* Phone mock: keep comfortably inside viewport */
+  .mock-inner {
+    width: clamp(230px, 72vw, 280px) !important;
+  }
+
+  /* Section rhythm (a bit tighter on phones) */
+  .section {
+    padding: 40px 0;
+  }
+}
+
+/* Smooth anchor landings under sticky header */
+html {
+  scroll-padding-top: 64px;
+}
+
+/* was 53px */
+
+/* Nicer taps */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* Motion preference support */
+@media (prefers-reduced-motion: reduce) {
+  .mock video {
+    display: none;
+  }
+
+  .mock-inner {
+    background: #fff url('./mock-cover.jpg') center/cover no-repeat;
+  }
+}
+
+/* --- HERO mock fix: apply only below 960px (tablet + phones) --- */
+@media (max-width: 960px) {
+  .hero .mock {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    justify-self: center;
+  }
+
+  /* Override earlier .mock:has(video) .mock-inner width collapse */
+  .hero .mock-inner,
+  .hero .mock:has(video) .mock-inner {
+    background: transparent;
+    border-radius: 40px;
+    width: clamp(230px, 72vw, 300px) !important;
+    aspect-ratio: 430 / 932;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero .mock-inner video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: none !important;
+    border-radius: 40px;
+  }
+}

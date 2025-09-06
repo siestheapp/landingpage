@@ -1,0 +1,11 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 40px 0;
+  padding-bottom: max(16px, var(--safe-bottom));
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  margin-top: 40px;
+  text-align: center;
+}
