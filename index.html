@@ -22,42 +22,38 @@
 
 <header class="header">
   <div class="container">
-    <h1 class="logo"><a href="#top">sies</a></h1>
-    <nav class="nav">
-      <ul>
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </nav>
+    <div class="logo"><a href="#top">sies</a></div>
+    <ul class="nav">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
   </div>
 </header>
 
 <main id="top" class="page">
+  <div class="container">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-wrap">
-      <div>
-        <h1>Find clothes that fit — every time.</h1>
-        <div class="benefits">
-          <div class="benefit">No measuring. No guesswork. No surprises.</div>
-        </div>
-
-        <form id="waitlist" class="cta" name="waitlist" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
-          <!-- Required hidden fields for Netlify -->
-          <input type="hidden" name="form-name" value="waitlist" />
-          <p class="hidden" style="display:none;">
-            <label>Don't fill this out: <input name="bot-field" /></label>
-          </p>
-
-          <input class="input" type="email" name="email" placeholder="Enter your email" required
-                 inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" />
-          <button class="btn" type="submit">Join the waitlist →</button>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="col">
+        <header class="section-header">
+          <h1>Find clothes that fit &mdash; every time.</h1>
+          <div class="benefits">
+            <div class="benefit">No&nbsp;measuring. No&nbsp;guesswork. No&nbsp;surprises.</div>
+          </div>
+        </header>
+        <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
+          <input type="hidden" name="form-name" value="waitlist">
+          <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-space">
+            <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+            <button class="btn" type="submit">Join the waitlist &rarr;</button>
+          </div>
+          <small class="form-note">Join 1000+ early users. No spam, ever.</small>
         </form>
-        <p class="note">Join 1000+ early users. No spam, ever.</p>
       </div>
-      <div class="mock" aria-hidden="true">
-        <div class="mock-inner">
+      <div class="col mock">
+        <div class="mock-inner" aria-hidden="true">
           <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock" style="display: inline-block; position: relative; z-index: 10;">
             <video preload="metadata" autoplay muted loop playsinline poster="./mock-cover.jpg">
               <source src="./mockup-video3.mp4" type="video/mp4">
@@ -67,12 +63,10 @@
           <div class="click-overlay" data-track="hero-mock"></div>
         </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- HOW IT WORKS -->
-  <section id="how" class="section" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:0 0 40px">
-    <div class="container">
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:0 0 40px">
       <!-- Left-Right Layout -->
       <div class="how-grid">
         <!-- LEFT: Header + Steps -->
@@ -97,7 +91,7 @@
               <h3 class="step-title">Shop with confidence</h3>
               <p class="step-text">See your recommended size and a short "why it fits" note. No guesswork, just clothes that feel made for you.</p>
             </div>
-          </div>     <!-- closes the STEPS wrapper -->
+          </div>     <!-- closes the STEPS section-wrapper -->
         </div>       <!-- closes the LEFT column -->
 
         <!-- RIGHT: Mock -->
@@ -107,20 +101,16 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROFILE SPOTLIGHT -->
-  <section id="profile" class="section">
-    <div class="container">
+    <!-- PROFILE SPOTLIGHT -->
+    <section id="profile" class="section">
       <div class="profile-grid">
 
         <div class="spot-head">
           <div class="eyebrow">Your fit profile</div>
-          <h2>Your closet, brought to life</h2>
-          <p class="lede">
-            Every piece you add makes your profile smarter.
-          </p>
+          <h2 class="section-heading">Your closet, brought to life</h2>
+          <p class="section-subheading">Every piece you add makes your profile smarter.</p>
         </div>
 
         <!-- Center phone -->
@@ -132,14 +122,14 @@
 
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- DEMO MOCKUPS -->
-  <section class="section" id="demo" style="padding:24px 0 10px">
-    <div class="container">
-      <h2>Everything in one place.</h2>
-      <p class="lede">Your sizes, your measurements, your shopping.</p>
+    <!-- DEMO MOCKUPS -->
+    <section class="section" id="demo" style="padding:24px 0 10px">
+      <header class="section-header">
+        <h2 class="section-heading">Everything in one place.</h2>
+        <p class="section-subheading">Your sizes, your measurements, your shopping.</p>
+      </header>
       <div class="three-mockups">
         <div class="mockup-item">
           <div class="mockup-label">Your Closet</div>
@@ -166,70 +156,67 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TESTIMONIAL -->
-  <section class="section" id="love" style="padding: 60px 0 40px;">
-    <div class="container">
+    <!-- TESTIMONIAL -->
+    <section class="section" id="love" style="padding: 60px 0 40px;">
       <div class="quote" style="max-width:760px;margin:0 auto;background:#fff;padding:24px;border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.08);">
         <p style="font-size:18px;line-height:1.55">“I used to order two sizes every time I shopped for a dress online. With Sies, I have a much better idea of how each size will fit.”</p>
         <div class="who" style="margin-top:10px;font-weight:600">— Emily, NYC</div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
-      <h2>FAQ</h2>
-      <div class="faq-list">
-        <details>
-          <summary>Do I need to measure myself?</summary>
-          <div>No. Sies learns your fit from the clothes you already own. Snap a couple tag photos or paste product links and we’ll extract measurements automatically.</div>
-        </details>
-        <details>
-          <summary>Are my sizes public?</summary>
-          <div>No. Sizes and measurements are private by default. You can share with Close Friends; creators can opt-in to share.</div>
-        </details>
-        <details>
-          <summary>Will this work across different brands?</summary>
-          <div>Yes. We standardize brand size guides and map them to your fit profile, so an XS in one brand can be compared to an S in another.</div>
-        </details>
-        <details>
-          <summary>What if I like different fits?</summary>
-          <div>Choose a fit zone – sleek, perfect, or relaxed – and Sies adapts by garment type. You’ll also see a short “why it fits” explanation on each item.</div>
-        </details>
-        <details>
-          <summary>How is my data used?</summary>
-          <div>Only to improve your recommendations. We don’t sell personal data. You can remove your info anytime from Settings.</div>
-        </details>
+    <!-- FAQ -->
+    <section id="faq" class="section section-faq">
+      <div class="section-wrapper">
+        <header class="section-header">
+          <h2 class="section-heading">FAQ</h2>
+        </header>
+        <div class="faq-list">
+          <details>
+            <summary>Do I need to measure myself?</summary>
+            <div>No. Sies learns your fit from the clothes you already own. Snap a couple tag photos or paste product links and we’ll extract measurements automatically.</div>
+          </details>
+          <details>
+            <summary>Are my sizes public?</summary>
+            <div>No. Sizes and measurements are private by default. You can share with Close Friends; creators can opt-in to share.</div>
+          </details>
+          <details>
+            <summary>Will this work across different brands?</summary>
+            <div>Yes. We standardize brand size guides and map them to your fit profile, so an XS in one brand can be compared to an S in another.</div>
+          </details>
+          <details>
+            <summary>What if I like different fits?</summary>
+            <div>Choose a fit zone – sleek, perfect, or relaxed – and Sies adapts by garment type. You’ll also see a short “why it fits” explanation on each item.</div>
+          </details>
+          <details>
+            <summary>How is my data used?</summary>
+            <div>Only to improve your recommendations. We don’t sell personal data. You can remove your info anytime from Settings.</div>
+          </details>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FINAL CTA -->
-  <section class="section" id="join" style="padding: 20px 0 40px;">
-    <div class="container" style="text-align:center;max-width:760px">
-      <h2>Be first to try Sies</h2>
-      <p class="lede">Join the waitlist for early access and updates.</p>
-      <form class="cta"
-            name="waitlist" method="POST" action="/thanks"
-            data-netlify="true" netlify-honeypot="bot-field"
-            style="justify-content:center;margin-top:10px" autocomplete="on">
-        <!-- Required hidden fields for Netlify -->
-        <input type="hidden" name="form-name" value="waitlist" />
-        <p class="hidden" style="display:none;">
-          <label>Don't fill this out: <input name="bot-field" /></label>
-        </p>
+    <!-- JOIN -->
+    <section id="join" class="section section-join">
+      <div class="section-wrapper">
+        <header class="section-header">
+          <h2 class="section-heading">Be first to try Sies</h2>
+          <p class="section-subheading">Join the waitlist for early access and updates.</p>
+        </header>
+        <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
+          <input type="hidden" name="form-name" value="waitlist">
+          <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-space">
+            <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+            <button class="btn" type="submit">Join the waitlist &rarr;</button>
+          </div>
+          <small class="form-note">No spam &mdash; opt out anytime.</small>
+        </form>
+      </div>
+    </section>
 
-        <input class="input" type="email" name="email" placeholder="Enter your email" required
-               inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" />
-        <button class="btn" type="submit">Join the waitlist →</button>
-      </form>
-      <p class="note">No spam – opt out anytime.</p>
-    </div>
-  </section>
+  </div>
 </main>
 
 <footer class="footer">

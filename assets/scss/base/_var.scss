@@ -18,13 +18,18 @@ $grid-breakpoints: (
 $img: '../img';
 $fonts: '../fonts';
 
-$font-default: 'Montserrat', sans-serif;
-$font-heading: 'Bebas Neue', serif;
-$font-movie: 'Movie Poster Condensed', sans-serif;
+$font-default: 'Inter', sans-serif;
 
 // Colors
+$color-ink: #1f1f1f;
+$color-ivory: #faf8f6;
+$color-stone: #e8e4de;
+
 $color-dark: #4c4c50;
 $color-gray: #666;
+$color-muted: #6f6f74;
+$color-orchid: #764ba2;
+$color-blue: #667eea;
 
 $color-red: #c0031e;
 $color-lavender: #b4c0e7;
@@ -33,7 +38,7 @@ $color-lavender: #b4c0e7;
 $bezier: cubic-bezier(.250, .460, .450, .940);
 $easing: $bezier;
 $effect: .4s $easing;
-$effect-s: .15s $easing;
+$effect-s: .2s $easing;
 $effect-l: .8s $easing;
 
 // Mixins

@@ -81,7 +81,7 @@
   justify-content: center;
   font: 700 13px/1 Inter;
   color: #fff;
-  background: linear-gradient(135deg, var(--g1), var(--g2));
+  background: linear-gradient(135deg, $color-blue, $color-orchid);
   box-shadow: 0 10px 24px rgba(118, 75, 162, .25);
 }
 
@@ -89,14 +89,14 @@
   font-weight: 650;
   font-size: 22px;
   margin: 2px 0 12px;
-  color: var(--ink);
+  color: $color-ink;
 }
 
 .step-text {
   font-size: 16.5px;
   line-height: 1.5;
   max-width: 520px;
-  color: #4c4c50;
+  color: $color-dark;
 }
 
 .step-title,

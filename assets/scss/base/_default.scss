@@ -4,16 +4,6 @@
 /* ===== DEFAULT ===== */
 :root {
   --max-width: #{$max-width};
-
-  --bg: #faf8f6;
-  --ink: #1f1f1f;
-  --muted: #6f6f74;
-  --accent: #8f6aae;
-  --card: #fff;
-  --track: #ececec;
-  --shadow: 0 10px 30px rgba(0, 0, 0, .06);
-  --g1: #667eea;
-  --g2: #764ba2;
   --radius: 16px;
   --radius-lg: 22px;
   --radius-xl: 28px;
@@ -25,7 +15,7 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(black, 0);
+  -webkit-tap-highlight-color: rgba($color-ink, 0);
 }
 
 * {
@@ -36,7 +26,7 @@
 html {
   width: 100%;
   height: 100%;
-  background: var(--bg);
+  background: $color-ivory;
   scroll-behavior: smooth;
   scroll-padding-top: 53px; /* tweak to 60–72 if needed */
   scroll-padding-top: 64px;
@@ -49,9 +39,9 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  color: var(--ink);
-  background: var(--bg);
+  font: 16px $font-default;
+  color: $color-ink;
+  background: $color-ivory;
   font-optical-sizing: auto;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
@@ -77,15 +67,16 @@ p {
 }
 
 h1 {
-  font-size: clamp(32px, 5vw, 54px);
-  line-height: 1.04;
-  letter-spacing: -.02em;
   margin-bottom: 10px;
-  @media (max-width: 430px) {
-    font-size: clamp(30px, 7.6vw, 36px);
-    line-height: 1.08;
-    max-width: 16ch;
-  }
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: clamp(26px, 3.4vw, 36px);
+  letter-spacing: -.01em;
 }
 
 img {
@@ -97,7 +88,7 @@ img {
   font: 700 12px/1 Inter;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: #6f6f74;
+  color: $color-muted;
   margin-bottom: 14px
 }
 
@@ -106,6 +97,6 @@ img {
   font: 700 12px/1 Inter;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: #6f6f74;
+  color: $color-muted;
   margin-bottom: 14px;
 }

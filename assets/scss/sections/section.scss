@@ -3,27 +3,39 @@
 
 /* ===== SECTION ===== */
 .section {
-  padding: 64px 0;
-  @media (max-width: 430px) {
-    padding: 40px 0;
+  padding: 40px 0;
+  @include media-breakpoint-up(md) {
+    padding: 64px 0;
   }
 
-  h2 {
-    font-size: clamp(26px, 3.4vw, 36px);
-    letter-spacing: -.01em;
-    margin-bottom: 10px;
-  }
-
-  p.lede {
-    color: #4c4c50;
+  &-wrapper {
     max-width: 760px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  /* Section headings: consistent look with hero */
-  &-head {
+  &-header {
+    margin-bottom: 16px;
     text-align: center;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-head {
     padding-top: 20px;
     margin-bottom: 10px; /* light space under header stack */
+    text-align: center;
+  }
+
+  &-header {
+
+  }
+
+  &-subheading {
+    max-width: 760px;
+    color: $color-dark;
   }
 }
 
@@ -120,7 +132,7 @@
 .mockup-label {
   font-size: 16px;
   font-weight: 600;
-  color: var(--ink); /* darker for clarity */
+  color: $color-ink; /* darker for clarity */
   margin-top: 16px;
   margin-bottom: 2px; /* cleaner spacing */
   text-align: center;
@@ -138,7 +150,7 @@
 .mockup-label {
   font-size: 14px;
   font-weight: 500;
-  color: #6f6f74;
+  color: $color-muted;
   margin-top: 16px;
   margin-bottom: -8px;
   text-align: center;
@@ -150,7 +162,7 @@
 .sub {
   font-size: clamp(16px, 2.2vw, 20px);
   line-height: 1.5;
-  color: #4c4c50;
+  color: $color-dark;
   margin-bottom: 18px;
   @media (max-width: 430px) {
     font-size: 15.5px;

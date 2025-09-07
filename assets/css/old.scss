@@ -213,7 +213,7 @@ html {
   justify-content: center;
   font: 700 13px/1 Inter;
   color: #fff;
-  background: linear-gradient(135deg, var(--g1), var(--g2));
+  background: linear-gradient(135deg, var(--g1), $color-orchid);
   box-shadow: 0 10px 24px rgba(118, 75, 162, .25);
 }
 
@@ -434,7 +434,7 @@ html {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--g1), var(--g2));
+  background: linear-gradient(135deg, var(--g1), $color-orchid);
   box-shadow: 0 4px 12px rgba(118, 75, 162, .25)
 }
 
