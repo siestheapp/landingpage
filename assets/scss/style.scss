@@ -8,10 +8,13 @@
 @use 'layout/page';
 @use 'layout/footer';
 
-@use 'sections/section';
-@use 'sections/hero';
-@use 'sections/form';
-@use 'sections/how';
-@use 'sections/profile';
-@use 'sections/faq';
-@use 'sections/demo';
+@use 'component/section';
+@use 'component/form';
+@use 'component/mock';
+
+@use 'section/hero';
+@use 'section/how';
+@use 'section/profile';
+@use 'section/faq';
+@use 'section/demo';
+@use 'section/join';

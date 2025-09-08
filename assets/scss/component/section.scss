@@ -1,0 +1,40 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== SECTION ===== */
+.section {
+  padding: 24px 0;
+  @include media-breakpoint-up(md) {
+    padding: 40px 0;
+  }
+  @include media-breakpoint-up(xl) {
+    padding: 64px 0;
+  }
+
+  &-header {
+    margin-bottom: 16px;
+    text-align: center;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-head {
+    padding-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &-subheading {
+    color: $color-dark;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+    font: bold 12px/1 $font-default;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: $color-muted;
+  }
+}

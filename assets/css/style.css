@@ -90,33 +90,54 @@ img {
   display: block;
 }
 
-.eyebrow {
-  font: 700 12px/1 Inter;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6f6f74;
-  margin-bottom: 14px;
-}
-
-/* Optional: make eyebrows feel intentional everywhere */
-.eyebrow {
-  font: 700 12px/1 Inter;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6f6f74;
-  margin-bottom: 14px;
+.hidden {
+  display: none;
 }
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: var(--max-width);
+  max-width: 572px;
   padding: 0 16px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 @media (min-width: 768px) {
   .container {
+    max-width: 752px;
+  }
+}
+@media (min-width: 1025px) {
+  .container {
+    max-width: 992px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--max-width);
     padding: 0 20px;
   }
+}
+
+.wrapper {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.cols {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+}
+
+.col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 /* ===== HEADER ===== */
@@ -255,17 +276,17 @@ img {
 
 /* ===== SECTION ===== */
 .section {
-  padding: 40px 0;
+  padding: 24px 0;
 }
 @media (min-width: 768px) {
   .section {
-    padding: 64px 0;
+    padding: 40px 0;
   }
 }
-.section-wrapper {
-  max-width: 760px;
-  margin-right: auto;
-  margin-left: auto;
+@media (min-width: 1280px) {
+  .section {
+    padding: 64px 0;
+  }
 }
 .section-header {
   margin-bottom: 16px;
@@ -276,246 +297,21 @@ img {
 }
 .section-head {
   padding-top: 20px;
-  margin-bottom: 10px; /* light space under header stack */
+  margin-bottom: 10px;
   text-align: center;
 }
 .section-subheading {
-  max-width: 760px;
   color: #4c4c50;
 }
-
-.mock {
-  border-radius: var(--radius-2xl);
-  background: #000;
-  -webkit-box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-  padding: 12px;
-  max-width: 100%;
-  min-width: 0;
-}
-.mock-inner {
-  background: #fff;
-  border-radius: calc(var(--radius-2xl) - 10px);
-  aspect-ratio: 9/16;
-  overflow: hidden;
-  max-width: 100%;
-}
-@media (max-width: 430px) {
-  .mock-inner {
-    /* Phone mock: keep comfortably inside viewport */
-    width: clamp(230px, 72vw, 280px) !important;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .mock-inner {
-    background: #fff url("./mock-cover.jpg") center/cover no-repeat;
-  }
-}
-.mock-inner iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: transparent;
-}
-.mock {
-  /* Video styling to match iframe */
-}
-.mock:has(video) {
-  background: transparent !important;
-  padding: 0 !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-  width: -webkit-fit-content !important;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  height: -webkit-fit-content !important;
-  height: -moz-fit-content !important;
-  height: fit-content !important;
-  pointer-events: none !important;
-}
-.mock:has(video) .mock-inner {
-  background: transparent;
-  border-radius: 0;
-  aspect-ratio: 430/932;
-  overflow: hidden;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  pointer-events: none;
-}
-.mock video {
-  -webkit-transform: translateY(-44px) scale(0.655);
-          transform: translateY(-44px) scale(0.655);
-  -webkit-transform-origin: center;
-          transform-origin: center;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  border-radius: 53px;
-  /* Motion preference support */
-}
-@media (prefers-reduced-motion: reduce) {
-  .mock video {
-    display: none;
-  }
-}
-.mock a {
-  pointer-events: auto !important;
-  cursor: pointer;
-}
-
-.grid {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
-}
-
-/* Three mockups layout */
-.three-mockups {
-  display: grid;
-  grid-template-columns: repeat(3, 272px);
-  gap: 45px;
-  margin-top: 45px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  justify-items: center;
-}
-@media (max-width: 960px) {
-  .three-mockups {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-
-.mockup-label {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f1f1f; /* darker for clarity */
-  margin-top: 16px;
-  margin-bottom: 2px; /* cleaner spacing */
-  text-align: center;
-  letter-spacing: 0.01em; /* subtle, less wide */
-  text-transform: none; /* natural casing */
-}
-
-.mockup-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 0px;
-}
-
-.mockup-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #6f6f74;
-  margin-top: 16px;
-  margin-bottom: -8px;
-  text-align: center;
+.section .eyebrow {
+  margin-bottom: 14px;
+  font: bold 12px/1 "Inter", sans-serif;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: #6f6f74;
 }
 
-.sub {
-  font-size: clamp(16px, 2.2vw, 20px);
-  line-height: 1.5;
-  color: #4c4c50;
-  margin-bottom: 18px;
-}
-@media (max-width: 430px) {
-  .sub {
-    font-size: 15.5px;
-    line-height: 1.45;
-  }
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: 24px 0;
-}
-@media (min-width: 1280px) {
-  .hero {
-    padding: 20px 0 40px;
-  }
-}
-.hero .mock {
-  display: none;
-}
-.hero {
-  /* Benefits */
-}
-.hero .benefits {
-  margin: 20px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 8px;
-}
-.hero .benefit {
-  font-size: 16px;
-  color: #4c4c50;
-  line-height: 1.4;
-}
-.hero {
-  /* --- HERO mock fix: apply only below 960px (tablet + phones) --- */
-}
-@media (max-width: 960px) {
-  .hero .mock {
-    background: transparent;
-    padding: 0;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-    justify-self: center;
-  }
-  .hero {
-    /* Override earlier .mock:has(video) .mock-inner width collapse */
-  }
-  .hero .mock-inner,
-  .hero .mock:has(video) .mock-inner {
-    background: transparent;
-    border-radius: 40px;
-    width: clamp(230px, 72vw, 300px) !important;
-    aspect-ratio: 430/932;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-  }
-  .hero .mock-inner video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    -o-object-fit: contain;
-       object-fit: contain;
-    -webkit-transform: none !important;
-            transform: none !important;
-    border-radius: 40px;
-  }
-}
-
-/* Click tracking overlay (covers iframe/videos without changing layout) */
-.click-overlay {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-/* ===== CTA ===== */
+/* ===== FORM ===== */
 .form-space {
   max-width: 760px;
   margin-right: auto;
@@ -657,27 +453,239 @@ img {
   }
 }
 
-/* ===== HOW ===== */
-#how {
-  display: none !important;
+/* ===== MOCK ===== */
+/*
+.mock {
+  @media (max-width: 960px) {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    justify-self: center;
+
+    &-inner {
+      background: transparent;
+      border-radius: 40px;
+      width: clamp(230px, 72vw, 300px) !important;
+      aspect-ratio: 430 / 932;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+
+      video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: none !important;
+        border-radius: 40px;
+      }
+    }
+  }
+}
+ */
+@media (max-width: 575.98px) {
+  .mock {
+    margin-right: -16px;
+    margin-left: -16px;
+  }
+}
+.mock {
+  /*
+  border-radius: var(--radius-2xl);
+  background: #000;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+  padding: 12px;
+  max-width: 100%;
+  min-width: 0;
+   */
+}
+.mock-inner {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 38px;
+  margin: 0 auto;
+  aspect-ratio: 430/932;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  -webkit-box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.1);
+}
+.mock-inner iframe {
+  width: 430px;
+  height: 932px;
+  border: none;
+  display: block;
+  background: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transform: scale(0.69767442);
+          transform: scale(0.69767442);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+.mock-inner {
+  /*
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  background: white center/cover no-repeat;
+
+  border-radius: calc(var(--radius-2xl) - 10px);
+  aspect-ratio: 9/16;
+  @media (max-width: 430px) {
+    width: clamp(230px, 72vw, 280px) !important;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    background-image: url('../img/mockup.jpg');
+  }
+   */
+  /*
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: transparent;
+    @include user-select;
+  }
+   */
+}
+.mock {
+  /* Video styling to match iframe */
+}
+.mock:has(video) {
+  background: transparent !important;
+  padding: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  height: -webkit-fit-content !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
+  pointer-events: none !important;
+}
+.mock:has(video) .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  aspect-ratio: 430/932;
+  overflow: hidden;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  pointer-events: none;
+}
+.mock video {
+  -webkit-transform: translateY(-44px) scale(0.655);
+          transform: translateY(-44px) scale(0.655);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 53px;
+  /* Motion preference support */
+}
+@media (prefers-reduced-motion: reduce) {
+  .mock video {
+    display: none;
+  }
+}
+.mock a {
+  pointer-events: auto !important;
+  cursor: pointer;
 }
 
-/* desktop / large */
+/* Click tracking overlay (covers iframe/videos without changing layout) */
+.click-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 24px 0;
+  margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .hero {
+    padding: 40px 0;
+  }
+}
+@media (min-width: 1280px) {
+  .hero {
+    padding: 64px 0;
+  }
+}
+.hero .mock {
+  display: none;
+}
+
+/* ===== HOW ===== */
+.how {
+  /*
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .4) 100%);
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  padding: 0 0 40px;
+   */
+}
+.how .mock {
+  /*
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+   */
+  /*
+  &-inner {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 38px;
+    margin: 0 auto;
+    aspect-ratio: 430 / 932;
+    overflow: hidden;
+    position: relative;
+    background: transparent;
+    box-shadow: 0 16px 48px -8px rgba(black, .1);
+
+    iframe {
+      width: 430px;
+      height: 932px;
+      transform: scale(.69767442);
+      transform-origin: top left;
+    }
+  }
+   */
+}
+
+/*
 #how h2 {
   font-size: clamp(28px, 3vw, 36px);
   line-height: 1.18;
   font-weight: 700;
   margin-bottom: 24px;
-  white-space: nowrap; /* one line on desktop */
+  white-space: nowrap;
 }
 
-/* tablet & down */
 @media (max-width: 900px) {
   #how h2 {
-    white-space: normal; /* wrap gracefully when tight */
-    max-width: 16ch; /* controlled wrap, looks intentional */
+    white-space: normal;
+    max-width: 16ch;
   }
 }
+ */
 .steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -781,172 +789,18 @@ img {
   grid-column: 2;
 }
 
-/* HOW section spacing: no top padding so the top line sits right under header */
-#how.section {
-  padding: 0 0 50px !important;
-}
-
-/* Tighten header stack */
-#how h2 {
-  margin-bottom: 28px !important; /* was 12px */
-}
-
-#how .how-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; /* vertically center items in the row */
-  gap: 48px;
-}
-
-#how .eyebrow {
-  margin-bottom: 8px;
-}
-
-/* was 14px in places  */
-@media (max-width: 960px) {
-  #how .how-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  #how .left-col {
-    margin-top: 0;
-  }
-  #how .mock {
-    margin-top: 0;
-    -ms-flex-item-align: center;
-        align-self: center;
-  }
-}
-/* 2) Remove the extra vertical offsets inside HOW */
-#how .left-col {
-  margin-top: 0 !important;
-}
-
-/* was 28px */
-#how .mock {
-  margin-top: 0 !important;
-}
-
-/* was -14px */
-/* === HOW: framed device, consistent scale, no phantom gap === */
-#how .mock {
-  background: transparent;
-  padding: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  border-radius: 0;
-  margin: 0 0 0 -5px; /* nudge left by 5px */
-}
-
-#how .mock .mock-inner {
-  background: transparent;
-  border-radius: 0;
-  aspect-ratio: 430/1000; /* taller to reveal bottom */
-  width: 301px; /* +1% scale reflected in layout width */
-  max-width: 100%;
-  margin-inline: auto;
-  overflow: hidden;
-  position: relative;
-}
-
-#how .mock-inner iframe {
-  width: 430px;
-  height: 1000px;
-  -webkit-transform: scale(0.7);
-          transform: scale(0.7); /* matches wrapper width (+1%) */
-  -webkit-transform-origin: top left;
-          transform-origin: top left;
-  border: 0;
-  background: transparent;
-  border-radius: 40px; /* slightly tighter corners for scale */
-}
-
 /* ===== PROFILE ===== */
-/* PROFILE SPOTLIGHT — centered phone + gradient leader lines */
-#profile.section {
-  display: none !important;
-  background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+.profile {
+  /*
+  background: radial-gradient(1200px 420px at 50% -120px, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0));
+  border-top: 1px solid rgba(0, 0, 0, .06);
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
   padding: 40px 0 60px;
-}
-
-.profile-grid {
-  position: relative;
-  max-width: 1040px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: auto auto;
-  justify-items: center;
-  gap: 6px;
-}
-
-#profile .spot-head {
-  text-align: center;
-}
-
-#profile .spot-head .eyebrow {
-  margin-bottom: 8px;
-}
-
-#profile .spot-head h2 {
-  margin-bottom: 8px;
-}
-
-#profile .spot-head .lede {
-  margin: 10px auto 0;
-  max-width: 1000px;
-  white-space: nowrap;
-}
-
-@media (max-width: 960px) {
-  #profile .spot-head .lede {
-    white-space: normal;
-  }
-}
-#profile .mock {
-  background: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  padding: 0;
-  border-radius: 0;
-}
-
-#profile .mock-inner {
-  background: transparent;
-  border-radius: 0;
-  width: 300px;
-  aspect-ratio: 430/1000;
-  position: relative;
-  overflow: hidden;
-}
-
-#profile .mock-inner iframe {
-  width: 430px;
-  height: 940px;
-  border: 0;
-  background: transparent;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(0.7);
-          transform: translate(-50%, -50%) scale(0.7);
-  -webkit-transform-origin: center;
-          transform-origin: center;
+   */
 }
 
 /* ===== FAQ ===== */
-#faq {
-  display: none !important;
-}
-
-#faq .container {
-  max-width: 760px;
-}
-
-#faq .faq-list {
+.faq-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -957,15 +811,13 @@ img {
   gap: 10px;
   margin-top: 14px;
 }
-
-#faq details {
-  background: #fff;
+.faq details {
   border: 1px solid #e8e4de;
   border-radius: 14px;
   overflow: hidden;
+  background: white;
 }
-
-#faq summary {
+.faq details summary {
   list-style: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -979,13 +831,13 @@ img {
           align-items: center;
   gap: 10px;
 }
-
-#faq summary::-webkit-details-marker {
+.faq details summary::-webkit-details-marker {
   display: none;
 }
-
-#faq summary::before {
+.faq details summary::before {
   content: "";
+  display: block;
+  overflow: hidden;
   width: 8px;
   height: 8px;
   border-radius: 999px;
@@ -993,9 +845,10 @@ img {
   -webkit-box-shadow: 0 4px 12px rgba(118, 75, 162, 0.25);
           box-shadow: 0 4px 12px rgba(118, 75, 162, 0.25);
 }
-
-#faq summary::after {
+.faq details summary::after {
   content: "";
+  display: block;
+  overflow: hidden;
   margin-left: auto;
   width: 10px;
   height: 10px;
@@ -1008,13 +861,11 @@ img {
   transition: transform 0.2s ease;
   transition: transform 0.2s ease, -webkit-transform 0.2s ease;
 }
-
-#faq details[open] summary::after {
+.faq details[open] summary::after {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
-
-#faq details > div {
+.faq details > div {
   padding: 8px 16px 14px;
   color: #4c4c50;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -1023,14 +874,64 @@ img {
 }
 
 /* ===== DEMO ===== */
-#demo {
-  display: none !important;
+/* Three mockups layout */
+.three-mockups {
+  display: grid;
+  grid-template-columns: repeat(3, 272px);
+  gap: 45px;
+  margin-top: 45px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+}
+@media (max-width: 960px) {
+  .three-mockups {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 
+.mockup-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f1f1f; /* darker for clarity */
+  margin-top: 16px;
+  margin-bottom: 2px; /* cleaner spacing */
+  text-align: center;
+  letter-spacing: 0.01em; /* subtle, less wide */
+  text-transform: none; /* natural casing */
+}
+
+.mockup-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0;
+}
+
+.mockup-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6f6f74;
+  margin-top: 16px;
+  margin-bottom: -8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/*
 #demo .three-mockups .mock {
   background: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   padding: 0;
   margin-top: 0;
 }
@@ -1054,13 +955,9 @@ img {
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(0.63);
-          transform: translate(-50%, -50%) scale(0.63);
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
+  transform: translate(-50%, -50%) scale(0.63);
+  transform-origin: center center;
 }
-
-#love {
-  display: none !important;
-}
+ */
+/* ===== JOIN ===== */
 /*# sourceMappingURL=style.css.map */

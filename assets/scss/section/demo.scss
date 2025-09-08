@@ -1,0 +1,83 @@
+@use '../base/var' as *;
+@use '../base/breakpoints' as *;
+
+/* ===== DEMO ===== */
+#demo {
+}
+
+
+/* Three mockups layout */
+.three-mockups {
+  display: grid;
+  grid-template-columns: repeat(3, 272px);
+  gap: 45px;
+  margin-top: 45px;
+  justify-content: center;
+  justify-items: center;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.mockup-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: $color-ink; /* darker for clarity */
+  margin-top: 16px;
+  margin-bottom: 2px; /* cleaner spacing */
+  text-align: center;
+  letter-spacing: 0.01em; /* subtle, less wide */
+  text-transform: none; /* natural casing */
+}
+
+.mockup-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.mockup-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-muted;
+  margin-top: 16px;
+  margin-bottom: -8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/*
+#demo .three-mockups .mock {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+#demo .three-mockups .mock-inner {
+  background: transparent;
+  border-radius: 0;
+  width: 272px;
+  max-width: 100%;
+  aspect-ratio: 430/1000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+#demo .three-mockups .mock iframe {
+  width: 430px;
+  height: 945px;
+  border: 0;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.63);
+  transform-origin: center center;
+}
+ */

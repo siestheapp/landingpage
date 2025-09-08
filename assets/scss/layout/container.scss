@@ -3,10 +3,36 @@
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: var(--max-width);
+  max-width: 572px;
   padding: 0 16px;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
   @include media-breakpoint-up(md) {
+    max-width: 752px;
+  }
+  @include media-breakpoint-up(lg) {
+    max-width: 992px;
+  }
+  @include media-breakpoint-up(xl) {
+    max-width: var(--max-width);
     padding: 0 20px;
   }
+}
+
+// WRAPPER
+.wrapper {
+  max-width: 760px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// COLUMNS
+.cols {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.col {
+  flex: 1;
 }

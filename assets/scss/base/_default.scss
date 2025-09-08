@@ -84,19 +84,6 @@ img {
   display: block
 }
 
-.eyebrow {
-  font: 700 12px/1 Inter;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: $color-muted;
-  margin-bottom: 14px
-}
-
-/* Optional: make eyebrows feel intentional everywhere */
-.eyebrow {
-  font: 700 12px/1 Inter;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: $color-muted;
-  margin-bottom: 14px;
+.hidden {
+  display: none;
 }

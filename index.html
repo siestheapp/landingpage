@@ -37,14 +37,12 @@
     <header class="hero">
       <div class="col">
         <header class="section-header">
-          <h1>Find clothes that fit &mdash; every time.</h1>
-          <div class="benefits">
-            <div class="benefit">No&nbsp;measuring. No&nbsp;guesswork. No&nbsp;surprises.</div>
-          </div>
+          <h1 class="section-heading">Find clothes that fit &mdash; every time.</h1>
+          <p class="section-subheading">No&nbsp;measuring. No&nbsp;guesswork. No&nbsp;surprises.</p>
         </header>
         <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
           <input type="hidden" name="form-name" value="waitlist">
-          <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-space">
             <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
             <button class="btn" type="submit">Join the waitlist &rarr;</button>
@@ -52,11 +50,11 @@
           <small class="form-note">Join 1000+ early users. No spam, ever.</small>
         </form>
       </div>
-      <div class="col mock">
-        <div class="mock-inner" aria-hidden="true">
-          <a href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock" style="display: inline-block; position: relative; z-index: 10;">
-            <video preload="metadata" autoplay muted loop playsinline poster="./mock-cover.jpg">
-              <source src="./mockup-video3.mp4" type="video/mp4">
+      <div class="col">
+        <div class="mock" aria-hidden="true">
+          <a class="mock-inner" href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock">
+            <video preload="metadata" autoplay muted loop playsinline poster="assets/video/mockup.jpg">
+              <source src="assets/video/mockup.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </a>
@@ -66,15 +64,13 @@
     </header>
 
     <!-- HOW IT WORKS -->
-    <section id="how" class="section" style="background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 100%);border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);padding:0 0 40px">
-      <!-- Left-Right Layout -->
-      <div class="how-grid">
-        <!-- LEFT: Header + Steps -->
-        <div class="left-col">
-          <div>
-            <div class="eyebrow">how it works</div>
-            <h2 id="how-title">Your sizes → your measurements</h2>
-          </div>
+    <section id="how" class="section how">
+      <div class="cols">
+        <div class="col">
+          <header class="section-header">
+            <p class="section-title eyebrow">How it works</p>
+            <h2 id="section-heading">Your sizes &rarr; your measurements</h2>
+          </header>
 
           <div class="how-list">
             <div class="step">
@@ -91,41 +87,34 @@
               <h3 class="step-title">Shop with confidence</h3>
               <p class="step-text">See your recommended size and a short "why it fits" note. No guesswork, just clothes that feel made for you.</p>
             </div>
-          </div>     <!-- closes the STEPS section-wrapper -->
-        </div>       <!-- closes the LEFT column -->
-
-        <!-- RIGHT: Mock -->
-        <div class="mock" aria-hidden="true">
-          <div class="mock-inner" data-track="how-closet-mock">
-            <iframe src="./closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mock" aria-hidden="true">
+            <div class="mock-inner" data-track="how-closet-mock">
+              <iframe src="assets/iframe/closet-screen.html" title="Closet mockup" loading="lazy"></iframe>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROFILE SPOTLIGHT -->
-    <section id="profile" class="section">
-      <div class="profile-grid">
-
-        <div class="spot-head">
-          <div class="eyebrow">Your fit profile</div>
-          <h2 class="section-heading">Your closet, brought to life</h2>
-          <p class="section-subheading">Every piece you add makes your profile smarter.</p>
+    <!-- PROFILE -->
+    <section id="profile" class="section profile">
+      <header class="section-header">
+        <div class="eyebrow">Your fit profile</div>
+        <h2 class="section-heading">Your closet, brought to life</h2>
+        <p class="section-subheading">Every piece you add makes your profile smarter.</p>
+      </header>
+      <div class="mock" aria-hidden="true">
+        <div class="mock-inner" data-track="profile-mock">
+          <iframe src="assets/iframe/profile-screen.html" title="Profile mockup" loading="lazy"></iframe>
         </div>
-
-        <!-- Center phone -->
-        <div class="mock" aria-hidden="true" style="margin-top: 10px;">
-          <div class="mock-inner" data-track="profile-mock">
-            <iframe src="./profile-screen.html" title="Profile mockup" loading="lazy"></iframe>
-          </div>
-        </div>
-
-
       </div>
     </section>
 
     <!-- DEMO MOCKUPS -->
-    <section class="section" id="demo" style="padding:24px 0 10px">
+    <section class="section demo" id="demo">
       <header class="section-header">
         <h2 class="section-heading">Everything in one place.</h2>
         <p class="section-subheading">Your sizes, your measurements, your shopping.</p>
@@ -135,7 +124,7 @@
           <div class="mockup-label">Your Closet</div>
           <div class="mock">
             <div class="mock-inner" data-track="gallery-closet">
-              <iframe src="./closet-gallery.html" title="Closet mockup" loading="lazy"></iframe>
+              <iframe src="assets/iframe/closet-gallery.html" title="Closet mockup" loading="lazy"></iframe>
             </div>
           </div>
         </div>
@@ -143,7 +132,7 @@
           <div class="mockup-label">Your Profile</div>
           <div class="mock">
             <div class="mock-inner" data-track="gallery-profile">
-              <iframe src="./profile-gallery.html" title="Profile mockup" loading="lazy"></iframe>
+              <iframe src="assets/iframe/profile-gallery.html" title="Profile mockup" loading="lazy"></iframe>
             </div>
           </div>
         </div>
@@ -151,7 +140,7 @@
           <div class="mockup-label">Your Feed</div>
           <div class="mock">
             <div class="mock-inner" data-track="gallery-feed">
-              <iframe src="./feed-gallery.html" title="Feed mockup" loading="lazy"></iframe>
+              <iframe src="assets/iframe/feed-gallery.html" title="Feed mockup" loading="lazy"></iframe>
             </div>
           </div>
         </div>
@@ -159,7 +148,7 @@
     </section>
 
     <!-- TESTIMONIAL -->
-    <section class="section" id="love" style="padding: 60px 0 40px;">
+    <section class="section testimonial" id="testimonial">
       <div class="quote" style="max-width:760px;margin:0 auto;background:#fff;padding:24px;border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.08);">
         <p style="font-size:18px;line-height:1.55">“I used to order two sizes every time I shopped for a dress online. With Sies, I have a much better idea of how each size will fit.”</p>
         <div class="who" style="margin-top:10px;font-weight:600">— Emily, NYC</div>
@@ -167,8 +156,8 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="section section-faq">
-      <div class="section-wrapper">
+    <section id="faq" class="section faq">
+      <div class="wrapper">
         <header class="section-header">
           <h2 class="section-heading">FAQ</h2>
         </header>
@@ -198,15 +187,15 @@
     </section>
 
     <!-- JOIN -->
-    <section id="join" class="section section-join">
-      <div class="section-wrapper">
+    <section id="join" class="section join">
+      <div class="wrapper">
         <header class="section-header">
           <h2 class="section-heading">Be first to try Sies</h2>
           <p class="section-subheading">Join the waitlist for early access and updates.</p>
         </header>
         <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
           <input type="hidden" name="form-name" value="waitlist">
-          <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-space">
             <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
             <button class="btn" type="submit">Join the waitlist &rarr;</button>
