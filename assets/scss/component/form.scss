@@ -4,7 +4,7 @@
 /* ===== FORM ===== */
 .form {
   &-space {
-    max-width: 760px;
+    max-width: 500px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
@@ -14,6 +14,12 @@
     gap: 12px;
     @include media-breakpoint-up(sm) {
       flex-direction: row;
+    }
+    @include media-breakpoint-up(lg) {
+      max-width: 540px;
+    }
+    @include media-breakpoint-up(xl) {
+      max-width: 760px;
     }
   }
 

@@ -11,10 +11,11 @@
 @use 'component/section';
 @use 'component/form';
 @use 'component/mock';
+@use 'component/testimonial';
 
 @use 'section/hero';
 @use 'section/how';
 @use 'section/profile';
-@use 'section/faq';
 @use 'section/demo';
+@use 'section/faq';
 @use 'section/join';

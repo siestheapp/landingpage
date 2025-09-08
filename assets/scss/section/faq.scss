@@ -3,6 +3,8 @@
 
 /* ===== FAQ ===== */
 .faq {
+  &::after {display: none;}
+
   &-list {
     display: flex;
     flex-direction: column;

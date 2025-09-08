@@ -28,7 +28,6 @@ html {
   height: 100%;
   background: $color-ivory;
   scroll-behavior: smooth;
-  scroll-padding-top: 53px; /* tweak to 60–72 if needed */
   scroll-padding-top: 64px;
 }
 
@@ -45,7 +44,7 @@ body {
   font-optical-sizing: auto;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  @media (max-width: 430px) {
+  @include media-breakpoint-down(sm) {
     overflow-x: hidden;
   }
 }
@@ -68,15 +67,29 @@ p {
 
 h1 {
   margin-bottom: 10px;
-  font-size: clamp(32px, 5vw, 54px);
+  //font-size: clamp(32px, 5vw, 54px);
+  font-size: 32px;
   line-height: 1.08;
   letter-spacing: -.02em;
+  @include media-breakpoint-up(md) {
+    font-size: 42px;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 54px;
+  }
 }
 
 h2 {
   margin-bottom: 10px;
-  font-size: clamp(26px, 3.4vw, 36px);
+  //font-size: clamp(26px, 3.4vw, 36px);
+  font-size: 26px;
   letter-spacing: -.01em;
+  @include media-breakpoint-up(md) {
+    font-size: 30px;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: 36px;
+  }
 }
 
 img {

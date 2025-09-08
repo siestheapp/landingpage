@@ -35,30 +35,32 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="col">
-        <header class="section-header">
-          <h1 class="section-heading">Find clothes that fit &mdash; every time.</h1>
-          <p class="section-subheading">No&nbsp;measuring. No&nbsp;guesswork. No&nbsp;surprises.</p>
-        </header>
-        <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
-          <input type="hidden" name="form-name" value="waitlist">
-          <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
-          <div class="form-space">
-            <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
-            <button class="btn" type="submit">Join the waitlist &rarr;</button>
+      <div class="cols">
+        <div class="col">
+          <header class="section-header">
+            <h1 class="section-heading">Find clothes that fit &mdash; every time.</h1>
+            <p class="section-subheading">No&nbsp;measuring. No&nbsp;guesswork. No&nbsp;surprises.</p>
+          </header>
+          <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
+            <input type="hidden" name="form-name" value="waitlist">
+            <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="form-space">
+              <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+              <button class="btn" type="submit">Join the waitlist &rarr;</button>
+            </div>
+            <small class="form-note">Join 1000+ early users. No spam, ever.</small>
+          </form>
+        </div>
+        <div class="col">
+          <div class="mock video" aria-hidden="true">
+            <a class="mock-inner" href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock">
+              <video preload="metadata" autoplay muted loop playsinline poster="assets/video/mockup.jpg">
+                <source src="assets/video/mockup.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="click-overlay" data-track="hero-mock"></div>
+            </a>
           </div>
-          <small class="form-note">Join 1000+ early users. No spam, ever.</small>
-        </form>
-      </div>
-      <div class="col">
-        <div class="mock" aria-hidden="true">
-          <a class="mock-inner" href="https://www.anthropologie.com/shop/the-jocelyn-sleeveless-slip-midi-dress-by-maeve?category=top-rated-dresses&color=256&type=STANDARD&quantity=1" target="_blank" rel="noopener noreferrer" data-track="hero-mock">
-            <video preload="metadata" autoplay muted loop playsinline poster="assets/video/mockup.jpg">
-              <source src="assets/video/mockup.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </a>
-          <div class="click-overlay" data-track="hero-mock"></div>
         </div>
       </div>
     </header>
@@ -113,13 +115,14 @@
       </div>
     </section>
 
-    <!-- DEMO MOCKUPS -->
+    <!-- DEMO -->
     <section class="section demo" id="demo">
       <header class="section-header">
         <h2 class="section-heading">Everything in one place.</h2>
         <p class="section-subheading">Your sizes, your measurements, your shopping.</p>
       </header>
-      <div class="three-mockups">
+
+      <div class="three">
         <div class="mockup-item">
           <div class="mockup-label">Your Closet</div>
           <div class="mock">
@@ -145,13 +148,12 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- TESTIMONIAL -->
-    <section class="section testimonial" id="testimonial">
-      <div class="quote" style="max-width:760px;margin:0 auto;background:#fff;padding:24px;border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.08);">
-        <p style="font-size:18px;line-height:1.55">“I used to order two sizes every time I shopped for a dress online. With Sies, I have a much better idea of how each size will fit.”</p>
-        <div class="who" style="margin-top:10px;font-weight:600">— Emily, NYC</div>
+      <div class="testimonial">
+        <blockquote>
+          <p>“I used to order two sizes every time I shopped for a dress online. With Sies, I have a much better idea of how each size will fit.”</p>
+          <cite>&mdash; Emily, NYC</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -188,21 +190,19 @@
 
     <!-- JOIN -->
     <section id="join" class="section join">
-      <div class="wrapper">
-        <header class="section-header">
-          <h2 class="section-heading">Be first to try Sies</h2>
-          <p class="section-subheading">Join the waitlist for early access and updates.</p>
-        </header>
-        <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
-          <input type="hidden" name="form-name" value="waitlist">
-          <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
-          <div class="form-space">
-            <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
-            <button class="btn" type="submit">Join the waitlist &rarr;</button>
-          </div>
-          <small class="form-note">No spam &mdash; opt out anytime.</small>
-        </form>
-      </div>
+      <header class="section-header">
+        <h2 class="section-heading">Be first to try Sies</h2>
+        <p class="section-subheading">Join the waitlist for early access and updates.</p>
+      </header>
+      <form class="form" method="POST" action="/thanks" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on">
+        <input type="hidden" name="form-name" value="waitlist">
+        <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="form-space">
+          <input class="form-input" type="email" name="email" placeholder="Enter your email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+          <button class="btn" type="submit">Join the waitlist &rarr;</button>
+        </div>
+        <small class="form-note">No spam &mdash; opt out anytime.</small>
+      </form>
     </section>
 
   </div>

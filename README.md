@@ -79,3 +79,8 @@ vercel deploy --prod
 ### Swap in your app screenshot
 Replace the `<img>` in the `.mock-inner` with your latest mockup image.
 
+### Install Node.js devpendencies
+`npm install`
+
+## Development mode
+`gulp`
