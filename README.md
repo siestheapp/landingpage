@@ -5,6 +5,12 @@ Sies is a mobile app that helps users find the perfect clothing size across bran
 
 ---
 
+## Install Node.js dependencies
+`npm install`
+
+## Development mode
+`gulp`
+
 ## 🚀 Features
 - **TagMatch**: Scan or upload a photo of a clothing tag, and Sies finds the exact product online along with its measurements.  
 - **Closet-Based Fit Profile**: Add a few favorite garments to your digital closet. Sies uses their measurements to predict your size across brands.  
@@ -78,9 +84,3 @@ vercel deploy --prod
 
 ### Swap in your app screenshot
 Replace the `<img>` in the `.mock-inner` with your latest mockup image.
-
-### Install Node.js devpendencies
-`npm install`
-
-## Development mode
-`gulp`
