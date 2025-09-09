@@ -8,13 +8,13 @@
   margin-right: auto;
   margin-left: auto;
   @include media-breakpoint-up(md) {
-    max-width: 752px;
+    max-width: 742px;
   }
   @include media-breakpoint-up(lg) {
-    max-width: 992px;
+    max-width: 960px;
   }
   @include media-breakpoint-up(xl) {
-    max-width: var(--max-width);
+    max-width: $max-width;
     padding: 0 20px;
   }
 }
@@ -43,8 +43,16 @@
     justify-content: center;
     gap: 16px;
   }
+  @include media-breakpoint-up(xl) {
+    gap: 24px;
+    .col:nth-child(1) {flex-basis: 55%;}
+    .col:nth-child(2) {flex-basis: 45%;}
+  }
 }
 
 .col {
   flex: 1;
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
 }

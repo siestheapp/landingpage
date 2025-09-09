@@ -5,8 +5,11 @@
 .section {
   padding: 48px 0;
   position: relative;
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(md) {
     padding: 64px 0;
+  }
+  @include media-breakpoint-up(xl) {
+    padding: 80px 0;
   }
 
   &::after {
@@ -28,6 +31,9 @@
         text-align: left;
       }
     }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 36px;
+    }
 
     > *:last-child {
       margin-bottom: 0;
@@ -44,7 +50,7 @@
     color: $color-dark;
   }
 
-  .eyebrow {
+  &-title {
     margin-bottom: 8px;
     font: bold 12px/1 $font-default;
     letter-spacing: .1em;

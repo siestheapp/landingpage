@@ -10,9 +10,9 @@
   }
 
   &-inner {
-    width: 300px;
+    width: 231px;
     max-width: 100%;
-    border-radius: 38px;
+    border-radius: 30px;
     margin: 0 auto;
     aspect-ratio: 430 / 932;
     overflow: hidden;
@@ -20,6 +20,14 @@
     z-index: 1;
     background: transparent;
     box-shadow: 0 16px 48px -8px rgba(black, .1);
+    @include media-breakpoint-up(xs) {
+      width: 270px;
+      border-radius: 33px;
+    }
+    @include media-breakpoint-up(xsm) {
+      width: 300px;
+      border-radius: 38px;
+    }
 
     iframe {
       width: 430px;
@@ -28,8 +36,14 @@
       display: block;
       background: transparent;
       @include user-select;
-      transform: scale(.69767442);
+      transform: scale(.53648069);
       transform-origin: top left;
+      @include media-breakpoint-up(xs) {
+        transform: scale(.62790698);
+      }
+      @include media-breakpoint-up(xsm) {
+        transform: scale(.69767442);
+      }
     }
   }
 

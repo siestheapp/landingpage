@@ -5,7 +5,7 @@
 .testimonial {
   blockquote {
     max-width: 760px;
-    padding: 24px;
+    padding: 18px 24px;
     margin: 0 auto;
     border-radius: 16px;
     line-height: 1.55;
@@ -15,15 +15,20 @@
     @include media-breakpoint-up(md) {
       font-size: 18px;
     }
+    @include media-breakpoint-up(xl) {
+      padding-top: 24px;
+      padding-bottom: 22px;
+    }
 
     p {
       margin: 0;
     }
 
     cite {
-      margin-top: 10px;
+      margin-top: 8px;
       display: block;
       font-style: normal;
+      font-size: 16px;
       font-weight: 600;
     }
   }
