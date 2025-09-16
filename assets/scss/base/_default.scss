@@ -17,9 +17,9 @@ html {
   height: 100%;
   background: $color-ivory;
   scroll-behavior: smooth;
-  scroll-padding-top: 52px;
+  scroll-padding-top: 10px;
   @include media-breakpoint-up(xl) {
-    scroll-padding-top: 64px;
+    scroll-padding-top: 0;
   }
 }
 
